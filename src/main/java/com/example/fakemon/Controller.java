@@ -5,17 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class Controller {
-
+    public static int i = 0;
+    public static GameSounds sonido = new GameSounds();
+    public ToggleButton Genero;
+    public Button OkNombre;
+    public TextField Nombre;
     @FXML
     private CheckBox config1 = new CheckBox();
     @FXML
@@ -34,6 +38,16 @@ public class Controller {
     private Scene scene;
     private Parent root;
 
+    public static Boolean flag = true;
+
+    public Controller() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        if (flag){
+            sonido.playMusic("home");
+            flag = false;
+        }
+        i++;
+        System.out.println(i);
+    }
     @FXML
 
     public void jugar(ActionEvent e){
@@ -48,12 +62,14 @@ public class Controller {
         System.exit(0);
     }
 
-    public void irAInicio(ActionEvent e) throws IOException {
+    public void irAInicio(ActionEvent e) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        sonido.stopMusic();
+        sonido.playMusic("home");
     }
 
     public void irAConfig(ActionEvent e) throws IOException {
@@ -64,12 +80,22 @@ public class Controller {
         stage.show();
     }
 
-    public void irAPersonajes(ActionEvent e) throws IOException {
+    public void irAtras(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void irAPersonajes(ActionEvent e) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
+        root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        sonido.stopMusic();
+        sonido.playMusic("selection");
     }
 
     public void setConfig1(ActionEvent e) {
@@ -107,27 +133,79 @@ public class Controller {
         System.out.println("El volumen es " + volumen + "%");
     }
 
-    public void pikachu(ActionEvent e){
+    public void pikachu(ActionEvent e) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Pikachu");
     }
 
-    public void charmander(ActionEvent e){
+    public void charmander(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Charmander");
     }
 
-    public void bulbasaur(ActionEvent e){
+    public void bulbasaur(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Bulbasaur");
     }
 
-    public void jigglypuff(ActionEvent e){
+    public void jigglypuff(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Jigglypuff");
     }
 
-    public void pidgey(ActionEvent e){
+    public void pidgey(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Pidgey");
     }
 
-    public void squirtle(ActionEvent e){
+    public void squirtle(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Squirtle");
     }
+
+    //OkNombre
+    public void okNombre(ActionEvent e){
+        //imprimir nombre
+        System.out.println("Nombre: " + Nombre.getText());
+    }
+
+    //cambiar genero
+    public void cambiarGenero(ActionEvent e){
+        //si  toogle es masculino cambiar a femenino y de color amarillo en negrita y fondo violeta
+        if(Genero.isSelected()){
+            Genero.setText("Femenino");
+            Genero.setStyle("-fx-text-fill: #FFD700; -fx-font-weight: bold; -fx-background-color: #4B0082;");
+        }
+        else{
+            Genero.setText("Masculino");
+            //color naranja oscuro, negrita y texto azul claro
+            Genero.setStyle("-fx-text-fill: #FF8C00; -fx-font-weight: bold; -fx-background-color: #00BFFF;");
+        }
+    }
+
+
 }
