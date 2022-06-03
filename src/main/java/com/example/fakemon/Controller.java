@@ -64,6 +64,14 @@ public class Controller {
         stage.show();
     }
 
+    public void irAtras(ActionEvent e) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void irAPersonajes(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -107,27 +115,57 @@ public class Controller {
         System.out.println("El volumen es " + volumen + "%");
     }
 
-    public void pikachu(ActionEvent e){
+    public void pikachu(ActionEvent e) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Pikachu");
     }
 
-    public void charmander(ActionEvent e){
+    public void charmander(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Charmander");
     }
 
-    public void bulbasaur(ActionEvent e){
+    public void bulbasaur(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Bulbasaur");
     }
 
-    public void jigglypuff(ActionEvent e){
+    public void jigglypuff(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Jigglypuff");
     }
 
-    public void pidgey(ActionEvent e){
+    public void pidgey(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Pidgey");
     }
 
-    public void squirtle(ActionEvent e){
+    public void squirtle(ActionEvent e)throws IOException{
+        root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
         System.out.println("Elegiste a Squirtle");
     }
 }
