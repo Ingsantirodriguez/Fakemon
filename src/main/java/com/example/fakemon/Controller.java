@@ -10,10 +10,12 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class Controller {
-
+    private GameSounds sonido = new GameSounds();;
     public ToggleButton Genero;
     public Button OkNombre;
     public TextField Nombre;
@@ -35,6 +37,15 @@ public class Controller {
     private Scene scene;
     private Parent root;
 
+    private Boolean flag = true;
+
+    public Controller() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+
+        if (flag){
+            sonido.playMusic("home");
+            flag = false;
+        }
+    }
     @FXML
 
     public void jugar(ActionEvent e){
@@ -79,6 +90,7 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        sonido.stopMusic();
     }
 
     public void setConfig1(ActionEvent e) {

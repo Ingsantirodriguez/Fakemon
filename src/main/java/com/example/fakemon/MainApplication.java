@@ -11,6 +11,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
 
 public class MainApplication extends Application {
@@ -22,10 +24,8 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         Parent root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
         Scene scene = new Scene(root, Color.WHITE);
-
         stage.setScene(scene);
         stage.setTitle("Fakemon");
         stage.show(); // Muestra la ventana
