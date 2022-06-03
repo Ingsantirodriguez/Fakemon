@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class Controller {
-    private GameSounds sonido = new GameSounds();;
+    private GameSounds sonido;
     public ToggleButton Genero;
     public Button OkNombre;
     public TextField Nombre;
@@ -40,7 +40,7 @@ public class Controller {
     private Boolean flag = true;
 
     public Controller() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-
+        sonido = new GameSounds();
         if (flag){
             sonido.playMusic("home");
             flag = false;

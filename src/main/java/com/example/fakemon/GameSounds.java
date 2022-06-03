@@ -39,6 +39,7 @@ public class GameSounds {
     }
 
     public void stopMusic(){
-        clip.stop();
+        //clip.stop();
+        clip.close();
     }
 }
