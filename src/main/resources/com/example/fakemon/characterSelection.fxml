@@ -11,37 +11,37 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@background.png" />
+            <Image url="@images/background.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="300.0" layoutY="125.0" pickOnBounds="true">
          <image>
-            <Image url="@Bulbasaur.png" />
+            <Image url="@images/Bulbasaur.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="125.0" pickOnBounds="true">
          <image>
-            <Image url="@Pikachu.png" />
+            <Image url="@images/Pikachu.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="545.0" layoutY="125.0" pickOnBounds="true">
          <image>
-            <Image url="@Charmander.png" />
+            <Image url="@images/Charmander.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="357.0" pickOnBounds="true">
          <image>
-            <Image url="@Pidgey.png" />
+            <Image url="@images/Pidgey.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="300.0" layoutY="357.0" pickOnBounds="true">
          <image>
-            <Image url="@Squirtle.png" />
+            <Image url="@images/Squirtle.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="545.0" layoutY="357.0" pickOnBounds="true">
          <image>
-            <Image url="@Jigglypuff.png" />
+            <Image url="@images/Jigglypuff.png" />
          </image>
       </ImageView>
       <Text layoutX="110.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elige tu Fakemon">
@@ -59,7 +59,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@LeftArrow.png" />
+                  <Image url="@images/LeftArrow.png" />
                </image>
             </ImageView>
          </graphic>

@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@background.png" />
+            <Image url="@images/background.png" />
          </image>
       </ImageView>
       <Button layoutX="375.0" layoutY="560.0" mnemonicParsing="false" onAction="#irAPersonajes" text="Jugar" />
@@ -17,14 +17,14 @@
          <graphic>
             <ImageView fitHeight="111.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@gear-icon.png" />
+                  <Image url="@images/gear-icon.png" />
                </image>
             </ImageView>
          </graphic></Button>
       <Button layoutX="741.0" layoutY="560.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
       <ImageView fitHeight="336.0" fitWidth="706.0" layoutX="48.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@main-title.png" />
+            <Image url="@images/main-title.png" />
          </image>
       </ImageView>
    </children>
