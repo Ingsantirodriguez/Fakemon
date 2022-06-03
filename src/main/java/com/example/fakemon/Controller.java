@@ -5,10 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
 
@@ -16,6 +14,9 @@ import java.io.IOException;
 
 public class Controller {
 
+    public ToggleButton Genero;
+    public Button OkNombre;
+    public TextField Nombre;
     @FXML
     private CheckBox config1 = new CheckBox();
     @FXML
@@ -168,4 +169,26 @@ public class Controller {
         stage.show();
         System.out.println("Elegiste a Squirtle");
     }
+
+    //OkNombre
+    public void okNombre(ActionEvent e){
+        //imprimir nombre
+        System.out.println("Nombre: " + Nombre.getText());
+    }
+
+    //cambiar genero
+    public void cambiarGenero(ActionEvent e){
+        //si  toogle es masculino cambiar a femenino y de color amarillo en negrita y fondo violeta
+        if(Genero.isSelected()){
+            Genero.setText("Femenino");
+            Genero.setStyle("-fx-text-fill: #FFD700; -fx-font-weight: bold; -fx-background-color: #4B0082;");
+        }
+        else{
+            Genero.setText("Masculino");
+            //color naranja oscuro, negrita y texto azul claro
+            Genero.setStyle("-fx-text-fill: #FF8C00; -fx-font-weight: bold; -fx-background-color: #00BFFF;");
+        }
+    }
+
+
 }
