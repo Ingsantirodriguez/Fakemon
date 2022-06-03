@@ -15,7 +15,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 
 public class Controller {
-    private GameSounds sonido;
+    public static int i = 0;
+    public static GameSounds sonido = new GameSounds();
     public ToggleButton Genero;
     public Button OkNombre;
     public TextField Nombre;
@@ -37,14 +38,15 @@ public class Controller {
     private Scene scene;
     private Parent root;
 
-    private Boolean flag = true;
+    public static Boolean flag = true;
 
     public Controller() throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        sonido = new GameSounds();
         if (flag){
             sonido.playMusic("home");
             flag = false;
         }
+        i++;
+        System.out.println(i);
     }
     @FXML
 
@@ -60,12 +62,14 @@ public class Controller {
         System.exit(0);
     }
 
-    public void irAInicio(ActionEvent e) throws IOException {
+    public void irAInicio(ActionEvent e) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        sonido.stopMusic();
+        sonido.playMusic("home");
     }
 
     public void irAConfig(ActionEvent e) throws IOException {
@@ -84,13 +88,14 @@ public class Controller {
         stage.show();
     }
 
-    public void irAPersonajes(ActionEvent e) throws IOException {
+    public void irAPersonajes(ActionEvent e) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         sonido.stopMusic();
+        sonido.playMusic("selection");
     }
 
     public void setConfig1(ActionEvent e) {

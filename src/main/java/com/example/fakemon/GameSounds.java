@@ -7,10 +7,12 @@ public class GameSounds {
     private String homeMusic;
     private String battleMusic;
     private String endMusic;
+    private String selectionMusic;
     private Clip clip;
 
     public GameSounds(){
         homeMusic = "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav";
+        selectionMusic =  "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav";
         battleMusic = "path";
         endMusic = "path";
     }
@@ -28,6 +30,9 @@ public class GameSounds {
             case "end":
                 file  = new File(endMusic);
                 break;
+            case "selection":
+                file = new File(selectionMusic);
+                break;
             default:
                 file  = new File(homeMusic);
                 break;
@@ -39,7 +44,6 @@ public class GameSounds {
     }
 
     public void stopMusic(){
-        //clip.stop();
-        clip.close();
+        clip.stop();
     }
 }
