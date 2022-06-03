@@ -133,13 +133,15 @@ public class Controller {
         System.out.println("El volumen es " + volumen + "%");
     }
 
-    public void pikachu(ActionEvent e) throws IOException{
+    public void pikachu(ActionEvent e) throws IOException, UnsupportedAudioFileException, LineUnavailableException {
         root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         System.out.println("Elegiste a Pikachu");
+        sonido.stopMusic();
+        sonido.playMusic("pikachu");
     }
 
     public void charmander(ActionEvent e)throws IOException{

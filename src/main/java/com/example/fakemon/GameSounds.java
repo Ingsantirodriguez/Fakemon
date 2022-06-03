@@ -5,6 +5,7 @@ import java.io.IOException;
 
 public class GameSounds {
     private String homeMusic;
+    private String pikachuSound;
     private String battleMusic;
     private String endMusic;
     private String selectionMusic;
@@ -15,6 +16,7 @@ public class GameSounds {
         selectionMusic =  "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav";
         battleMusic = "path";
         endMusic = "path";
+        pikachuSound = "src/main/resources/com/example/fakemon/music/pikachu-sound.wav";
     }
 
     public void playMusic(String mode) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -32,6 +34,9 @@ public class GameSounds {
                 break;
             case "selection":
                 file = new File(selectionMusic);
+                break;
+            case "pikachu":
+                file = new File(pikachuSound);
                 break;
             default:
                 file  = new File(homeMusic);
