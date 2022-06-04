@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.input.DragEvent;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
@@ -189,6 +190,17 @@ public class Controller {
         System.out.println("Elegiste a Squirtle");
     }
 
+    public void subirVolumen(ActionEvent e){
+        sonido.subirVolumen();
+    }
+
+    public void bajarVolumen(ActionEvent e){
+        sonido.bajarVolumen();
+    }
+
+    public void Mutear(ActionEvent e){
+        sonido.Mutear();
+    }
     //OkNombre
     public void okNombre(ActionEvent e){
         //imprimir nombre
