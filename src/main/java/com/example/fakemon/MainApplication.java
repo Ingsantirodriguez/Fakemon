@@ -12,14 +12,22 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import javax.sound.sampled.*;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
 public class MainApplication extends Application {
 
+    public static Parent root;
+    public static Stage stage;
+    public static Scene scene;
+
+
     public static void main(String[] args) {
         launch(args);
     }
+
+    DatosConfig datosConfig = new DatosConfig();
 
     @Override
     public void start(Stage stage) throws Exception {

@@ -5,21 +5,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorConfig">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
             <Image url="@images/background.png" />
          </image>
       </ImageView>
-      <CheckBox fx:id="config1" layoutX="155.0" layoutY="259.0" mnemonicParsing="false" onAction="#setConfig1" text="Config 1" />
-      <CheckBox fx:id="config2" layoutX="155.0" layoutY="304.0" mnemonicParsing="false" onAction="#setConfig2" text="Config 2" />
-      <CheckBox fx:id="config3" layoutX="155.0" layoutY="346.0" mnemonicParsing="false" onAction="#setConfig3" text="Config 3" />
-      <Slider layoutX="155.0" layoutY="396.0" onDragDone="#volumeChange" showTickLabels="true" />
-      <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#irAInicio" text="Inicio" />
-      <ToggleButton fx:id="Genero" layoutX="510.0" layoutY="133.0" mnemonicParsing="false" onAction="#cambiarGenero" text="Masculino" />
+      <CheckBox fx:id="config1" layoutX="155.0" layoutY="259.0" mnemonicParsing="false"  text="Config 1" />
+      <CheckBox fx:id="config2" layoutX="155.0" layoutY="304.0" mnemonicParsing="false"  text="Config 2" />
+      <CheckBox fx:id="config3" layoutX="155.0" layoutY="346.0" mnemonicParsing="false"  text="Config 3" />
+      <Slider fx:id="VolumenSeleccion" layoutX="155.0" layoutY="396.0"  showTickLabels="true" />
+      <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#inicio" text="Inicio" />
+      <ToggleButton fx:id="GeneroToogle" layoutX="510.0" layoutY="133.0" mnemonicParsing="false" onAction="#cambiarGenero" text="Masculino" />
       <TextField fx:id="Nombre" layoutX="150.0" layoutY="133.0" promptText="Ingrese su nombre" />
-      <Button fx:id="OkNombre" layoutX="306.0" layoutY="133.0" mnemonicParsing="false" onAction="#okNombre" text="Ok" />
+      <Button fx:id="NombreBtn" layoutX="306.0" layoutY="133.0" mnemonicParsing="false" onAction="#guardarNombre" text="Ok" />
       <TextFlow layoutX="257.0" layoutY="159.0" prefHeight="200.0" prefWidth="200.0" />
       <Text layoutX="264.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Configuracion">
          <font>
