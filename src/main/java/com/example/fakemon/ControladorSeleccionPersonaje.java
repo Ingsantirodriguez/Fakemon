@@ -33,7 +33,13 @@ public class ControladorSeleccionPersonaje implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    public void irAtras(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     //Seleccionaste Bulbasaur
     public void Bulbasaur(ActionEvent event) throws IOException {
     System.out.println("Bulbasaur");
