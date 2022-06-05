@@ -8,12 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.*;
 
-public class ControladorSeleccionPersonaje implements Initializable {
+public class ControladorSeleccionPersonaje extends Controlador implements Initializable {
     public ImageView Bulbasaur;
     public ImageView Pikachu;
     public ImageView Charmander;
@@ -25,6 +28,12 @@ public class ControladorSeleccionPersonaje implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         emptyFakemons();
         fillFakemons();
+        sonido.stopMusic();
+        try {
+            sonido.playMusic("selection");
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void config(ActionEvent event) throws IOException {

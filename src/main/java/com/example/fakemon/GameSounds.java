@@ -9,6 +9,9 @@ public class GameSounds {
     private String endMusic;
     private String selectionMusic;
     private Clip clip;
+    private File file;
+    private Boolean musicOn = false;
+    private String currentMusic = "none";
 
     public GameSounds(){
         homeMusic = "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav";
@@ -18,8 +21,8 @@ public class GameSounds {
     }
 
     public void playMusic(String mode) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        File file;
-
+        currentMusic = mode;
+        musicOn = true;
         switch(mode){
             case "home":
                 file = new File(homeMusic);
@@ -43,7 +46,23 @@ public class GameSounds {
         clip.start();
     }
 
+    public String getMusicOn() {
+
+        return currentMusic;
+
+
+    }
     public void stopMusic(){
         clip.stop();
+        clip.flush();
+        clip.close();
+        musicOn = false;
+        System.out.println("clip no es null");
+
+
+    }
+
+    public Boolean musicOn(){
+        return musicOn;
     }
 }
