@@ -53,7 +53,7 @@
       <Button layoutX="300.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Squirtle" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="545.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Jigglypuff" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
       <Button layoutX="61.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Pidgey" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="14.0" layoutY="557.0" maxHeight="10.0" maxWidth="10.0" mnemonicParsing="false">
+      <Button layoutX="14.0" layoutY="557.0" maxHeight="10.0" maxWidth="10.0" mnemonicParsing="false" onAction="#irAtras">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
