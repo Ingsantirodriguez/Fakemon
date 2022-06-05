@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.*;
 
 
-public class ControladorConfig implements Initializable {
+public class ControladorConfig extends Controlador implements Initializable {
 
 
     public CheckBox config1;

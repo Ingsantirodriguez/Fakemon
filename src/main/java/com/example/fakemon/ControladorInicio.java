@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 //Clase ControladorInicio hereda de Controller.
-public class ControladorInicio  implements Initializable {
+public class ControladorInicio extends  Controlador implements Initializable {
 
 
     public Button ConfigBtn;
@@ -26,8 +26,20 @@ public class ControladorInicio  implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (!sonido.getMusicOn().equals("home")){
+            if(sonido.musicOn()){
+                sonido.stopMusic();
+            }
+            //Boton Jugar Texto Amarillo y fondo degrade azul
+            try {
+                sonido.playMusic("home");
+            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
+                throw new RuntimeException(e);
+            }
 
-        //Boton Jugar Texto Amarillo y fondo degrade azul
+            System.out.println(sonido.getMusicOn());
+        }
+
 
     }
 
