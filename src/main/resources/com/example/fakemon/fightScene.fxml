@@ -22,5 +22,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fx:id="userFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="botFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="515.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
