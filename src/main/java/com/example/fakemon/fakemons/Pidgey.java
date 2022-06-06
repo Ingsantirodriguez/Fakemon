@@ -4,7 +4,7 @@ public class Pidgey extends Fakemon{
     public Pidgey(){
         super();
         this.life = 100;
-        this.sound = "path";
+        this.sound = "src/main/resources/com/example/fakemon/music/pidgey-sound.wav";
         this.attackDamage = 15;
         this.name = "Pidgey";
         this.stronger = false;

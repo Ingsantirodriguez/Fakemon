@@ -4,7 +4,7 @@ public class Charmander extends Fakemon{
     public Charmander(){
         super();
         this.life = 100;
-        this.sound = "path";
+        this.sound = "src/main/resources/com/example/fakemon/music/charmander-sound.wav";
         this.attackDamage = 15;
         this.name = "Charmander";
         this.stronger = false;

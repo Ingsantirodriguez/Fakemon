@@ -6,7 +6,7 @@ public class Squirtle extends Fakemon{
         this.life = 100;
         this.sound = "path";
         this.attackDamage = 15;
-        this.name = "Squirtle";
+        this.name = "src/main/resources/com/example/fakemon/music/squirtle-sound.wav";
         this.stronger = false;
         this.weakened = false;
     }
