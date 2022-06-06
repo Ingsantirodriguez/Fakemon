@@ -62,31 +62,36 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
     //Seleccionaste Pikachu
     public void Pikachu(ActionEvent event) throws IOException {
         System.out.println("Pikachu");
-        fakemonElegido = "Pikachu";
+        //fakemonElegido = "Pikachu";
+        battle.setUsrFakemon("Pikachu");
         config(event);
     }
     //Seleccionaste Charmander
     public void Charmander(ActionEvent event) throws IOException {
         System.out.println("Charmander");
-        fakemonElegido = "Charmander";
+        //fakemonElegido = "Charmander";
+        battle.setUsrFakemon("Charmander");
         config(event);
     }
     //Seleccionaste Pidgey
     public void Pidgey(ActionEvent event) throws IOException {
         System.out.println("Pidgey");
-        fakemonElegido = "Pidgey";
+        //fakemonElegido = "Pidgey";
+        battle.setUsrFakemon("Pidgey");
         config(event);
     }
     //Seleccionaste Squirtle
     public void Squirtle(ActionEvent event) throws IOException {
         System.out.println("Squirtle");
-        fakemonElegido = "Squirtle";
+        //fakemonElegido = "Squirtle";
+        battle.setUsrFakemon("Squirtle");
         config(event);
     }
     //Seleccionaste Jigglypuff
     public void Jigglypuff(ActionEvent event) throws IOException {
         System.out.println("Jigglypuff");
-        fakemonElegido = "Jigglypuff";
+        //fakemonElegido = "Jigglypuff";
+        battle.setUsrFakemon("Jigglypuff");
         config(event);
     }
 
