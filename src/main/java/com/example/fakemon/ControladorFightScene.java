@@ -18,8 +18,6 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-import static com.example.fakemon.DatosConfig.*;
-import com.example.fakemon.DatosConfig.*;
 public class ControladorFightScene extends Controlador implements Initializable {
 
     public ImageView userFakemon;
@@ -28,23 +26,54 @@ public class ControladorFightScene extends Controlador implements Initializable 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //selecRandomFakemon();
+        sonido.stopMusic();
         battle.selecRandomFakemon();
-        String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon()+".png";
-        String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon()+".png";
-        Path imageFile = Paths.get(usfakemon);
-        try {
-            userFakemon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        Path imgFile = Paths.get(botfakemon);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                this.configUsrFakemon();
+                this.configBotFakemon();
+            }
+            private void configUsrFakemon() {
+                String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon().getName()+".png";
+                Path imageFile = Paths.get(usfakemon);
+                try {
+                    userFakemon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                sonido.playMusic(battle.getUsrFakemon());
+                try{
+                    TimeUnit.SECONDS.sleep(3);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                sonido.stopMusic();
+            }
 
-        try {
-            botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+            private void configBotFakemon(){
+                String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon().getName()+".png";
+                Path imgFile = Paths.get(botfakemon);
 
+                try {
+                    botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
+                sonido.playMusic(battle.getBotFakemon());
+                try{
+                    TimeUnit.SECONDS.sleep(3);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+                sonido.stopMusic();
+            }
+
+
+        });
+        t.start();
+
+        // matar hilo en boton irABatalla
     }
 
     public void config(ActionEvent event) throws IOException {
@@ -66,4 +95,6 @@ public class ControladorFightScene extends Controlador implements Initializable 
     public void salir(ActionEvent event) {
         System.exit(0);
     }
+
+
 }
