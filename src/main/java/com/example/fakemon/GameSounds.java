@@ -15,7 +15,7 @@ public class GameSounds {
     private Boolean musicOn = false;
     private String currentMusic = "none";
     FloatControl fc;
-    boolean mute=false;
+    private boolean mute=false;
     private float previousVolume=0;
     private float currentVolume=0;
     private HashMap<String, String> mode;
@@ -51,35 +51,30 @@ public class GameSounds {
     }
 
     private void startMusic(String url){
-        file = new File(url);
-
-        try {
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
-            fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
-            e.printStackTrace();
+        if(!mute){
+            file = new File(url);
+            try {
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                clip = AudioSystem.getClip();
+                clip.open(audioStream);
+                fc=(FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
+                fc.setValue(currentVolume);
+                clip.start();
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
+                e.printStackTrace();
+            }
         }
-
     }
-
 
     public String getMusicOn() {
 
         return currentMusic;
-
-
     }
     public void stopMusic(){
         clip.stop();
         clip.flush();
         clip.close();
         musicOn = false;
-        System.out.println("clip no es null");
-
-
     }
 
     public Boolean musicOn(){
