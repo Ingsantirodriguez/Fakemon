@@ -31,21 +31,13 @@ public class ControladorInicio extends  Controlador implements Initializable {
                 sonido.stopMusic();
             }
             //Boton Jugar Texto Amarillo y fondo degrade azul
-            try {
-                sonido.playMusic("home");
-            } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-                throw new RuntimeException(e);
-            }
+            sonido.playMusic("home");
 
             System.out.println(sonido.getMusicOn());
         }
 
 
     }
-
-
-
-
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));

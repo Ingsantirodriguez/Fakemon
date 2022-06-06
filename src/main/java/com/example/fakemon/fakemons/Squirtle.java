@@ -4,9 +4,9 @@ public class Squirtle extends Fakemon{
     public Squirtle(){
         super();
         this.life = 100;
-        this.sound = "path";
+        this.sound = "src/main/resources/com/example/fakemon/music/squirtle-sound.wav";
         this.attackDamage = 15;
-        this.name = "src/main/resources/com/example/fakemon/music/squirtle-sound.wav";
+        this.name = "Squirtle";
         this.stronger = false;
         this.weakened = false;
     }

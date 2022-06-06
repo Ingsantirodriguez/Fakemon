@@ -31,11 +31,7 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
         battle.emptyFakemons();
         battle.fillFakemons();
         sonido.stopMusic();
-        try {
-            sonido.playMusic("selection");
-        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
-            throw new RuntimeException(e);
-        }
+        sonido.playMusic("selection");
     }
 
     public void config(ActionEvent event) throws IOException {

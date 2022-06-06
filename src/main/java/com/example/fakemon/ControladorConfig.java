@@ -62,22 +62,22 @@ public class ControladorConfig extends Controlador implements Initializable {
         } else {
             Femenino();
             //GeneroToogle texto rojo oscuro y fondo amarillo claro
-             }
+        }
     }
     private void Masculino(){
-    GeneroToogle.setText("Masculino");
-    //GeneroToogle texto azul oscuro y fondo naranja claro
-    GeneroToogle.setTextFill(Color.BLUE);
-    GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(220,179,31),null,null)));
-    genero = "Masculino";
-}
+        GeneroToogle.setText("Masculino");
+        //GeneroToogle texto azul oscuro y fondo naranja claro
+        GeneroToogle.setTextFill(Color.BLUE);
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(220,179,31),null,null)));
+        genero = "Masculino";
+    }
     private void Femenino(){
-    GeneroToogle.setText("Femenino");
-    //GeneroToogle texto azul oscuro y fondo naranja claro
-    GeneroToogle.setTextFill(Color.PURPLE);
-    GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(255,255,128),null,null)));
-    genero = "Femenino";
-}
+        GeneroToogle.setText("Femenino");
+        //GeneroToogle texto azul oscuro y fondo naranja claro
+        GeneroToogle.setTextFill(Color.PURPLE);
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(255,255,128),null,null)));
+        genero = "Femenino";
+    }
 
     @FXML
     private void subirVolumen(ActionEvent e){

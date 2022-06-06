@@ -72,8 +72,6 @@ public class ControladorFightScene extends Controlador implements Initializable 
 
         });
         t.start();
-
-        // matar hilo en boton irABatalla
     }
 
     public void config(ActionEvent event) throws IOException {

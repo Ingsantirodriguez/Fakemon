@@ -4,55 +4,67 @@ import com.example.fakemon.fakemons.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Random;
 
 public class Batalla {
-    private ArrayList<Fakemon> fakemons;
-    private String usrFakemon;
-    private String botFakemon;
+    private HashMap<String, Fakemon> fakemons;
+//    private String usrFakemon;
+//    private String botFakemon;
+    private Fakemon usrFakemon;
+    private Fakemon botFakemon;
 
     public Batalla(){
-        this.fakemons = new ArrayList<>();
-        this.usrFakemon = "none";
-        this.botFakemon = "none";
+        this.fakemons = new HashMap<>();
+        this.usrFakemon = null;
+        this.botFakemon = null;
     }
 
     public void setUsrFakemon(String fakemon){
-        this.usrFakemon = fakemon;
+        this.usrFakemon = fakemons.get(fakemon);
     }
 
     public void setBotFakemon(String fakemon){
-        this.botFakemon = fakemon;
+        this.botFakemon = fakemons.get(fakemon);
     }
 
-    public String getUsrFakemon(){
+    public Fakemon getUsrFakemon(){
             return usrFakemon;
     }
 
-    public String getBotFakemon(){
+    public Fakemon getBotFakemon(){
             return botFakemon;
     }
 
     public void selecRandomFakemon(){
-        fakemons.removeIf(f -> f.getName().equals(usrFakemon));
-        Random rd = new Random();
-        int value = rd.nextInt(fakemons.size());
-        botFakemon = fakemons.get(value).getName();
-        System.out.println(botFakemon);
-        fakemons.remove(value);
+        fakemons.remove(this.usrFakemon.getName());     // elimino el user fakemon
+        Random rd = new Random();                       // elijo un numero random
+        int value = rd.nextInt(fakemons.size());        // entre 1 y 5
+        int cont = 0;                                   //
+        for(Fakemon f: fakemons.values()){              // recorro el hash map hasta que value==cont
+            if(value==cont){
+                this.setBotFakemon(f.getName());        // obtengo el fakemon bot (rival)
+                fakemons.remove(f.getName());           // elimino el rival de la lista
+                break;                                  // salgo del for
+            }
+            cont++;                                     // si no encontre el rival, sigo buscando
+        }
     }
 
     public void emptyFakemons(){
+
         if (!fakemons.isEmpty()){
-            for (int i=0; i<fakemons.size();){
-                fakemons.remove(i);
-            }
+            // vaciar hash
         }
     }
     public void fillFakemons(){
-        Fakemon[] f = {new Bulbasaur(), new Charmander(), new Jigglypuff()
+        Fakemon[] val = {new Bulbasaur(), new Charmander(), new Jigglypuff()
                 ,new Pidgey(), new Squirtle(), new Pikachu()};
-        fakemons.addAll(Arrays.asList(f));
+        String[] key = {"Bulbasaur", "Charmander", "Jigglypuff", "Pidgey", "Squirtle", "Pikachu"};
+
+        for(int i = 0; i<6; i++){
+            fakemons.put(key[i], val[i]);
+        }
     }
 
 }

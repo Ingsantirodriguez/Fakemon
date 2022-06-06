@@ -6,7 +6,7 @@ public class Bulbasaur extends Fakemon{
         this.life = 100;
         this.sound = "src/main/resources/com/example/fakemon/music/bulbasaur-sound.wav";
         this.attackDamage = 15;
-        this.name = "Bulbasaur";
+        this.name = ListFakemons.Bulbasaur.toString();
         this.stronger = false;
         this.weakened = false;
     }
