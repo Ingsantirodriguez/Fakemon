@@ -1,6 +1,7 @@
 package com.example.fakemon;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -63,14 +64,14 @@ public class ControladorConfig extends Controlador implements Initializable {
             //GeneroToogle texto rojo oscuro y fondo amarillo claro
              }
     }
-private void Masculino(){
+    private void Masculino(){
     GeneroToogle.setText("Masculino");
     //GeneroToogle texto azul oscuro y fondo naranja claro
     GeneroToogle.setTextFill(Color.BLUE);
     GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(220,179,31),null,null)));
     genero = "Masculino";
 }
-private void Femenino(){
+    private void Femenino(){
     GeneroToogle.setText("Femenino");
     //GeneroToogle texto azul oscuro y fondo naranja claro
     GeneroToogle.setTextFill(Color.PURPLE);
@@ -78,25 +79,26 @@ private void Femenino(){
     genero = "Femenino";
 }
 
-    @Override
+    @FXML
+    private void subirVolumen(ActionEvent e){
+        System.out.println("Subo");
+        sonido.volumeUp();
+    }
+
+    @FXML
+    private void bajarVolumen(ActionEvent e){
+        System.out.println("Bajo");
+        sonido.volumeDown();
+    }
+
+    @FXML
+    private void mute(ActionEvent e){
+        System.out.println("Mute");
+        sonido.muteSound();
+    }
+
+
     public void initialize(URL location, ResourceBundle resources) {
 
-        VolumenSeleccion.setValue(volumen);
-        if(!nombre.equals("")){
-            Nombre.setText(nombre);
-        }
-        //texto en genero en negrita
-        GeneroToogle.setStyle("-fx-font-weight: bold");
-
-        //imprimir genero
-        System.out.println(genero);
-        if(genero.equals("Masculino")){
-            Masculino();
-        }
-        else{
-            Femenino();
-        }
-        //setear volumen
-        VolumenSeleccion.setValue(volumen);
     }
 }
