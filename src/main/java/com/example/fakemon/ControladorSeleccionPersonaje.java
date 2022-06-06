@@ -26,8 +26,10 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        emptyFakemons();
-        fillFakemons();
+//        emptyFakemons();
+//        fillFakemons();
+        battle.emptyFakemons();
+        battle.fillFakemons();
         sonido.stopMusic();
         try {
             sonido.playMusic("selection");
@@ -53,7 +55,8 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
     //Seleccionaste Bulbasaur
     public void Bulbasaur(ActionEvent event) throws IOException {
     System.out.println("Bulbasaur");
-    fakemonElegido = "Bulbasaur";
+    // fakemonElegido = "Bulbasaur";
+    battle.setUsrFakemon("Bulbasaur");
     config(event);
     }
     //Seleccionaste Pikachu
