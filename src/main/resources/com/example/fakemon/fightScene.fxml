@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorFightScene">
    <children>
@@ -33,5 +34,10 @@
             <Image url="@images/vs.png" />
          </image>
       </ImageView>
+      <Button fx:id="Batalla"  onAction="#irABatalla"  layoutX="323.0" layoutY="416.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" text="Batalla">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

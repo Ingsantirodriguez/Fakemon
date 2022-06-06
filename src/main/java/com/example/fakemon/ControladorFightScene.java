@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
 
     public ImageView userFakemon;
     public ImageView botFakemon;
+    public Button Batalla;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -89,6 +91,15 @@ public class ControladorFightScene extends Controlador implements Initializable 
         stage.setScene(scene);
         stage.show();
     }
+
+    public void irABatalla(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Batalla.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     public void salir(ActionEvent event) {
         System.exit(0);
