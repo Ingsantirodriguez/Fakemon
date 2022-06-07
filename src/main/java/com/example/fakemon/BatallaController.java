@@ -1,14 +1,18 @@
 package com.example.fakemon;
 
+import com.example.fakemon.batalla.Batalla;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.PointLight;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.net.MalformedURLException;
@@ -43,76 +47,85 @@ public class BatallaController extends Controlador implements Initializable {
     public Button Potenciar;
 
     public Text TextMenu;
+    public ImageView PokebolaBot;
+    public ImageView PokebolaJugador;
+    public Rectangle BarraRoja1;
+    public Rectangle BarraRoja2;
+    public Rectangle MenuBot;
+    public Text TextMenu1;
+    public Text MovimientoRival;
 
-    float vidaJugador=100;
-    float vidaBot=100;
+    private final int fot = 30;
+    public Button botonOk;
 
-    float vidaJugadorMax=100;
-    float vidaBotMax=100;
+    float vidaJugador = 100;
+    float vidaBot = 100;
+
+    float vidaJugadorMax = 100;
+    float vidaBotMax = 100;
 
 
     float vidaActualJugador;
     float vidaActualBot;
 
+    ArrayList<Button> botones = new ArrayList<>();
+    double MenuAltura;
+    double BotonesAncho;
+
+    double AlturaCilindro;
+    double AnchoBarra;
+    double sizefontBoton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        PhongMaterial ColorJugador = new PhongMaterial();
-        ColorJugador.setDiffuseColor(rgb(0, 255, 0, 0.5));
-        CilindroJugador.setMaterial(ColorJugador);
-        PhongMaterial ColorBot = new PhongMaterial();
-        ColorBot.setDiffuseColor(rgb(0, 255, 0, 0.5));
-        CilindroBot.setMaterial(ColorBot);
 
+        RellenarImagenesPokemon();
 
-        String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon().getName()+".png";
-        String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon().getName()+".png";
-        Path imageFile = Paths.get(usfakemon);
-        try {
-            ImagenJugador.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
-        Path imgFile = Paths.get(botfakemon);
+        InicializaVariablesVisuales();
 
-        try {
-            ImagenBot.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+        ComenzarAnimacion();
 
+        AnimacionLuz();
 
-        ImagenBot.setOpacity(0);
-        ImagenJugador.setOpacity(0);
-        TextMenu.setOpacity(0);
-        double MenuAltura=Menu.getHeight();
-        double BotonesAncho=Ataque.getPrefWidth();
-        Menu.setHeight(0);
+        //quitar
+        vidaActualBot = 100;
+        vidaActualJugador = 100;
+    }
 
-        //Nuevo arraylist
-        ArrayList<Button> botones = new ArrayList<>();
-        botones.add(Ataque);
-        botones.add(Debilitar);
-        botones.add(Regenerar);
-        botones.add(Potenciar);
+    private void MostrarBotones() {
+        Thread DesplegarBotones = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (Button b : botones) {
+                    for (int i = 0; i <= fot; i++) {
+                        b.setPrefWidth(BotonesAncho * i / fot);
+                        b.setOpacity((float) i / (float) fot);
+                        b.setFont(Font.font("Verdana", FontWeight.BOLD,sizefontBoton * i / fot));
 
-        for (Button b : botones) {
-            b.setPrefWidth(0);
-            b.setOpacity(0);
-        }
+                        try {
+                            //noinspection BusyWait
+                            sleep(1000 / fot);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        });
+        DesplegarBotones.start();
+    }
 
-
-        TextMenu.setText("Player-"+battle.getUsrFakemon().getName());
+    private void AnimacionLuz() {
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
-                int x= 1;
+                int x = 1;
 
                 Luz.setTranslateX(1);
                 while (true) {
 
-                    if(Luz.getTranslateX()==0 || Luz.getTranslateX()==700) {
+                    if (Luz.getTranslateX() == 0 || Luz.getTranslateX() == 700) {
                         x *= -1;
                         Luz.setTranslateX(abs(Luz.getTranslateX() - 1));
                     }
@@ -129,33 +142,56 @@ public class BatallaController extends Controlador implements Initializable {
 
         });
 
+        hilo.start();
+    }
 
-        Thread animacionesEntrada= new Thread(new Runnable() {
+    private void ComenzarAnimacion() {
+        Thread animacionesEntrada = new Thread(new Runnable() {
             @Override
             public void run() {
 
 
+                for (int i = 0; i < fot; i++) {
+                    CilindroBot.setHeight(AlturaCilindro * (float) i / (float) fot);
+                    CilindroJugador.setHeight(AlturaCilindro * (float) i / (float) fot);
 
-                int fot=30;
-                for(int i=0;i<=fot;i++){
-                    ImagenBot.setOpacity((float)i/(float)fot);
-                    ImagenJugador.setOpacity((float)i/(float)fot);
+                    try {
+                        sleep(1000 / fot);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
 
+
+                for (int i = 0; i <= fot; i++) {
+                    ImagenBot.setOpacity((float) i / (float) fot);
+                    ImagenJugador.setOpacity((float) i / (float) fot);
+                    PokebolaJugador.setOpacity((float) i / (float) fot);
+                    PokebolaBot.setOpacity((float) i / (float) fot);
+                    BarraVidaBot.setWidth(AnchoBarra * (float) i / (float) fot);
+                    BarraVidaJugador.setWidth(AnchoBarra * (float) i / (float) fot);
 
 
                     try {
-                        sleep(1000/fot);
+                        sleep(1000 / fot);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }
 
-                for (int i = 0; i <fot; i++) {
-                    Menu.setHeight(MenuAltura*i/fot);
+                BarraRoja1.setWidth(AnchoBarra);
+                BarraRoja2.setWidth(AnchoBarra);
+
+
+                for (int i = 0; i < fot; i++) {
+                    Menu.setHeight(MenuAltura * i / fot);
+                    MenuBot.setHeight(MenuAltura * i / fot);
+                    TextMenu.setOpacity((float) i / (float) fot);
+                    TextMenu1.setOpacity((float) i / (float) fot);
+
                     try {
-                        sleep(1000/fot);
-                    }
-                    catch (InterruptedException e) {
+                        sleep(1000 / fot);
+                    } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                 }
@@ -165,16 +201,18 @@ public class BatallaController extends Controlador implements Initializable {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                TextMenu.setOpacity(1);
-                for(Button b:botones){
-                    for (int i=1;i<=fot;i++){
-                        b.setPrefWidth(BotonesAncho*i/fot);
-                        b.setOpacity((float)i/(float)fot);
+
+
+                if (Batalla.getTurno().equals("user")) {
+                    MostrarBotones();
+                } else {
+                    for (int i = 0; i < fot; i++) {
+                        MovimientoRival.setOpacity((float) i / (float) fot);
+                        botonOk.setOpacity((float) i / (float) fot);
                         try {
-                            sleep(1000/fot);
-                        }
-                        catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+                            sleep(1000 / fot);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -182,68 +220,159 @@ public class BatallaController extends Controlador implements Initializable {
         });
 
         animacionesEntrada.start();
-        hilo.start();
-
-        vidaActualBot=100;
-        vidaActualJugador=100;
     }
 
+    private void InicializaVariablesVisuales() {
+
+        MenuAltura = Menu.getHeight();
+        BotonesAncho = Ataque.getPrefWidth();
+        AlturaCilindro = CilindroJugador.getHeight();
+        AnchoBarra = BarraRoja1.getWidth();
+        sizefontBoton= botonOk.getFont().getSize();
+
+        ColoreaCilindros();
+
+        CilindroJugador.setHeight(0);
+        CilindroBot.setHeight(0);
+
+        ImagenBot.setOpacity(0);
+        ImagenJugador.setOpacity(0);
+
+        PokebolaJugador.setOpacity(0);
+        PokebolaBot.setOpacity(0);
+
+        BarraVidaBot.setWidth(0);
+        BarraVidaJugador.setWidth(0);
+        BarraRoja1.setWidth(0);
+        BarraRoja2.setWidth(0);
 
 
+        TextMenu.setOpacity(0);
+        TextMenu1.setOpacity(0);
+        MovimientoRival.setOpacity(0);
 
+        botonOk.setOpacity(0);
 
+        Menu.setHeight(0);
+        MenuBot.setHeight(0);
 
+        //Nuevo arraylist
+        ;
+        botones.add(Ataque);
+        botones.add(Debilitar);
+        botones.add(Regenerar);
+        botones.add(Potenciar);
 
+        for (Button b : botones) {
+            b.setPrefWidth(0);
+            b.setOpacity(0);
+            //Texto en negrita
+            b.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+        }
 
+        //Boton Ataque texto marron fondo rosa
+        Ataque.setTextFill(Color.rgb(100, 150, 130, 1));
+        Ataque.setStyle("-fx-background-color: #ffc0cb;");
+        //Boton Debilitar texto verde fondo violeta
+        Debilitar.setTextFill(Color.rgb(0, 150, 120, 0.8));
+        Debilitar.setStyle("-fx-background-color: #e6e6fa;");
+        //Boton Regenerar texto azul fondo blanco
+        Regenerar.setTextFill(Color.rgb(0, 0, 150, 0.8));
+        Regenerar.setStyle("-fx-background-color: #ffffff;");
+        //Boton Potenciar texto naranja fondo doraado
+        Potenciar.setTextFill(Color.rgb(150, 100, 0, 0.8));
+        Potenciar.setStyle("-fx-background-color: #ffa500;");
 
+        TextMenu.setText("Player-" + battle.getUsrFakemon().getName());
+    }
 
+    private void ColoreaCilindros() {
+        PhongMaterial ColorJugador = new PhongMaterial();
+        ColorJugador.setDiffuseColor(rgb(0, 255, 0, 0.5));
+        CilindroJugador.setMaterial(ColorJugador);
+        PhongMaterial ColorBot = new PhongMaterial();
+        ColorBot.setDiffuseColor(rgb(0, 255, 0, 0.5));
+        CilindroBot.setMaterial(ColorBot);
+    }
 
+    private void RellenarImagenesPokemon() {
+        String usfakemon = "src/main/resources/com/example/fakemon/images/" + battle.getUsrFakemon().getName() + ".png";
+        String botfakemon = "src/main/resources/com/example/fakemon/images/" + battle.getBotFakemon().getName() + ".png";
+        Path imageFile = Paths.get(usfakemon);
+        try {
+            ImagenJugador.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        Path imgFile = Paths.get(botfakemon);
+
+        try {
+            ImagenBot.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public void ataque(ActionEvent actionEvent) {
 
-        float cambioVidaBot=-1;
-        float cambioVidaJugador=-49;
+        float cambioVidaBot = -1;
+        float cambioVidaJugador = -49;
 
         Thread barraVida = new Thread(new Runnable() {
             @Override
             public void run() {
-                int fotogramas=30;
-                for(int i=0;i<fotogramas;i++) {
-                BarraVidaBot.setWidth(BarraVidaBot.getWidth() + (cambioVidaBot/fotogramas)*2.2);
-                BarraVidaJugador.setWidth(BarraVidaJugador.getWidth() + (cambioVidaJugador/fotogramas)*2.2);
+                int fotogramas = 30;
+                for (int i = 0; i < fotogramas; i++) {
+                    BarraVidaBot.setWidth(BarraVidaBot.getWidth() + (cambioVidaBot / fotogramas) * 2.2);
+                    BarraVidaJugador.setWidth(BarraVidaJugador.getWidth() + (cambioVidaJugador / fotogramas) * 2.2);
 
-                    float porcentajeVidaBot=(vidaBot/vidaBotMax);
-                    float porcentajeVidaJugador=(vidaJugador/vidaJugadorMax);
+                    float porcentajeVidaBot = (vidaBot / vidaBotMax);
+                    float porcentajeVidaJugador = (vidaJugador / vidaJugadorMax);
 
                     //porcentajeVidaJugador=(-porcentajeVidaJugador+porcentajeVidaJugador)/2;
                     //porcentajeVidaBot=(-porcentajeVidaBot+porcentajeVidaBot)/2;
 
                     PhongMaterial ColorJugador = new PhongMaterial();
-                    ColorJugador.setDiffuseColor(rgb((int)(255-255*porcentajeVidaJugador), (int)(255*porcentajeVidaJugador), 0, 0.5));
+                    ColorJugador.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaJugador), (int) (255 * porcentajeVidaJugador), 0, 0.5));
                     CilindroJugador.setMaterial(ColorJugador);
                     PhongMaterial ColorBot = new PhongMaterial();
-                    ColorBot.setDiffuseColor(rgb((int)(255-255*porcentajeVidaBot), (int)(255*porcentajeVidaBot), 0, 0.5));
+                    ColorBot.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaBot), (int) (255 * porcentajeVidaBot), 0, 0.5));
                     CilindroBot.setMaterial(ColorBot);
 
-                    vidaBot=vidaBot+cambioVidaBot/fotogramas;
-                    vidaJugador=vidaJugador+cambioVidaJugador/fotogramas;
+                    vidaBot = vidaBot + cambioVidaBot / fotogramas;
+                    vidaJugador = vidaJugador + cambioVidaJugador / fotogramas;
 
-                try {
-                    sleep(1000/fotogramas);
+                    try {
+                        sleep(1000 / fotogramas);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    ;
                 }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                ;}
 
             }
         });
 
-            barraVida.start();
+        barraVida.start();
     }
 
 
+    public void PasarTurno(ActionEvent actionEvent) {
 
+        Thread ocultarMovRival = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < fot; i++) {
+                    MovimientoRival.setOpacity(1 - i / (float)fot);
+                    botonOk.setOpacity(i / (float)fot);
+                    botonOk.setCancelButton(true);
+                }
+            }
+        });
+        ocultarMovRival.start();
 
+        MostrarBotones();
+
+    }
 }
