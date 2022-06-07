@@ -2,15 +2,11 @@ package com.example.fakemon.batalla;
 
 import com.example.fakemon.fakemons.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Batalla {
     private HashMap<String, Fakemon> fakemons;
-//    private String usrFakemon;
-//    private String botFakemon;
     private Fakemon usrFakemon;
     private Fakemon botFakemon;
 
@@ -54,7 +50,7 @@ public class Batalla {
     public void emptyFakemons(){
 
         if (!fakemons.isEmpty()){
-            // vaciar hash
+            fakemons.clear();
         }
     }
     public void fillFakemons(){

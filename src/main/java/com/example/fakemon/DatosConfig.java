@@ -37,4 +37,8 @@ public class DatosConfig {
         String[] f = {"Pikachu", "Bulbasaur", "Charmander", "Jigglypuff", "Pidgey", "Squirtle"};
         fakemons.addAll(Arrays.asList(f));
     }
+
+    public static String getNombre() {
+        return nombre;
+    }
 }

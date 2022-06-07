@@ -1,9 +1,11 @@
 package com.example.fakemon;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.PointLight;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.PhongMaterial;
@@ -22,38 +24,45 @@ import java.util.concurrent.TimeUnit;
 import static java.lang.Math.abs;
 import static java.lang.Thread.sleep;
 import static javafx.scene.paint.Color.rgb;
-
+import static com.example.fakemon.DatosConfig.*;
 public class BatallaController extends Controlador implements Initializable {
 
-
-    public Cylinder CilindroJugador;
-    public Cylinder CilindroBot;
-    public PointLight Luz;
-
-    public PointLight LuzCenital;
-    public Rectangle BarraVidaJugador;
-    public Rectangle BarraVidaBot;
-    public Button boton;
-    public ImageView ImagenBot;
-    public ImageView ImagenJugador;
-    public Rectangle Menu;
-    public Button Ataque;
-    public Button Debilitar;
-    public Button Regenerar;
-    public Button Potenciar;
-
-    public Text TextMenu;
-
-    float vidaJugador=100;
-    float vidaBot=100;
-
-    float vidaJugadorMax=100;
-    float vidaBotMax=100;
-
-
-    float vidaActualJugador;
-    float vidaActualBot;
-
+    @FXML
+    private Cylinder CilindroJugador;
+    @FXML
+    private Cylinder CilindroBot;
+    @FXML
+    private PointLight Luz;
+    @FXML
+    private PointLight LuzCenital;
+    @FXML
+    private Rectangle BarraVidaJugador;
+    @FXML
+    private Rectangle BarraVidaBot;
+    @FXML
+    private Button boton;
+    @FXML
+    private ImageView ImagenBot;
+    @FXML
+    private ImageView ImagenJugador;
+    @FXML
+    private Rectangle Menu;
+    @FXML
+    private Button Ataque;
+    @FXML
+    private Button Debilitar;
+    @FXML
+    private Button Regenerar;
+    @FXML
+    private Button Potenciar;
+    @FXML
+    private Text TextMenu;
+    private float vidaJugador=100;
+    private float vidaBot=100;
+    private float vidaJugadorMax=100;
+    private float vidaBotMax=100;
+    private float vidaActualJugador;
+    private float vidaActualBot;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,7 +73,6 @@ public class BatallaController extends Controlador implements Initializable {
         PhongMaterial ColorBot = new PhongMaterial();
         ColorBot.setDiffuseColor(rgb(0, 255, 0, 0.5));
         CilindroBot.setMaterial(ColorBot);
-
 
         String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon().getName()+".png";
         String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon().getName()+".png";
@@ -103,7 +111,7 @@ public class BatallaController extends Controlador implements Initializable {
         }
 
 
-        TextMenu.setText("Player-"+battle.getUsrFakemon().getName());
+        TextMenu.setText(nombre+"-"+battle.getUsrFakemon().getName());
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -125,16 +133,12 @@ public class BatallaController extends Controlador implements Initializable {
                     }
                 }
             }
-
-
         });
 
 
         Thread animacionesEntrada= new Thread(new Runnable() {
             @Override
             public void run() {
-
-
 
                 int fot=30;
                 for(int i=0;i<=fot;i++){
@@ -187,19 +191,6 @@ public class BatallaController extends Controlador implements Initializable {
         vidaActualBot=100;
         vidaActualJugador=100;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void ataque(ActionEvent actionEvent) {
 
         float cambioVidaBot=-1;

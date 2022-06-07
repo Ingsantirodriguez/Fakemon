@@ -95,7 +95,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Text  fx:id="TextMenu"  fill="#e3fc00" fontSmoothingType="LCD" layoutX="128.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jugador" textAlignment="CENTER" wrappingWidth="200.0">
+      <Text  fx:id="TextMenu"  fill="#e3fc00" fontSmoothingType="LCD" layoutX="128.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0"  textAlignment="CENTER" wrappingWidth="200.0">
          <font>
             <Font name="Candara Light" size="24.0" />
          </font>
