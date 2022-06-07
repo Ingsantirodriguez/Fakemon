@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorFightScene">
    <children>
-      <ImageView disable="true" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
             <Image url="@images/background.png" />
          </image>
@@ -34,17 +34,10 @@
             <Image url="@images/vs.png" />
          </image>
       </ImageView>
-      <Button fx:id="Batalla" alignment="CENTER" layoutX="334.0" layoutY="446.0" mnemonicParsing="false" onAction="#irABatalla" prefHeight="41.0" prefWidth="116.0" style="-fx-background-color: transparent;">
+      <Button fx:id="Batalla"  onAction="#irABatalla"  layoutX="323.0" layoutY="416.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" text="Batalla">
          <font>
-            <Font size="30.0" />
+            <Font size="36.0" />
          </font>
-         <graphic>
-            <ImageView fitHeight="31.0" fitWidth="141.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/batalla.png" />
-               </image>
-            </ImageView>
-         </graphic>
       </Button>
    </children>
 </AnchorPane>
