@@ -10,10 +10,29 @@ public class Batalla {
     private Fakemon usrFakemon;
     private Fakemon botFakemon;
 
+    public static String getTurno() {
+        return Turno;
+    }
+
+
+
+    private static String Turno;
+
     public Batalla(){
         this.fakemons = new HashMap<>();
         this.usrFakemon = null;
         this.botFakemon = null;
+        RandomTurno();
+    }
+
+    private void RandomTurno() {
+        Random rd = new Random();
+        int value = rd.nextInt(2);
+        if (value == 0) {
+            this.Turno = "user";
+        } else {
+            this.Turno = "bot";
+        }
     }
 
     public void setUsrFakemon(String fakemon){
