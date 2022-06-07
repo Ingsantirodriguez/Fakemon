@@ -9,11 +9,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +36,13 @@ public class BatallaController extends Controlador implements Initializable {
     public Button boton;
     public ImageView ImagenBot;
     public ImageView ImagenJugador;
+    public Rectangle Menu;
+    public Button Ataque;
+    public Button Debilitar;
+    public Button Regenerar;
+    public Button Potenciar;
+
+    public Text TextMenu;
 
     float vidaJugador=100;
     float vidaBot=100;
@@ -56,6 +65,7 @@ public class BatallaController extends Controlador implements Initializable {
         ColorBot.setDiffuseColor(rgb(0, 255, 0, 0.5));
         CilindroBot.setMaterial(ColorBot);
 
+
         String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon().getName()+".png";
         String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon().getName()+".png";
         Path imageFile = Paths.get(usfakemon);
@@ -73,6 +83,27 @@ public class BatallaController extends Controlador implements Initializable {
         }
 
 
+        ImagenBot.setOpacity(0);
+        ImagenJugador.setOpacity(0);
+        TextMenu.setOpacity(0);
+        double MenuAltura=Menu.getHeight();
+        double BotonesAncho=Ataque.getPrefWidth();
+        Menu.setHeight(0);
+
+        //Nuevo arraylist
+        ArrayList<Button> botones = new ArrayList<>();
+        botones.add(Ataque);
+        botones.add(Debilitar);
+        botones.add(Regenerar);
+        botones.add(Potenciar);
+
+        for (Button b : botones) {
+            b.setPrefWidth(0);
+            b.setOpacity(0);
+        }
+
+
+        TextMenu.setText("Player-"+battle.getUsrFakemon().getName());
         Thread hilo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -97,8 +128,61 @@ public class BatallaController extends Controlador implements Initializable {
 
 
         });
-        hilo.start();
 
+
+        Thread animacionesEntrada= new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+
+
+                int fot=30;
+                for(int i=0;i<=fot;i++){
+                    ImagenBot.setOpacity((float)i/(float)fot);
+                    ImagenJugador.setOpacity((float)i/(float)fot);
+
+
+
+                    try {
+                        sleep(1000/fot);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                for (int i = 0; i <fot; i++) {
+                    Menu.setHeight(MenuAltura*i/fot);
+                    try {
+                        sleep(1000/fot);
+                    }
+                    catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+                try {
+                    sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                TextMenu.setOpacity(1);
+                for(Button b:botones){
+                    for (int i=1;i<=fot;i++){
+                        b.setPrefWidth(BotonesAncho*i/fot);
+                        b.setOpacity((float)i/(float)fot);
+                        try {
+                            sleep(1000/fot);
+                        }
+                        catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        });
+
+        animacionesEntrada.start();
+        hilo.start();
 
         vidaActualBot=100;
         vidaActualJugador=100;
@@ -157,7 +241,9 @@ public class BatallaController extends Controlador implements Initializable {
         });
 
             barraVida.start();
-
-
     }
+
+
+
+
 }

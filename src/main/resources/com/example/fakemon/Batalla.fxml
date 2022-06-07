@@ -6,8 +6,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Cylinder?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.BatallaController">
    <children>
@@ -52,5 +57,48 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="22.0" layoutX="456.0" layoutY="78.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
       <Rectangle fx:id="BarraVidaBot" arcHeight="5.0" arcWidth="5.0" fill="#25ff21" height="22.0" layoutX="456.0" layoutY="78.0" stroke="#25ff21" strokeType="INSIDE" width="220.0" />
       <Button fx:id="boton" layoutX="377.0" layoutY="448.0" mnemonicParsing="false" onAction="#ataque" text="Button" />
+      <Rectangle  fx:id="Menu"  arcHeight="5.0" arcWidth="5.0" height="144.0" layoutX="128.0" layoutY="412.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0">
+         <fill>
+            <LinearGradient endX="0.4810605771613843" endY="1.0" startX="0.4924242559707526" startY="0.1429924242424241">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.2759999930858612" green="0.5650915503501892" blue="0.9200000166893005" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.2759999930858612" green="0.2974666655063629" blue="0.9200000166893005" opacity="0.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Button  fx:id="Ataque"  ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="1_Ataque" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button  fx:id="Debilitar"  ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="2_Debilitar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button  fx:id="Regenerar"  ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="3_Regenerar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button   fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="4_Potenciar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Text  fx:id="TextMenu"  fill="#e3fc00" fontSmoothingType="LCD" layoutX="128.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jugador" textAlignment="CENTER" wrappingWidth="200.0">
+         <font>
+            <Font name="Candara Light" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
