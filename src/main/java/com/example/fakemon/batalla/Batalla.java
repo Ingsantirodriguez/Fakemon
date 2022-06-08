@@ -2,30 +2,28 @@ package com.example.fakemon.batalla;
 
 import com.example.fakemon.fakemons.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 public class Batalla {
     private HashMap<String, Fakemon> fakemons;
-//    private String usrFakemon;
-//    private String botFakemon;
     private Fakemon usrFakemon;
     private Fakemon botFakemon;
+    private float vidaJugador = 100;
+    private float vidaBot = 100;
+    private float vidaJugadorMax = 100;
+    private float vidaBotMax = 100;
+    private float currentUsrLife;
+    private float currentBotLife;
 
-    public static String getTurno() {
-        return Turno;
-    }
-
-
-
-    private static String Turno;
+    private Boolean usrTurn;
+    private Fakemon winner;
 
     public Batalla(){
         this.fakemons = new HashMap<>();
         this.usrFakemon = null;
         this.botFakemon = null;
+        this.usrTurn = true;
         RandomTurno();
     }
 
@@ -33,18 +31,34 @@ public class Batalla {
         Random rd = new Random();
         int value = rd.nextInt(2);
         if (value == 0) {
-            this.Turno = "user";
+            this.usrTurn = false;
         } else {
-            this.Turno = "bot";
+            this.usrTurn = true;
         }
     }
 
+    public void setUsrTurn(Boolean t){
+        this.usrTurn = t;
+    }
     public void setUsrFakemon(String fakemon){
         this.usrFakemon = fakemons.get(fakemon);
+        this.currentUsrLife = usrFakemon.getCurrentLife();
+    }
+    public void setWinner(Fakemon f){
+        this.winner = f;
+        printResults();
+    }
+
+    public void printResults(){
+        System.out.println("***** GANADOR: "+this.winner.getName()+"*****");
+        System.out.println("Vida Restante: " + this.winner.getCurrentLife());
+        System.out.println("Ataque: " + this.winner.getAttackDamage());
+        System.out.println("\nBien ahi kpo");
     }
 
     public void setBotFakemon(String fakemon){
         this.botFakemon = fakemons.get(fakemon);
+        this.currentBotLife = usrFakemon.getCurrentLife();
     }
 
     public Fakemon getUsrFakemon(){
@@ -53,6 +67,13 @@ public class Batalla {
 
     public Fakemon getBotFakemon(){
             return botFakemon;
+    }
+
+    public Float getCurrentUsrLife(){ return this.currentUsrLife; }
+    public Float getCurrentBotLife(){ return this.currentBotLife; }
+
+    public Boolean usrTurno(){
+        return usrTurn;
     }
 
     public void selecRandomFakemon(){
@@ -85,5 +106,4 @@ public class Batalla {
             fakemons.put(key[i], val[i]);
         }
     }
-
 }

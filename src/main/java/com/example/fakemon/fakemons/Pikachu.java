@@ -4,16 +4,19 @@ public class Pikachu extends Fakemon{
 
     public Pikachu(){
         super();
-        this.life = 100;
         this.sound = "src/main/resources/com/example/fakemon/music/pikachu-sound.wav";
-        this.attackDamage = 15;
         this.name = "Pikachu";
-        this.stronger = false;
+        this.basicLife = 100;
+        this.currentLife = this.basicLife;
+        this.attackDamage = 15;
+        this.weakenDamage = 5;
+        this.originalAttackDamage = this.attackDamage;
+        this.incLife = 5;
         this.weakened = false;
     }
     @Override
-    public int getLife() {
-        return this.life;
+    public int getCurrentLife() {
+        return this.currentLife;
     }
 
     @Override
@@ -39,5 +42,42 @@ public class Pikachu extends Fakemon{
     @Override
     public Boolean isStronger() {
         return this.stronger;
+    }
+
+    @Override
+    public int weaken() {
+        return this.weakenDamage;
+    }
+
+    @Override
+    public void weakening(int d) {
+        if (d < this.attackDamage) {
+            this.attackDamage -= d;
+        }
+
+    }
+    @Override
+    public int getBasicLife() {
+        return this.basicLife;
+    }
+    @Override
+    public void regenerate() {
+//        if(this.basicLife > this.currentLife){
+//            this.currentLife += this.incLife;
+//        }
+        this.currentLife += this.incLife;
+        System.out.println("regenerate..");
+    }
+
+    public void receiveAttack(int a) {
+        this.currentLife -= a;
+
+        if(this.currentLife < 0){
+            this.currentLife = 0;
+        }
+    }
+    @Override
+    public void maximizeAttack() {
+        this.attackDamage += 10;
     }
 }

@@ -74,22 +74,22 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="Ataque" ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="1_Ataque" textAlignment="CENTER">
+      <Button fx:id="Ataque" ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#ataque" prefHeight="26.0" prefWidth="200.0" text="1_Ataquee" textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Debilitar" ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="2_Debilitar" textAlignment="CENTER">
+      <Button fx:id="Debilitar" ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#debilitar" prefHeight="26.0" prefWidth="200.0" text="2_Debilitar" textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Regenerar" ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="3_Regenerar" textAlignment="CENTER">
+      <Button fx:id="Regenerar" ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#regenerar" prefHeight="26.0" prefWidth="200.0" text="3_Regenerar" textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="200.0" text="4_Potenciar" textAlignment="CENTER">
+      <Button fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#potenciar" prefHeight="26.0" prefWidth="200.0" text="4_Potenciar" textAlignment="CENTER">
          <font>
             <Font size="13.0" />
          </font>
@@ -117,16 +117,15 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Text fx:id="TextMenu1" fill="#e3fc00" fontSmoothingType="LCD" layoutX="466.0" layoutY="441.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jugador" textAlignment="CENTER" wrappingWidth="200.0">
+      <Text fx:id="TextMenu1" fill="#e3fc00" fontSmoothingType="LCD" layoutX="466.0" layoutY="441.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bot" textAlignment="CENTER" wrappingWidth="200.0">
          <font>
             <Font name="Candara Light" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="MovimientoRival" layoutX="466.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="usa atacar" textAlignment="CENTER" wrappingWidth="200.0">
+      <Text fx:id="turno" fill="#e3fc00" fontSmoothingType="LCD" layoutX="300.0" layoutY="582.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0">
          <font>
-            <Font size="25.0" />
+            <Font name="Candara Light" size="24.0" />
          </font>
       </Text>
-      <Button   onAction="#PasarTurno" fx:id="botonOk"  layoutX="540.0" layoutY="502.0" mnemonicParsing="false" text="ok" />
    </children>
 </AnchorPane>
