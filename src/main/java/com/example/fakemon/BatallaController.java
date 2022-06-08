@@ -83,7 +83,7 @@ public class BatallaController extends Controlador implements Initializable {
 
     private void MostrarBotones() {
         // cada vez que haga la animacion de mostrar botones es equivalente a que el turno lo tenga el usr
-        turno.setText("Turno: USR");
+        turno.setText("\nTurno: USR");
         for (Button b : botones) {
             for (int i = 0; i <= fot; i++) {
                 b.setPrefWidth(BotonesAncho * i / fot);
@@ -487,8 +487,8 @@ public class BatallaController extends Controlador implements Initializable {
         }
         if(battle.getUsrFakemon().getCurrentLife() >0 && battle.getBotFakemon().getCurrentLife() >0){
             if(!battle.usrTurno()){                                 // si es el turno del bot, elijo su accion
-                turno.setText("Turno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
-                System.out.println("Ejecutando turno del bot..");   // en otro hilo (????
+                turno.setText("\nTurno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
+                System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
                 botTurn();
             }else {
                 MostrarBotones();
