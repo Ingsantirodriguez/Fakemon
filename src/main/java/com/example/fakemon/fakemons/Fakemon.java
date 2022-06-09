@@ -30,7 +30,10 @@ public abstract class Fakemon {
         if (stronger){
             stronger = false;
         }
-        return attackDamage;
+        int ad = attackDamage;
+        attackDamage = originalAttackDamage;
+        return ad;
+
     }
     public String getName(){
         return name;
