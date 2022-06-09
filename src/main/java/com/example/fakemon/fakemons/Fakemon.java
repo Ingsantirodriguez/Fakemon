@@ -14,17 +14,59 @@ public abstract class Fakemon {
 
     public Fakemon(){ }
 
-    public abstract int getCurrentLife();
-    public abstract int getBasicLife();
-    public abstract String getSound();
-    public abstract int getAttackDamage();
-    public abstract String getName();
-    public abstract Boolean isWeakened();
-    public abstract Boolean isStronger();
-    public abstract int weaken();         // debilito al enemigo
-    public abstract void weakening(int d);  // recibe debilitacion del enemigo
-    public abstract void regenerate();
-    public abstract void receiveAttack(int a);    //
-    public abstract void maximizeAttack();
+    public int getCurrentLife(){
+        return currentLife;
+    }
+    public int getBasicLife(){
+        return currentLife;
+    }
+    public String getSound(){
+        return sound;
+    }
+    public int getAttackDamage(){
+        if (weakened){
+            weakened = false;
+        }
+        if (stronger){
+            stronger = false;
+        }
+        return attackDamage;
+    }
+    public String getName(){
+        return name;
+    }
+    public Boolean isWeakened(){
+        return isWeakened();
+    }
+    public Boolean isStronger(){
+        return isStronger();
+    }
+    public int weaken(){    // debilito al enemigo
+        return weakenDamage;
+    }
+    public void weakening(int d) {  // recibe debilitacion del enemigo
+        if (d < attackDamage) {
+            attackDamage -= d;
+        }
+        weakened = true;
+    }
+    public void regenerate(){
+//        if(this.basicLife > this.currentLife){
+//            this.currentLife += this.incLife;
+//        }
+        currentLife += incLife;
+        System.out.println("regenerate..");
+    }
+    public void receiveAttack(int a){
+        this.currentLife -= a;
+
+        if(this.currentLife < 0){
+            this.currentLife = 0;
+        }
+    }
+    public void maximizeAttack(){
+        attackDamage += 10;
+        stronger = true;
+    }
 
 }

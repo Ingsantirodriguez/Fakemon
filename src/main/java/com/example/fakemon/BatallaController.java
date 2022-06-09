@@ -19,13 +19,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import static com.example.fakemon.DatosConfig.nombre;
 import static java.lang.Math.abs;
@@ -322,13 +318,15 @@ public class BatallaController extends Controlador implements Initializable {
                     // turno del usuario ==> bot recibe ataque de usr
                     System.out.println("\nusr --> attack --> bot..");
                     cambioVidaBot = -(float) battle.getUsrFakemon().getAttackDamage();
-                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
+                    new Atacar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+//                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
                     battle.setUsrTurn(false);
                 }else {
                     // turno del bot ==> usr recibe ataque de bot
                     System.out.println("\nbot --> attack --> usr..");
                     cambioVidaJugador = -(float) battle.getBotFakemon().getAttackDamage();
-                    battle.getUsrFakemon().receiveAttack(battle.getBotFakemon().getAttackDamage());
+                    new Atacar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
+//                    battle.getUsrFakemon().receiveAttack(battle.getBotFakemon().getAttackDamage());
                     battle.setUsrTurn(true);
                 }
 
@@ -371,12 +369,14 @@ public class BatallaController extends Controlador implements Initializable {
                 if(battle.usrTurno()){
                     // turno del usuario ---> debilito al bot
                     System.out.println("\nusr --> weaken --> bot..");
-                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
+                    new Debilitar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+//                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
                     battle.setUsrTurn(false);
                 }else {
                     // turno del bot ---> debilito al usuario
                     System.out.println("\nbot --> weaken --> usr..");
-                    battle.getUsrFakemon().weakening(battle.getBotFakemon().weaken());
+                    new Debilitar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
+//                    battle.getUsrFakemon().weakening(battle.getBotFakemon().weaken());
                     battle.setUsrTurn(true);
                 }
 
@@ -405,12 +405,14 @@ public class BatallaController extends Controlador implements Initializable {
 
                 if(battle.usrTurno()){
                     System.out.println("\nusr --> regenerate life");
-                    battle.getUsrFakemon().regenerate();
+//                    battle.getUsrFakemon().regenerate();
+                    new Regenerar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
                     cambioVidaJugador -= battle.getUsrFakemon().getCurrentLife();
                     battle.setUsrTurn(false);
                 }else {
                     System.out.println("\nbot --> regenerate life");
-                    battle.getBotFakemon().regenerate();
+//                    battle.getBotFakemon().regenerate();
+                    new Regenerar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
                     cambioVidaBot -= battle.getBotFakemon().getCurrentLife();
                     battle.setUsrTurn(true);
                 }
@@ -459,11 +461,13 @@ public class BatallaController extends Controlador implements Initializable {
 
                 if(battle.usrTurno()){
                     System.out.println("\nusr --> maximize attack");
-                    battle.getUsrFakemon().maximizeAttack();
+//                    battle.getUsrFakemon().maximizeAttack();
+                    new Potenciar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
                     battle.setUsrTurn(false);
                 }else {
                     System.out.println("\nbot --> maximize attack");
-                    battle.getBotFakemon().maximizeAttack();
+//                    battle.getBotFakemon().maximizeAttack();
+                    new Potenciar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
                     battle.setUsrTurn(true);
                 }
 
