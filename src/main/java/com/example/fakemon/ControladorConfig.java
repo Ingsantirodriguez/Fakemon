@@ -93,6 +93,6 @@ public class ControladorConfig extends Controlador implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-
+        GeneroToogle.setSelected(true);
     }
 }
