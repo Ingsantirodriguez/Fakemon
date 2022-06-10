@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 
 import static com.example.fakemon.DatosConfig.*;
 
-
 public class ControladorConfig extends Controlador implements Initializable {
 
 
@@ -46,15 +45,10 @@ public class ControladorConfig extends Controlador implements Initializable {
     //guardar nombre
     public void guardarNombre(ActionEvent event) {
 
-        nombre = Nombre.getText();
-        System.out.println(nombre);
+        DatosConfig.setNombre(Nombre.getText());
+        System.out.println(DatosConfig.getNombre());
     }
 
-    //cambiar volumen
-    public void cambiarVolumen(ActionEvent event) {
-        volumen = (int) VolumenSeleccion.getValue();
-        System.out.println(volumen);
-    }
     //cambiar genero
     public void cambiarGenero(ActionEvent event) {
         if (GeneroToogle.isSelected()) {
@@ -68,15 +62,15 @@ public class ControladorConfig extends Controlador implements Initializable {
         GeneroToogle.setText("Masculino");
         //GeneroToogle texto azul oscuro y fondo naranja claro
         GeneroToogle.setTextFill(Color.BLUE);
-        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(220,179,31),null,null)));
-        genero = "Masculino";
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(134,205,249),null,null)));
+        DatosConfig.setGenero("Masculino");
     }
     private void Femenino(){
         GeneroToogle.setText("Femenino");
         //GeneroToogle texto azul oscuro y fondo naranja claro
         GeneroToogle.setTextFill(Color.PURPLE);
-        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(255,255,128),null,null)));
-        genero = "Femenino";
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(254,151,211),null,null)));
+        DatosConfig.setGenero("Femenino");
     }
 
     @FXML
