@@ -4,7 +4,7 @@ import com.example.fakemon.batalla.Batalla;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
 
-public class TorneoTest extends TestCase {
+class TorneoTest extends TestCase {
     private Batalla batalla = new Batalla();    // Torneo es abstract, pero Batalla hereda
 
     @Test
