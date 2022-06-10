@@ -9,6 +9,8 @@ public class Batalla extends Torneo{
     private HashMap<String, Fakemon> fakemons;
     private float currentUsrLife;
     private float currentBotLife;
+    public  int  num;
+    public  boolean usrWin;
 
     private Boolean usrTurn;
     private Fakemon winner;
@@ -44,9 +46,11 @@ public class Batalla extends Torneo{
         if(usr){
             this.winner = usrFakemon;
             this.vsUsrWin.add(botFakemon);
+            usrWin=true;
         }else{
             this.winner = botFakemon;
             this.vsUsrLoose.add(botFakemon);
+            usrWin=false;
         }
         //this.torneo.nextBattle();
         if(this.battle_n == 5){
@@ -68,7 +72,7 @@ public class Batalla extends Torneo{
 
     public void setBotFakemon(String fakemon){
         this.botFakemon = fakemons.get(fakemon);
-        this.currentBotLife = usrFakemon.getCurrentLife();
+        this.currentBotLife = botFakemon.getCurrentLife();
     }
 
     public Fakemon getUsrFakemon(){
@@ -105,6 +109,8 @@ public class Batalla extends Torneo{
         if (!fakemons.isEmpty()){
             fakemons.clear();
         }
+
+        num=fakemons.size();
     }
     public void fillFakemons(){
         Fakemon[] val = {new Bulbasaur(), new Charmander(), new Jigglypuff()

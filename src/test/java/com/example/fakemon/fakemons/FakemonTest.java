@@ -7,45 +7,40 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FakemonTest {
-
+    Fakemon pikachu = new Pikachu();
+    Fakemon squirtle = new Squirtle();
     @Test
     void recieveAttackTest(){
-        Fakemon fakemon = new Pikachu();
         int attackDamage = 30;
-        fakemon.receiveAttack(attackDamage);
-        assertEquals(fakemon.getBasicLife()-attackDamage,fakemon.getCurrentLife());
+        pikachu.receiveAttack(attackDamage);
+        assertEquals(pikachu.getBasicLife()-attackDamage,pikachu.getCurrentLife());
     }
 
     @Test
     void regenerateFullLifeTest(){
-        Fakemon fakemon = new Pikachu();
         int attackDamage = 3;
-        fakemon.receiveAttack(attackDamage);
-        fakemon.regenerate();
-        assertEquals(fakemon.getBasicLife(),fakemon.getCurrentLife());
+        pikachu.receiveAttack(attackDamage);
+        pikachu.regenerate();
+        assertEquals(pikachu.getBasicLife(),pikachu.getCurrentLife());
     }
 
     @Test
     void strongerTest(){
-        Fakemon fakemon = new Pikachu();
-        fakemon.maximizeAttack();
-        assertTrue(fakemon.isStronger());
-        assertEquals(fakemon.getAttackDamage(),fakemon.getAttackDamage()+10);
+        pikachu.maximizeAttack();
+        assertTrue(pikachu.isStronger());
+        assertEquals(pikachu.getAttackDamage(),pikachu.getAttackDamage()+10);
     }
 
     @Test
     void weakerTest(){
-        Fakemon fakemon = new Pikachu();
         int weak = 5;
-        fakemon.weakening(weak);
-        assertTrue(fakemon.weakened);
-        assertEquals(fakemon.getAttackDamage(),fakemon.getAttackDamage()-weak);
+        pikachu.weakening(weak);
+        assertTrue(pikachu.weakened);
+        assertEquals(pikachu.getAttackDamage(),pikachu.getAttackDamage()-weak);
     }
 
     @Test
     void normalAttackAfterStrongAttack(){
-        Fakemon pikachu = new Pikachu();
-        Fakemon squirtle = new Squirtle();
         int beforeAttack = pikachu.getAttackDamage();
         pikachu.maximizeAttack();
         new Atacar().actuar(pikachu,squirtle);
@@ -54,8 +49,6 @@ class FakemonTest {
 
     @Test
     void normalAttackAfterWeakAttack(){
-        Fakemon pikachu = new Pikachu();
-        Fakemon squirtle = new Squirtle();
         int beforeAttack = pikachu.getAttackDamage();
         new Debilitar().actuar(squirtle,pikachu);
         new Atacar().actuar(pikachu,squirtle);
