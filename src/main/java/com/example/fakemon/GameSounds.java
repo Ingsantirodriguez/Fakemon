@@ -29,28 +29,25 @@ public class GameSounds {
         currentMusic = mode;
         musicOn = true;
 
-        try {
-            if (this.mode.containsKey(mode)) {
-                url = this.mode.get(mode);
-            } else {
-                throw new Exception("No hay sonido para el modo '"+mode+"'.");
-            }
-        } catch (Exception e){
-            e.printStackTrace();
+        if (this.mode.containsKey(mode)) {
+            url = this.mode.get(mode);
+            this.startMusic(url);
+        } else {
+            System.out.println("No hay sonido para el modo '"+mode+"'.");
         }
-        this.startMusic(url);
     }
 
     public void playMusic(Fakemon f){
         String url = f.getSound();
+        currentMusic = f.getName();
         musicOn = true;
         this.startMusic(url);
     }
 
     private void startMusic(String url){
         if(!mute){
-            file = new File(url);
             try {
+                file = new File(url);
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
                 clip = AudioSystem.getClip();
                 clip.open(audioStream);
@@ -59,6 +56,8 @@ public class GameSounds {
                 clip.start();
             } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e){
                 e.printStackTrace();
+            }finally {
+                System.out.println("ERROR. No se inicio la musica.");
             }
         }
     }
@@ -100,10 +99,19 @@ public class GameSounds {
             previousVolume = currentVolume;
             currentVolume=-80.0f;
             fc.setValue(currentVolume);
-        }else{
+        }
+        else{
             mute=false;
             currentVolume=previousVolume;
             fc.setValue(currentVolume);
         }
+    }
+
+    public float getCurrentVolume(){
+        return currentVolume;
+    }
+
+    public boolean isMute(){
+        return mute;
     }
 }
