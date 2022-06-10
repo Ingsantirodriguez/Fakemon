@@ -18,7 +18,7 @@ public abstract class Fakemon {
         return currentLife;
     }
     public int getBasicLife(){
-        return currentLife;
+        return basicLife;
     }
     public String getSound(){
         return sound;
@@ -39,10 +39,10 @@ public abstract class Fakemon {
         return name;
     }
     public Boolean isWeakened(){
-        return isWeakened();
+        return weakened;
     }
     public Boolean isStronger(){
-        return isStronger();
+        return stronger;
     }
     public int weaken(){    // debilito al enemigo
         return weakenDamage;
@@ -54,10 +54,10 @@ public abstract class Fakemon {
         weakened = true;
     }
     public void regenerate(){
-//        if(this.basicLife > this.currentLife){
-//            this.currentLife += this.incLife;
-//        }
-        currentLife += incLife;
+        if(this.basicLife < this.currentLife+this.incLife){
+            this.currentLife = this.basicLife;
+        }
+        else currentLife += incLife;
         System.out.println("regenerate..");
     }
     public void receiveAttack(int a){
