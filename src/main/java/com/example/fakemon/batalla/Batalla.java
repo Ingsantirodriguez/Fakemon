@@ -5,11 +5,8 @@ import com.example.fakemon.fakemons.*;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Batalla {
-    private Torneo torneo;
+public class Batalla extends Torneo{
     private HashMap<String, Fakemon> fakemons;
-    private Fakemon usrFakemon;
-    private Fakemon botFakemon;
     private float currentUsrLife;
     private float currentBotLife;
 
@@ -41,14 +38,25 @@ public class Batalla {
         this.usrFakemon = fakemons.get(fakemon);
         fakemons.remove(this.usrFakemon.getName());     // elimino el user fakemon de la lista
         this.currentUsrLife = usrFakemon.getCurrentLife();
-        this.torneo = new Torneo(this.usrFakemon);
     }
-    public void setWinner(Fakemon f){
-        this.winner = f;
-        this.torneo.setWinner(f.equals(this.usrFakemon));
+    public void setWinner(boolean usr){
+
+        if(usr){
+            this.winner = usrFakemon;
+            this.vsUsrWin.add(botFakemon);
+        }else{
+            this.winner = botFakemon;
+            this.vsUsrLoose.add(botFakemon);
+        }
+        //this.torneo.nextBattle();
+        if(this.battle_n == 5){
+            showResults();
+        }else{
+            selecRandomFakemon();
+            RandomTurno();
+        }
         printResults();
-        selecRandomFakemon();
-        RandomTurno();
+
     }
 
     public void printResults(){
@@ -61,7 +69,6 @@ public class Batalla {
     public void setBotFakemon(String fakemon){
         this.botFakemon = fakemons.get(fakemon);
         this.currentBotLife = usrFakemon.getCurrentLife();
-        this.torneo.nextBattle(this.botFakemon);
     }
 
     public Fakemon getUsrFakemon(){
@@ -96,7 +103,7 @@ public class Batalla {
     public void emptyFakemons(){
 
         if (!fakemons.isEmpty()){
-            // vaciar hash
+            fakemons.clear();
         }
     }
     public void fillFakemons(){
@@ -108,5 +115,6 @@ public class Batalla {
             fakemons.put(key[i], val[i]);
         }
     }
+
 
 }

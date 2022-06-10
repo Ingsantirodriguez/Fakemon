@@ -1,13 +1,10 @@
 package com.example.fakemon;
 import com.example.fakemon.fakemons.Fakemon;
-import com.example.fakemon.fakemons.ListFakemons;
-import com.example.fakemon.fakemons.Pikachu;
 
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 public class GameSounds {
     private Clip clip;

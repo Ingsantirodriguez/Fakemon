@@ -6,43 +6,35 @@ import java.util.ArrayList;
 
 import static com.example.fakemon.DatosConfig.nombre;
 
-public class Torneo {
-    private Fakemon usrFakemon;
-    private Fakemon botFakemon;
-    private ArrayList<Fakemon> vsUsrWin;
-    private ArrayList<Fakemon> vsUsrLoose;
-    private int battle_n;
-    private boolean usrWin;
+public abstract class Torneo{
+    protected Fakemon usrFakemon;
+    protected Fakemon botFakemon;
+    protected ArrayList<Fakemon> vsUsrWin;
+    protected ArrayList<Fakemon> vsUsrLoose;
+    protected int battle_n;
 
-    public Torneo(Fakemon usr){
-        this.usrFakemon = usr;
-        this.battle_n = 0;
+    public Torneo(){
+        super();
+        this.vsUsrWin = new ArrayList<>();
+        this.vsUsrLoose = new ArrayList<>();
+        this.battle_n = 1;
     }
 
-    public void nextBattle(Fakemon bot){
-        this.botFakemon = bot;
+    public void nextBattle(){
         this.battle_n++;
     }
-
-    public void setWinner(boolean usr){
-        if(usr){
-            this.vsUsrWin.add(this.botFakemon);
-        }else{
-            this.vsUsrLoose.add(this.botFakemon);
-        }
-        if(this.battle_n == 5){
-            showResults();
-        }
-    }
-
     public void showResults(){
         System.out.println("\n*****  RESULTADOS  *****"
                             + "\n"
                             + "\nUsuario: " + nombre
                             + "\nFakemon: " + this.usrFakemon
-                            + "\nVictorias: " + this.vsUsrWin.size()
-                            + "\nDerrotas: " + this.vsUsrLoose.size()
+                            + "\nVictorias: " + this.vsUsrWin.size() + "(vs {"+vsUsrWin.stream().toString()+"})"
+                            + "\nDerrotas: " + this.vsUsrLoose.size() + "(vs {"+vsUsrLoose.stream().toString()+"})"
         );
+    }
+
+    public String getInstance(){
+        return "BATALLA N° " + this.battle_n;
     }
 
 }

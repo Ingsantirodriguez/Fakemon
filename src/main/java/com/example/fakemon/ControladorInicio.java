@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 //Clase ControladorInicio hereda de Controller.
 public class ControladorInicio extends  Controlador implements Initializable {
-
-
     public Button ConfigBtn;
     public Button Jugarbtn;
     public Button SalirBt;
@@ -33,7 +31,6 @@ public class ControladorInicio extends  Controlador implements Initializable {
             //Boton Jugar Texto Amarillo y fondo degrade azul
             sonido.playMusic("home");
 
-            System.out.println(sonido.getMusicOn());
         }
 
 

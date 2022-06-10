@@ -3,9 +3,11 @@ package com.example.fakemon;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.PointLight;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
@@ -13,7 +15,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -54,6 +58,7 @@ public class BatallaController extends Controlador implements Initializable {
     public Text TextMenu1;
     //public Text MovimientoRival;
     private final int fot = 30;
+    public Text Batalla_n;
     // public Button botonOk;
 //    float vidaJugador = 100;
 //    float vidaBot = 100;
@@ -74,7 +79,6 @@ public class BatallaController extends Controlador implements Initializable {
         InicializaVariablesVisuales();
         ComenzarAnimacion();
         //AnimacionLuz();
-
     }
 
     private void MostrarBotones() {
@@ -270,8 +274,8 @@ public class BatallaController extends Controlador implements Initializable {
         //Boton Potenciar texto naranja fondo doraado
         Potenciar.setTextFill(Color.rgb(150, 100, 0, 0.8));
         Potenciar.setStyle("-fx-background-color: #ffa500;");
-
         TextMenu.setText(nombre+"-" + battle.getUsrFakemon().getName());
+        Batalla_n.setText(battle.getInstance());
     }
 
     private void ColoreaCilindros() {
@@ -318,6 +322,7 @@ public class BatallaController extends Controlador implements Initializable {
                     // turno del usuario ==> bot recibe ataque de usr
                     System.out.println("\nusr --> attack --> bot..");
                     cambioVidaBot = -(float) battle.getUsrFakemon().getAttackDamage();
+
                     new Atacar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
 //                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
                     battle.setUsrTurn(false);
@@ -498,38 +503,13 @@ public class BatallaController extends Controlador implements Initializable {
                 MostrarBotones();
             }
         }else{
-            if(battle.getUsrFakemon().getCurrentLife() >0){
-                // ganador: usr
-                battle.setWinner(battle.getUsrFakemon());
-            }else{
-                // ganador bot
-                battle.setWinner(battle.getBotFakemon());
-            }
+            battle.setWinner(battle.getUsrFakemon().getCurrentLife() > 0);
+
             // de aca me tengo que ir a la ESCENA FINAL
             while (true){
 
             }
         }
-
-//        Thread hiloTurno = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    TimeUnit.SECONDS.sleep(5);
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//
-//                if(!battle.usrTurno()){                                 // si es el turno del bot, elijo su accion
-//                    turno.setText("Turno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
-//                    System.out.println("Ejecutando turno del bot..");   // en otro hilo (????
-//                    botTurn();
-//                }else {
-//                    MostrarBotones();
-//                }
-//            }
-//        });
-//        hiloTurno.start();
     }
 
     private void botTurn(){                     // tampoco que vamos a hacer una AI....
