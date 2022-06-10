@@ -47,8 +47,8 @@ public class BatallaTest {
     void setWinnerTest(){
         boolean usr=true;
         batalla.fillFakemons();
-        batalla.setUsrFakemon("Pikachu");
-        batalla.setBotFakemon("Squirtle");
+        batalla.setUsrFakemon("Squirtle");
+        batalla.setBotFakemon("Pikachu");
         batalla.setWinner(usr);
         assertTrue(batalla.usrWin);
         usr=false;
