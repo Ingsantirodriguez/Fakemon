@@ -8,7 +8,7 @@ class TorneoTest extends TestCase {
     private Batalla batalla = new Batalla();    // Torneo es abstract, pero Batalla hereda
 
     @Test
-    void instanciaBatalla(){
+    void instanciaBatallaTest(){
         String test = "BATALLA N° 1";
         assertEquals(batalla.getInstance(), test);
 
