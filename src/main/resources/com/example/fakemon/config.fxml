@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorConfig">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorConfig">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
@@ -31,7 +31,7 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <Button layoutX="221.0" layoutY="378.0" mnemonicParsing="false" onAction="#subirVolumen" text="&gt;&gt;" />
+      <Button layoutX="230.0" layoutY="378.0" mnemonicParsing="false" onAction="#subirVolumen" text="&gt;&gt;" />
       <Button layoutX="134.0" layoutY="378.0" mnemonicParsing="false" onAction="#bajarVolumen" text="&lt;&lt;" />
       <Button layoutX="172.0" layoutY="378.0" mnemonicParsing="false" onAction="#mute" text="Mute" />
    </children>

@@ -8,12 +8,36 @@ public class DatosConfig {
 
     public static String nombre = "";
     public static String genero = "Femenino";
-    public static int volumen = 50;
+    public static double volumen = 50;
 
     public static String fakemonElegido ;
     public static String fakemonOponente ;
 
     public static ArrayList<String> fakemons = new ArrayList<>();
+
+    public static String getNombre(){
+        return nombre;
+    }
+
+    public static String getGenero(){
+        return genero;
+    }
+
+    public static double getVolumen(){
+        return volumen;
+    }
+
+    public static void setNombre(String name){
+        nombre = name;
+    }
+
+    public static void setGenero(String gender){
+        genero = gender;
+    }
+
+    public static void setVolumen(double volume){
+        volumen = volume;
+    }
 
     public static void selecRandomFakemon(){
         fakemons.remove(fakemonElegido);
@@ -26,11 +50,8 @@ public class DatosConfig {
 
     public static void emptyFakemons(){
         if (!fakemons.isEmpty()){
-            for (int i=0; i<fakemons.size();){
-                fakemons.remove(i);
-            }
+            fakemons.clear();
         }
-
     }
 
     public static void fillFakemons(){
