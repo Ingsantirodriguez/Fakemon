@@ -1,13 +1,12 @@
 package com.example.fakemon;
 
+import com.example.fakemon.fakemons.Fakemon;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.PointLight;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
@@ -15,15 +14,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +28,7 @@ import static java.lang.Math.abs;
 import static java.lang.Thread.sleep;
 import static javafx.scene.paint.Color.rgb;
 
-public class BatallaController extends Controlador implements Initializable {
+public class BatallaController extends Controlador implements Observer, Initializable {
 
     public Cylinder CilindroJugador;
     public Cylinder CilindroBot;
@@ -72,9 +68,13 @@ public class BatallaController extends Controlador implements Initializable {
     double AlturaCilindro;
     double AnchoBarra;
     double sizefontBoton;
+    double altoCilindro;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //observar fakemones
+        battle.getUsrFakemon().addObserver( this);
+        battle.getBotFakemon().addObserver( this);
         RellenarImagenesPokemon();
         InicializaVariablesVisuales();
         ComenzarAnimacion();
@@ -97,6 +97,10 @@ public class BatallaController extends Controlador implements Initializable {
                     throw new RuntimeException(e);
                 }
             }
+        }
+        //habilitar botones
+        for (Button b : botones) {
+            b.setDisable(false);
         }
 //        Thread DesplegarBotones = new Thread(new Runnable() {
 //            @Override
@@ -122,32 +126,7 @@ public class BatallaController extends Controlador implements Initializable {
 //        DesplegarBotones.start();
     }
 
-    private void AnimacionLuz() {
-        Thread hilo = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int x = 1;
 
-                Luz.setTranslateX(1);
-                while (true) {
-
-                    if (Luz.getTranslateX() == 0 || Luz.getTranslateX() == 700) {
-                        x *= -1;
-                        Luz.setTranslateX(abs(Luz.getTranslateX() - 1));
-                    }
-                    Luz.setTranslateX((Luz.getTranslateX() + x));
-
-                    try {
-                        sleep(5);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        hilo.start();
-    }
 
     private void ComenzarAnimacion() {
         Thread animacionesEntrada = new Thread(new Runnable() {
@@ -229,7 +208,8 @@ public class BatallaController extends Controlador implements Initializable {
         BotonesAncho = Ataque.getPrefWidth();
         AlturaCilindro = CilindroJugador.getHeight();
         AnchoBarra = BarraRoja1.getWidth();
-        //sizefontBoton= botonOk.getFont().getSize();
+        sizefontBoton= Ataque.getFont().getSize();
+        altoCilindro = CilindroJugador.getHeight();
 
         ColoreaCilindros();
 
@@ -260,6 +240,8 @@ public class BatallaController extends Controlador implements Initializable {
             b.setOpacity(0);
             //Texto en negrita
             b.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
+            //desabilitar boton
+            b.setDisable(true);
         }
 
         //Boton Ataque texto marron fondo rosa
@@ -307,253 +289,172 @@ public class BatallaController extends Controlador implements Initializable {
 
 
     public void ataque(ActionEvent actionEvent) {
-        this.ataque();
-    }
 
-    private void ataque(){
-        Thread barraVida = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                int fotogramas = 30;
-                float cambioVidaBot = 0;
-                float cambioVidaJugador = 0;
+        deshabilitarBotones();
 
-                if(battle.usrTurno()){
-                    // turno del usuario ==> bot recibe ataque de usr
-                    System.out.println("\nusr --> attack --> bot..");
-                    cambioVidaBot = -(float) battle.getUsrFakemon().getAttackDamage();
+        System.out.println("\nusr --> attack --> bot..");
 
-                    new Atacar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+
+        new Atacar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
 //                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
-                    battle.setUsrTurn(false);
-                }else {
-                    // turno del bot ==> usr recibe ataque de bot
-                    System.out.println("\nbot --> attack --> usr..");
-                    cambioVidaJugador = -(float) battle.getBotFakemon().getAttackDamage();
-                    new Atacar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
-//                    battle.getUsrFakemon().receiveAttack(battle.getBotFakemon().getAttackDamage());
-                    battle.setUsrTurn(true);
-                }
+        battle.setUsrTurn(false);
 
-                for (int i = 0; i < fotogramas; i++) {
-                    BarraVidaBot.setWidth(BarraVidaBot.getWidth() + (cambioVidaBot / fotogramas) * 2.2);
-                    BarraVidaJugador.setWidth(BarraVidaJugador.getWidth() + (cambioVidaJugador / fotogramas) * 2.2);
 
-                    try {
-                        sleep(1000 / fotogramas);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                System.out.println("after bot life: " + battle.getBotFakemon().getCurrentLife());
-                System.out.println("after usr life: " + battle.getUsrFakemon().getCurrentLife());
-
-                float porcentajeVidaBot = (float) (battle.getBotFakemon().getCurrentLife()*100/battle.getBotFakemon().getBasicLife())/100;
-                float porcentajeVidaJugador = (float) (battle.getUsrFakemon().getCurrentLife()*100/battle.getUsrFakemon().getBasicLife())/100;
-
-                PhongMaterial ColorJugador = new PhongMaterial();
-                ColorJugador.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaJugador), (int) (255 * porcentajeVidaJugador), 0, 0.5));
-                CilindroJugador.setMaterial(ColorJugador);
-                PhongMaterial ColorBot = new PhongMaterial();
-                ColorBot.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaBot), (int) (255 * porcentajeVidaBot), 0, 0.5));
-                CilindroBot.setMaterial(ColorBot);
-
-                processTurn();
-            }
-        });
-
-        barraVida.start();
+        processTurn();
 
     }
 
-    private void debilitar(){
-        Thread barraVida = new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                if(battle.usrTurno()){
-                    // turno del usuario ---> debilito al bot
-                    System.out.println("\nusr --> weaken --> bot..");
-                    new Debilitar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
-//                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
-                    battle.setUsrTurn(false);
-                }else {
-                    // turno del bot ---> debilito al usuario
-                    System.out.println("\nbot --> weaken --> usr..");
-                    new Debilitar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
-//                    battle.getUsrFakemon().weakening(battle.getBotFakemon().weaken());
-                    battle.setUsrTurn(true);
-                }
 
-                // Agregar efectos visuales ???
-                processTurn();
-            }
-        });
 
-        barraVida.start();
-    }
+
     public void debilitar(ActionEvent actionEvent) {
-        debilitar();
+        deshabilitarBotones();
+        System.out.println("\nusr --> weaken --> bot..");
+        new Debilitar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+//                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
+        battle.setUsrTurn(false);
+
+        processTurn();
+
     }
 
     public void regenerar(ActionEvent actionEvent) {
-        regenerar();
+        deshabilitarBotones();
+        System.out.println("\nusr --> regenerate life");
+//                    battle.getUsrFakemon().regenerate();
+        new Regenerar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+
+        battle.setUsrTurn(false);
+        processTurn();
     }
 
-    private void regenerar(){
-        Thread barraVida = new Thread(new Runnable() {
+
+
+    public void potenciar(ActionEvent actionEvent) {
+        deshabilitarBotones();
+        System.out.println("\nusr --> maximize attack");
+//                    battle.getUsrFakemon().maximizeAttack();
+        new Potenciar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
+        battle.setUsrTurn(false);
+
+        processTurn();
+    }
+
+    private void deshabilitarBotones() {
+        for (Button b : botones) {
+            b.setDisable(true);
+        }
+        Thread animacion= new Thread(new Runnable() {
             @Override
             public void run() {
-                int fotogramas = 30;
-                float cambioVidaBot = battle.getBotFakemon().getCurrentLife();
-                float cambioVidaJugador = battle.getUsrFakemon().getCurrentLife();
 
-                if(battle.usrTurno()){
-                    System.out.println("\nusr --> regenerate life");
-//                    battle.getUsrFakemon().regenerate();
-                    new Regenerar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
-                    cambioVidaJugador -= battle.getUsrFakemon().getCurrentLife();
-                    battle.setUsrTurn(false);
-                }else {
-                    System.out.println("\nbot --> regenerate life");
-//                    battle.getBotFakemon().regenerate();
-                    new Regenerar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
-                    cambioVidaBot -= battle.getBotFakemon().getCurrentLife();
-                    battle.setUsrTurn(true);
-                }
-
-                // Agregar efectos visuales ???
-
-                for (int i = 0; i < fotogramas; i++) {
-                    BarraVidaBot.setWidth(BarraVidaBot.getWidth() + (cambioVidaBot / fotogramas) * 2.2);
-                    BarraVidaJugador.setWidth(BarraVidaJugador.getWidth() + (cambioVidaJugador / fotogramas) * 2.2);
-
+                for (float i=0;i<fot;i++){
+                    for(Button b : botones){
+                        b.setPrefWidth(AnchoBarra*(1-i/fot));
+                        b.setFont(Font.font(sizefontBoton*(1-i/fot)));
+                        b.setOpacity(1-i/fot);
+                    }
                     try {
-                        sleep(1000 / fotogramas);
+                        Thread.sleep(1000/fot);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-
-                System.out.println("after bot life: " + battle.getBotFakemon().getCurrentLife());
-                System.out.println("after usr life: " + battle.getUsrFakemon().getCurrentLife());
-
-                float porcentajeVidaBot = (float) (battle.getBotFakemon().getCurrentLife()*100/battle.getBotFakemon().getBasicLife())/100;
-                float porcentajeVidaJugador = (float) (battle.getUsrFakemon().getCurrentLife()*100/battle.getUsrFakemon().getBasicLife())/100;
-
-                PhongMaterial ColorJugador = new PhongMaterial();
-                ColorJugador.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaJugador), (int) (255 * porcentajeVidaJugador), 0, 0.5));
-                CilindroJugador.setMaterial(ColorJugador);
-                PhongMaterial ColorBot = new PhongMaterial();
-                ColorBot.setDiffuseColor(rgb((int) (255 - 255 * porcentajeVidaBot), (int) (255 * porcentajeVidaBot), 0, 0.5));
-                CilindroBot.setMaterial(ColorBot);
-
-                processTurn();
             }
         });
+        animacion.start();
 
-        barraVida.start();
     }
 
-    public void potenciar(ActionEvent actionEvent) {
-        potenciar();
-    }
 
-    private void potenciar(){
-        Thread barraVida = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                if(battle.usrTurno()){
-                    System.out.println("\nusr --> maximize attack");
-//                    battle.getUsrFakemon().maximizeAttack();
-                    new Potenciar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
-                    battle.setUsrTurn(false);
-                }else {
-                    System.out.println("\nbot --> maximize attack");
-//                    battle.getBotFakemon().maximizeAttack();
-                    new Potenciar().actuar(battle.getBotFakemon(), battle.getUsrFakemon());
-                    battle.setUsrTurn(true);
-                }
-
-                // agregar animaciones ???
-
-                System.out.println("after bot attack: " + battle.getBotFakemon().getAttackDamage());
-                System.out.println("after usr attac: " + battle.getUsrFakemon().getAttackDamage());
-
-                processTurn();
-            }
-        });
-
-        barraVida.start();
-    }
 
     private void processTurn(){
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        if(battle.getUsrFakemon().getCurrentLife() >0 && battle.getBotFakemon().getCurrentLife() >0){
+
+
             if(!battle.usrTurno()){                                 // si es el turno del bot, elijo su accion
                 turno.setText("\nTurno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
                 System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
-                botTurn();
+                battle.botTurn();
+                processTurn();
+
             }else {
                 MostrarBotones();
             }
-        }else{
-            battle.setWinner(battle.getUsrFakemon().getCurrentLife() > 0);
+    }
 
-            // de aca me tengo que ir a la ESCENA FINAL
-            while (true){
 
-            }
+
+    public void actualizar() {
+        if(battle.getUsrFakemon().getCurrentLife() <= 0){
+
+        }
+        else if(battle.getBotFakemon().getCurrentLife() <= 0){
+
+        }
+        else if(battle.getUsrFakemon().getCurrentLife()!= battle.getUsrFakemon().getLastLife()){
+            Fakemon fakemon=battle.getUsrFakemon();
+            Animacion(fakemon, CilindroJugador, PokebolaJugador,BarraVidaJugador);
+            fakemon.setLastLife(fakemon.getCurrentLife());
+        }
+        else{
+            Fakemon fakemon=battle.getBotFakemon();
+            Animacion(fakemon, CilindroBot, PokebolaBot,BarraVidaBot);
+            fakemon.setLastLife(fakemon.getCurrentLife());
         }
     }
 
-    private void botTurn(){                     // tampoco que vamos a hacer una AI....
-        Random rd = new Random();
-        int val = rd.nextInt(4) + 1;    // random number beetwen 1-4
+    private void Animacion(Fakemon fakemon, Cylinder cilindro, ImageView pokebola, Rectangle barraVida){
 
-        switch (val){
-            case 1:
-                ataque();
-                break;
-            case 2:
-                debilitar();
-                break;
-            case 3:
-                potenciar();
-                break;
-            case 4:
-                // no tiene sentido regenerar vida cuando la suya es maxima..
-                if(battle.getBotFakemon().getCurrentLife() == battle.getBotFakemon().getBasicLife()){
-                    botTurn();
-                }else{
-                    regenerar();
-                }
-                break;
-            default:
-                System.out.println("error generando numero random");
-                break;
-        }
-    }
-    public void PasarTurno(ActionEvent actionEvent) {
-        Thread ocultarMovRival = new Thread(new Runnable() {
+        int vidaMaxima=fakemon.getBasicLife();
+        int vidaAnterior=fakemon.getLastLife();
+        int vidaRestante=fakemon.getCurrentLife();
+        int cambio=vidaRestante-vidaAnterior;
+        System.out.println("\nVida restante: "+vidaRestante+"\nCambio: "+cambio+"\nVida maxima: "+vidaMaxima+"\nVida anterior: "+vidaAnterior);
+
+        double BarraPorVida=AnchoBarra/vidaMaxima;
+        double colorPorVida=255/(float)vidaMaxima;
+        double alturaPorVida=altoCilindro/vidaMaxima;
+
+        //hilo runnable
+        Thread animacion=new Thread(new Runnable() {
             @Override
             public void run() {
-                for (int i = 0; i < fot; i++) {
-                    //MovimientoRival.setOpacity(1 - i / (float)fot);
-                    //botonOk.setOpacity(i / (float)fot);
-                    //botonOk.setCancelButton(true);
+
+                PhongMaterial Color = new PhongMaterial();
+
+
+
+
+                for (float i = 0; i < fot; i++) {
+
+                    barraVida.setWidth((vidaAnterior+cambio*i/fot)*BarraPorVida);
+                    System.out.println("hola");
+
+                    int verde=(int)((vidaAnterior+cambio*i/fot)*colorPorVida);
+                    int rojo=(int)(255-(vidaAnterior+cambio*i/fot)*colorPorVida);
+
+                    Color.setDiffuseColor(rgb(rojo, verde, 0, 0.5));
+                    cilindro.setMaterial(Color);
+                    cilindro.setHeight(alturaPorVida*(vidaAnterior+cambio*i/fot));
+      //              pokebola.setLayoutY(pokebola.getLayoutY()+alturaPorVida*cambio*i/fot);
+
+                    try {
+                        sleep(1000/fot);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
                 }
-                ataque();
+
+
             }
         });
-
-        ocultarMovRival.start();
-        MostrarBotones();
-
+        animacion.start();
     }
 }
+
+
+
+
+

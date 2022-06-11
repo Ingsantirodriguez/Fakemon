@@ -1,17 +1,20 @@
 package com.example.fakemon.batalla;
 
+import com.example.fakemon.*;
 import com.example.fakemon.fakemons.*;
+
 
 import java.util.HashMap;
 import java.util.Random;
 
-public class Batalla extends Torneo{
+public class Batalla extends Torneo implements Observer  {
     private HashMap<String, Fakemon> fakemons;
     private float currentUsrLife;
     private float currentBotLife;
 
     private Boolean usrTurn;
     private Fakemon winner;
+
 
     public Batalla(){
         this.fakemons = new HashMap<>();
@@ -38,6 +41,7 @@ public class Batalla extends Torneo{
         this.usrFakemon = fakemons.get(fakemon);
         fakemons.remove(this.usrFakemon.getName());     // elimino el user fakemon de la lista
         this.currentUsrLife = usrFakemon.getCurrentLife();
+        usrFakemon.addObserver(this);
     }
     public void setWinner(boolean usr){
 
@@ -69,6 +73,7 @@ public class Batalla extends Torneo{
     public void setBotFakemon(String fakemon){
         this.botFakemon = fakemons.get(fakemon);
         this.currentBotLife = usrFakemon.getCurrentLife();
+        botFakemon.addObserver((Observer) this);
     }
 
     public Fakemon getUsrFakemon(){
@@ -116,5 +121,80 @@ public class Batalla extends Torneo{
         }
     }
 
+    public void botTurn(){                     // tampoco que vamos a hacer una AI....
+        Random rd = new Random();
+        int val = rd.nextInt(4) + 1;    // random number beetwen 1-4
 
+        switch (val){
+            case 1:
+                ataque();
+                break;
+            case 2:
+                debilitar();
+                break;
+            case 3:
+                potenciar();
+                break;
+            case 4:
+                // no tiene sentido regenerar vida cuando la suya es maxima..
+                if(getBotFakemon().getCurrentLife() == getBotFakemon().getBasicLife()){
+                    botTurn();
+                }else{
+                    regenerar();
+                }
+                break;
+            default:
+                System.out.println("error generando numero random");
+                break;
+        }
+    }
+
+    public void ataque() {
+
+        System.out.println("\nbot --> attack --> usr..");
+
+
+        new Atacar().actuar(getUsrFakemon(), getBotFakemon());
+//                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
+        setUsrTurn(true);
+
+
+    }
+
+
+
+
+
+    private void debilitar() {
+
+        System.out.println("\nbot --> weaken --> usr..");
+        new Debilitar().actuar(getBotFakemon(), getUsrFakemon());
+//                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
+        setUsrTurn(true);
+
+    }
+
+    public void regenerar() {
+        System.out.println("\nbot --> regenerate life");
+//                    battle.getUsrFakemon().regenerate();
+        new Regenerar().actuar( getBotFakemon(), getUsrFakemon());
+
+        setUsrTurn(true);
+
+    }
+
+
+
+    public void potenciar() {
+        System.out.println("\nbot --> maximize attack");
+//                    battle.getUsrFakemon().maximizeAttack();
+        new Potenciar().actuar( getBotFakemon(),getUsrFakemon());
+        setUsrTurn(true);
+    }
+
+
+    @Override
+    public void actualizar() {
+
+    }
 }

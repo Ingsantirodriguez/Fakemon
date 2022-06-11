@@ -7,6 +7,7 @@ public class Bulbasaur extends Fakemon {
         this.name = "Bulbasaur";
         this.basicLife = 100;
         this.currentLife = this.basicLife;
+        this.lastLife = this.basicLife;
         this.attackDamage = 15;
         this.weakenDamage = 5;
         this.originalAttackDamage = this.attackDamage;
