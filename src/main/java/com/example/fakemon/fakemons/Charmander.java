@@ -7,7 +7,9 @@ public class Charmander extends Fakemon{
         this.name = "Charmander";
         this.basicLife = 100;
         this.currentLife = this.basicLife;
-        this.attackDamage = 15;
+        this.basicAttackDamage = 15;
+        this.attackDamage = basicAttackDamage;
+        this.incAttack = 10;
         this.weakenDamage = 5;
         this.originalAttackDamage = this.attackDamage;
         this.incLife = 5;

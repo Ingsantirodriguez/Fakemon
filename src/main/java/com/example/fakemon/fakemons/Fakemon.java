@@ -5,15 +5,23 @@ public abstract class Fakemon {
     protected int incLife;
     protected int basicLife;
     protected int attackDamage;
+    protected int basicAttackDamage;
     protected int originalAttackDamage;       // valor de daño reducido luego de ser debilitado por el enemigo
     protected int weakenDamage;         // valor de reduccion de ataque al enemigo
     protected String sound;
     protected String name;
     protected boolean weakened;
     protected boolean stronger;
+    protected int incAttack;
 
     public Fakemon(){ }
 
+    private int getBasicAttackDamage(){
+        return basicAttackDamage;
+    }
+    private int getIncAttack(){
+        return incAttack;
+    }
     public int getCurrentLife(){
         return currentLife;
     }
@@ -31,7 +39,7 @@ public abstract class Fakemon {
             stronger = false;
         }
         int ad = attackDamage;
-        attackDamage = originalAttackDamage;
+        //attackDamage = originalAttackDamage;
         return ad;
 
     }
@@ -68,7 +76,7 @@ public abstract class Fakemon {
         }
     }
     public void maximizeAttack(){
-        attackDamage += 10;
+        attackDamage += incAttack;
         stronger = true;
     }
 

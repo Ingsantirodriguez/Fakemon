@@ -53,7 +53,7 @@ public class SeleccionPersonajeTest {
     }
 
     @Test
-    void seleccionSquirtle() throws IOException {
+    void seleccionSquirtle()  throws IOException {
         ControladorSeleccionPersonaje controlador = new ControladorSeleccionPersonaje();
         Controlador.getBattle().emptyFakemons();
         Controlador.getBattle().fillFakemons();
