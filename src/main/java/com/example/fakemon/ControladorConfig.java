@@ -94,5 +94,18 @@ public class ControladorConfig extends Controlador implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         GeneroToogle.setSelected(true);
+        if (!nombre.equals("")){
+            Nombre.setText(nombre);
+        }
+        if (genero.equals("Masculino")){
+            GeneroToogle.setText("Masculino");
+            GeneroToogle.setTextFill(Color.BLUE);
+            GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(134,205,249),null,null)));
+        }
+        else {
+            GeneroToogle.setText("Femenino");
+            GeneroToogle.setTextFill(Color.PURPLE);
+            GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(254,151,211),null,null)));
+        }
     }
 }

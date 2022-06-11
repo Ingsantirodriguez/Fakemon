@@ -39,7 +39,7 @@ public abstract class Fakemon {
             stronger = false;
         }
         int ad = attackDamage;
-        //attackDamage = originalAttackDamage;
+        attackDamage = originalAttackDamage;
         return ad;
 
     }

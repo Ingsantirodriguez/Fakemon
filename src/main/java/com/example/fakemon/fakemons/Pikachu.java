@@ -1,7 +1,6 @@
 package com.example.fakemon.fakemons;
 
 public class Pikachu extends Fakemon {
-
     public Pikachu() {
         super();
         this.sound = "src/main/resources/com/example/fakemon/music/pikachu-sound.wav";

@@ -1,8 +1,6 @@
 package com.example.fakemon.fakemons;
 import com.example.fakemon.Controlador;
 import javafx.event.ActionEvent;
-import jdk.jfr.Event;
-import jdk.jfr.EventType;
 import org.junit.jupiter.api.Test;
 import com.example.fakemon.ControladorSeleccionPersonaje;
 
@@ -11,7 +9,7 @@ import java.io.IOException;
 
 import static com.example.fakemon.Controlador.*;
 import static org.junit.jupiter.api.Assertions.*;
-public class SeleccionPersonajeTest {
+class SeleccionPersonajeTest {
     @Test
     void seleccionBulbasur() throws IOException {
         ControladorSeleccionPersonaje controlador = new ControladorSeleccionPersonaje();
