@@ -14,7 +14,7 @@ class DatosConfigTest {
     }
 
     @Test
-    void emptyFakemons(){
+    void emptyFakemonsTest(){
         DatosConfig.fillFakemons();
         DatosConfig.emptyFakemons();
         assertEquals(0, fakemons.size());
