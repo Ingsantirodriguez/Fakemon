@@ -7,4 +7,5 @@ public class Debilitar implements Accion{
     public void actuar(Fakemon activo, Fakemon pasivo) {
         pasivo.weakening(activo.weaken());
     }
+
 }

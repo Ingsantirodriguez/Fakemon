@@ -22,7 +22,10 @@ import static com.example.fakemon.DatosConfig.*;
 public class ControladorConfig extends Controlador implements Initializable {
 
 
+    public CheckBox config1;
     public TextField Nombre;
+    public CheckBox config2;
+    public CheckBox config3;
     public Slider VolumenSeleccion;
     public ToggleButton GeneroToogle;
     public Button NombreBtn;
@@ -90,20 +93,6 @@ public class ControladorConfig extends Controlador implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        if (!(nombre.equals(""))){
-            Nombre.setText(nombre);
-        }
-        if (genero.equals("Masculino")){
-            GeneroToogle.setText("Masculino");
-            //GeneroToogle texto azul oscuro y fondo naranja claro
-            GeneroToogle.setTextFill(Color.BLUE);
-            GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(134,205,249),null,null)));
-        }
-        else {
-            GeneroToogle.setText("Femenino");
-            //GeneroToogle texto azul oscuro y fondo naranja claro
-            GeneroToogle.setTextFill(Color.PURPLE);
-            GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(254,151,211),null,null)));
-        }
+        GeneroToogle.setSelected(true);
     }
 }

@@ -50,47 +50,78 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
     }
     //Seleccionaste Bulbasaur
     public void Bulbasaur(ActionEvent event) throws IOException {
-    System.out.println("Bulbasaur");
-    // fakemonElegido = "Bulbasaur";
-    battle.setUsrFakemon("Bulbasaur");
+    SeleccionasteBulbasaur();
     config(event);
     }
+
+    public void SeleccionasteBulbasaur() {
+        System.out.println("Bulbasaur");
+        // fakemonElegido = "Bulbasaur";
+        battle.setUsrFakemon("Bulbasaur");
+    }
+
     //Seleccionaste Pikachu
     public void Pikachu(ActionEvent event) throws IOException {
-        System.out.println("Pikachu");
-        //fakemonElegido = "Pikachu";
-        battle.setUsrFakemon("Pikachu");
-        config(event);
-    }
-    //Seleccionaste Charmander
-    public void Charmander(ActionEvent event) throws IOException {
-        System.out.println("Charmander");
-        //fakemonElegido = "Charmander";
-        battle.setUsrFakemon("Charmander");
-        config(event);
-    }
-    //Seleccionaste Pidgey
-    public void Pidgey(ActionEvent event) throws IOException {
-        System.out.println("Pidgey");
-        //fakemonElegido = "Pidgey";
-        battle.setUsrFakemon("Pidgey");
-        config(event);
-    }
-    //Seleccionaste Squirtle
-    public void Squirtle(ActionEvent event) throws IOException {
-        System.out.println("Squirtle");
-        //fakemonElegido = "Squirtle";
-        battle.setUsrFakemon("Squirtle");
-        config(event);
-    }
-    //Seleccionaste Jigglypuff
-    public void Jigglypuff(ActionEvent event) throws IOException {
-        System.out.println("Jigglypuff");
-        //fakemonElegido = "Jigglypuff";
-        battle.setUsrFakemon("Jigglypuff");
+    SeleccionastePikachu();
         config(event);
     }
 
+
+    public void SeleccionastePikachu() {
+        System.out.println("Pikachu");
+        // fakemonElegido = "Pikachu";
+        battle.setUsrFakemon("Pikachu");
+    }
+
+    //Seleccionaste Charmander
+    public void Charmander(ActionEvent event) throws IOException {
+    SeleccionasteCharmander();
+        config(event);
+    }
+
+
+
+    public void SeleccionasteCharmander() {
+        System.out.println("Charmander");
+        // fakemonElegido = "Charmander";
+        battle.setUsrFakemon("Charmander");
+    }
+
+    //Seleccionaste Pidgey
+    public void Pidgey(ActionEvent event) throws IOException {
+    SeleccionastePidgey();
+        config(event);
+    }
+
+    public void SeleccionastePidgey() {
+        System.out.println("Pidgey");
+        // fakemonElegido = "Pidgey";
+        battle.setUsrFakemon("Pidgey");
+    }
+
+    //Seleccionaste Squirtle
+    public void Squirtle(ActionEvent event) throws IOException {
+    SeleccionasteSquirtle();
+        config(event);
+    }
+
+    public void SeleccionasteSquirtle() {
+        System.out.println("Squirtle");
+        // fakemonElegido = "Squirtle";
+        battle.setUsrFakemon("Squirtle");
+    }
+
+    //Seleccionaste Jigglypuff
+    public void Jigglypuff(ActionEvent event) throws IOException {
+    SeleccionasteJigglypuff();
+        config(event);
+    }
+
+    public void SeleccionasteJigglypuff() {
+        System.out.println("Jigglypuff");
+        // fakemonElegido = "Jigglypuff";
+        battle.setUsrFakemon("Jigglypuff");
+    }
 
 
 

@@ -22,8 +22,7 @@ public class ControladorInicio extends  Controlador implements Initializable {
     public Button Jugarbtn;
     public Button SalirBt;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public ControladorInicio(){
         if (!sonido.getMusicOn().equals("home")){
             if(sonido.musicOn()){
                 sonido.stopMusic();
@@ -32,9 +31,12 @@ public class ControladorInicio extends  Controlador implements Initializable {
             sonido.playMusic("home");
 
         }
-
-
     }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // empty (?
+    }
+
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));

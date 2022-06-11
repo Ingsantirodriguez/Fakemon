@@ -1,5 +1,6 @@
-package com.example.fakemon;
+package com.example.fakemon.fakemons;
 
+import com.example.fakemon.DatosConfig;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
