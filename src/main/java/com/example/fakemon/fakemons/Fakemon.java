@@ -2,8 +2,7 @@ package com.example.fakemon.fakemons;
 
 import com.example.fakemon.Observable;
 import com.example.fakemon.Observer;
-import com.sun.javafx.collections.ElementObservableListDecorator;
-import com.sun.javafx.collections.ObservableSetWrapper;
+
 
 import java.util.ArrayList;
 

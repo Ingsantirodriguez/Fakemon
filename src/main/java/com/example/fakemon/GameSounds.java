@@ -6,23 +6,35 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+
+
+
 public class GameSounds {
     private Clip clip;
     private File file;
     private Boolean musicOn = false;
     private String currentMusic = "none";
+    private static  GameSounds gameSounds=null;
     FloatControl fc;
     private boolean mute=false;
     private float previousVolume=0;
     private float currentVolume=0;
     private HashMap<String, String> mode;
 
-    public GameSounds(){
+    private GameSounds(){
         mode = new HashMap<>(){{
            put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
            put("selection", "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav");
         }};
     }
+
+    public static GameSounds getInstance(){
+        if(gameSounds==null){
+            gameSounds = new GameSounds();
+        }
+        return gameSounds;
+    }
+
 
     public void playMusic(String mode)  {
         String url = "";
