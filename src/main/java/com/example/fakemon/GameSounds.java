@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class GameSounds {
+public class GameSounds{
     private Clip clip;
     private File file;
     private Boolean musicOn = false;
@@ -17,11 +17,13 @@ public class GameSounds {
     private float currentVolume=0;
     private HashMap<String, String> mode;
 
-    public GameSounds(){
-        mode = new HashMap<>(){{
-           put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
-           put("selection", "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav");
-        }};
+    public GameSounds() throws IllegalArgumentException{
+        mode = new HashMap<>() {
+            {
+            put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
+            put("selection", "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav");
+            }
+        };
     }
 
     public void playMusic(String mode)  {
@@ -44,7 +46,7 @@ public class GameSounds {
         this.startMusic(url);
     }
 
-    private void startMusic(String url){
+    private void startMusic(String url) throws IllegalArgumentException{
         if(!mute){
             try {
                 file = new File(url);
