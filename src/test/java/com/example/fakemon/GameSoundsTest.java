@@ -26,12 +26,12 @@ class GameSoundsTest {
         sound.playMusic("idk");
     }
 
-    @Test
-    void startMusicTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        Method method = GameSounds.class.getDeclaredMethod("startMusic", String.class);
-        method.setAccessible(true);
-        method.invoke(sound, "fake-path");
-    }
+//    @Test
+//    void startMusicTest() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+//        Method method = GameSounds.class.getDeclaredMethod("startMusic", String.class);
+//        method.setAccessible(true);
+//        method.invoke(sound, "fake-path");
+//    }
 
     @Test
     void playMusicTest2() {
