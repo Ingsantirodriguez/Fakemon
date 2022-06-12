@@ -68,14 +68,14 @@ public class ControladorConfig extends Controlador implements Initializable {
         GeneroToogle.setText("Masculino");
         //GeneroToogle texto azul oscuro y fondo naranja claro
         GeneroToogle.setTextFill(Color.BLUE);
-        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(220,179,31),null,null)));
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(144,212,237),null,null)));
         genero = "Masculino";
     }
     private void Femenino(){
         GeneroToogle.setText("Femenino");
         //GeneroToogle texto azul oscuro y fondo naranja claro
         GeneroToogle.setTextFill(Color.PURPLE);
-        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(255,255,128),null,null)));
+        GeneroToogle.setBackground(new Background(new BackgroundFill(Color.rgb(248,200,220),null,null)));
         genero = "Femenino";
     }
 
@@ -99,6 +99,12 @@ public class ControladorConfig extends Controlador implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-
+        if(!nombre.equals("")){
+            Nombre.setText(nombre);
+        }
+        if(genero.equals("Masculino")){
+            Masculino();
+        }
+        else Femenino();
     }
 }
