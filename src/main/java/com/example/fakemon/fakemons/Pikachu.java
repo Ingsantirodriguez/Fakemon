@@ -5,6 +5,7 @@ public class Pikachu extends Fakemon {
     public Pikachu() {
         super();
         this.sound = "src/main/resources/com/example/fakemon/music/pikachu-sound.wav";
+        this.imgPath = "src/main/resources/com/example/fakemon/images/Pikachu.png";
         this.name = "Pikachu";
         this.basicLife = 100;
         this.currentLife = this.basicLife;

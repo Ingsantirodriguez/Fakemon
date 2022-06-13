@@ -4,6 +4,7 @@ public class Squirtle extends Fakemon{
     public Squirtle(){
         super();
         this.sound = "src/main/resources/com/example/fakemon/music/squirtle-sound.wav";
+        this.imgPath = "src/main/resources/com/example/fakemon/images/Squirtle.png";
         this.name = "Squirtle";
         this.basicLife = 100;
         this.currentLife = this.basicLife;

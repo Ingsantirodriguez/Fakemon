@@ -1,5 +1,5 @@
 package com.example.fakemon;
 
 public interface Observer<T> {
-    void actualizar();
+    public void actualizar();
 }

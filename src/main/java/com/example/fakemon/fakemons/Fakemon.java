@@ -18,14 +18,13 @@ public abstract class Fakemon implements Observable {
     protected int weakenDamage;         // valor de reduccion de ataque al enemigo
     protected String sound;
     protected String name;
+    protected String imgPath;
     protected boolean weakened;
     protected boolean stronger;
     //lista de observadores
     ArrayList<Observer> observers = new ArrayList<>();
 
     public Fakemon (){
-
-
 
     }
 
@@ -40,6 +39,7 @@ public abstract class Fakemon implements Observable {
     public String getSound(){
         return sound;
     }
+    public String getImgPath(){ return imgPath; }
     public int getAttackDamage(){
         if (weakened){
             weakened = false;
@@ -99,8 +99,8 @@ public abstract class Fakemon implements Observable {
 
 
     public void addObserver(Observer observer){
-
         observers.add(observer);
+        System.out.println("observer " + observer.getClass().toString());
     }
 
     public void removeObserver(Observer observer){

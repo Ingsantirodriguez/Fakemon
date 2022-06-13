@@ -1,13 +1,10 @@
 package com.example.fakemon;
 
-
-
-
 public interface Observable {
 
 
-    void addObserver(Observer observer);
-    void removeObserver(Observer observer);
-    void notifyObservers();
+    public void addObserver(Observer observer);
+    public void removeObserver(Observer observer);
+    public void notifyObservers();
 }
 

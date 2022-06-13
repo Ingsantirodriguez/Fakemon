@@ -7,7 +7,7 @@ import com.example.fakemon.fakemons.*;
 import java.util.HashMap;
 import java.util.Random;
 
-public class Batalla extends Torneo implements Observer  {
+public class Batalla extends Torneo implements Observer {
     private HashMap<String, Fakemon> fakemons;
     private float currentUsrLife;
     private float currentBotLife;
@@ -44,7 +44,6 @@ public class Batalla extends Torneo implements Observer  {
         usrFakemon.addObserver(this);
     }
     public void setWinner(boolean usr){
-
         if(usr){
             this.winner = usrFakemon;
             this.vsUsrWin.add(botFakemon);
@@ -60,20 +59,18 @@ public class Batalla extends Torneo implements Observer  {
             RandomTurno();
         }
         printResults();
-
     }
 
     public void printResults(){
-        System.out.println("\n*****  GANADOR: "+this.winner.getName()+"  *****");
-        System.out.println("\nVida Restante: " + this.winner.getCurrentLife());
-        System.out.println("\nAtaque: " + this.winner.getAttackDamage());
-        System.out.println("\nBien ahi kpo");
+        System.out.println("\n*****  GANADOR: "+this.winner.getName()+"  *****"
+        + "\nVida Restante: " + this.winner.getCurrentLife()
+        + "\nAtaque: " + this.winner.getAttackDamage());
     }
 
     public void setBotFakemon(String fakemon){
         this.botFakemon = fakemons.get(fakemon);
         this.currentBotLife = usrFakemon.getCurrentLife();
-        botFakemon.addObserver((Observer) this);
+        botFakemon.addObserver(this);
     }
 
     public Fakemon getUsrFakemon(){
@@ -123,7 +120,7 @@ public class Batalla extends Torneo implements Observer  {
 
     public void botTurn(){                     // tampoco que vamos a hacer una AI....
         Random rd = new Random();
-        int val = rd.nextInt(4) + 1;    // random number beetwen 1-4
+        int val = rd.nextInt(4) + 1;    // random number between 1-4
 
         switch (val){
             case 1:
@@ -136,7 +133,7 @@ public class Batalla extends Torneo implements Observer  {
                 potenciar();
                 break;
             case 4:
-                // no tiene sentido regenerar vida cuando la suya es maxima..
+                // no tiene sentido regenerar vida cuando la suya es maxima...
                 if(getBotFakemon().getCurrentLife() == getBotFakemon().getBasicLife()){
                     botTurn();
                 }else{
@@ -150,51 +147,35 @@ public class Batalla extends Torneo implements Observer  {
     }
 
     public void ataque() {
-
         System.out.println("\nbot --> attack --> usr..");
-
-
-        new Atacar().actuar(getUsrFakemon(), getBotFakemon());
-//                    battle.getBotFakemon().receiveAttack(battle.getUsrFakemon().getAttackDamage());
+        new Atacar().actuar(getBotFakemon(), getUsrFakemon());
+        System.out.println("new usr life: " + getUsrFakemon().getCurrentLife());
         setUsrTurn(true);
-
-
     }
 
-
-
-
-
     private void debilitar() {
-
         System.out.println("\nbot --> weaken --> usr..");
         new Debilitar().actuar(getBotFakemon(), getUsrFakemon());
-//                    battle.getBotFakemon().weakening(battle.getUsrFakemon().weaken());
+        System.out.println("new usr attack: " + getUsrFakemon().getAttackDamage());
         setUsrTurn(true);
-
     }
 
     public void regenerar() {
         System.out.println("\nbot --> regenerate life");
-//                    battle.getUsrFakemon().regenerate();
-        new Regenerar().actuar( getBotFakemon(), getUsrFakemon());
-
+        new Regenerar().actuar(getBotFakemon(), getUsrFakemon());
+        System.out.println("new bot life: " + getBotFakemon().getCurrentLife());
         setUsrTurn(true);
-
     }
-
-
 
     public void potenciar() {
         System.out.println("\nbot --> maximize attack");
-//                    battle.getUsrFakemon().maximizeAttack();
-        new Potenciar().actuar( getBotFakemon(),getUsrFakemon());
+        new Potenciar().actuar(getBotFakemon(),getUsrFakemon());
+        System.out.println("new bot attack: " + getBotFakemon().getAttackDamage());
         setUsrTurn(true);
     }
 
-
     @Override
     public void actualizar() {
-
+        System.out.println("holis");
     }
 }

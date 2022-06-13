@@ -37,7 +37,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
                 this.configBotFakemon();
             }
             private void configUsrFakemon() {
-                String usfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getUsrFakemon().getName()+".png";
+                String usfakemon= battle.getUsrFakemon().getImgPath();
                 Path imageFile = Paths.get(usfakemon);
                 try {
                     userFakemon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
@@ -54,7 +54,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
             }
 
             private void configBotFakemon(){
-                String botfakemon= "src/main/resources/com/example/fakemon/images/"+battle.getBotFakemon().getName()+".png";
+                String botfakemon= battle.getBotFakemon().getImgPath();
                 Path imgFile = Paths.get(botfakemon);
 
                 try {

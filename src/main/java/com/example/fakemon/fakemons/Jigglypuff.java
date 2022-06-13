@@ -4,6 +4,7 @@ public class Jigglypuff extends Fakemon{
     public Jigglypuff(){
         super();
         this.sound = "src/main/resources/com/example/fakemon/music/jigglypuff-sound.wav";
+        this.imgPath = "src/main/resources/com/example/fakemon/images/Jigglypuff.png";
         this.name = "Jigglypuff";
         this.basicLife = 100;
         this.currentLife = this.basicLife;
