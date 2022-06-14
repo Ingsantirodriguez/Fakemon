@@ -2,8 +2,13 @@ package com.example.fakemon;
 
 import com.example.fakemon.fakemons.Fakemon;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.PointLight;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,6 +19,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -302,7 +310,6 @@ public class BatallaController extends Controlador implements Observer, Initiali
     private void processTurn(){
 
         // la vida de usr y bot tienen que ser > 0 para seguir procesando turnos
-        if(battle.getBotFakemon().getCurrentLife() > 0 && battle.getUsrFakemon().getCurrentLife() > 0){
             if(!battle.usrTurno()){                                   // si es el turno del bot, elijo su accion
                 turno.setText("\nTurno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
                 System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
@@ -311,15 +318,26 @@ public class BatallaController extends Controlador implements Observer, Initiali
             }else {
                 mostrarBotones();
             }
-        }   // si lo anterior no se cumple y la vida del usr > 0, gano el usuario.
-        else if(battle.getUsrFakemon().getCurrentLife() > 0){
-            battle.setWinner(true);
-        }
+    }   // si lo anterior no se cumple y la vida del usr > 0, gano el usuario.
 
-    }
 
     public void actualizar() {
-
+        Event event = new ActionEvent();
+        if(battle.getBotFakemon().getCurrentLife() == 0 || battle.getUsrFakemon().getCurrentLife() == 0){
+            battle.setWinner(battle.getUsrFakemon().getCurrentLife() > 0);
+            try {
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("finalBattleScene.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Fakemon");
+                stage.show(); // Muestra la ventana
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            
+        }
+        
         if(battle.getUsrFakemon().getCurrentLife()!= battle.getUsrFakemon().getLastLife()){
             Fakemon fakemon=battle.getUsrFakemon();
             Animacion(fakemon, CilindroJugador, PokebolaJugador,BarraVidaJugador);

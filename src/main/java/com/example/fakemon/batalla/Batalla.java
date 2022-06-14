@@ -21,7 +21,17 @@ public class Batalla extends Torneo implements Observer {
         this.usrFakemon = null;
         this.botFakemon = null;
         this.usrTurn = true;
+        this.winner = null;
         RandomTurno();
+    }
+
+    public Fakemon getWinner(){
+        if(winner!=null){
+            return winner;
+        }else{
+            System.out.println("No hay ganador aun");
+            return null;
+        }
     }
 
     private void RandomTurno() {

@@ -8,16 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 //Clase ControladorInicio hereda de Controller.
-public class ControladorInicio extends  Controlador implements Initializable {
+public class ControladorInicio extends Controlador implements Initializable {
     public Button ConfigBtn;
     public Button Jugarbtn;
     public Button SalirBt;
@@ -32,8 +28,6 @@ public class ControladorInicio extends  Controlador implements Initializable {
             sonido.playMusic("home");
 
         }
-
-
     }
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
