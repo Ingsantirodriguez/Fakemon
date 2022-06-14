@@ -2,13 +2,11 @@ package com.example.fakemon.batalla;
 
 import com.example.fakemon.*;
 import com.example.fakemon.fakemons.*;
-
-
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Random;
 
 public class Batalla extends Torneo implements Observer {
-    private HashMap<String, Fakemon> fakemons;
+    private LinkedHashMap<String, Fakemon> fakemons;
     private float currentUsrLife;
     private float currentBotLife;
 
@@ -17,7 +15,7 @@ public class Batalla extends Torneo implements Observer {
 
 
     public Batalla(){
-        this.fakemons = new HashMap<>();
+        this.fakemons = new LinkedHashMap<>();
         this.usrFakemon = null;
         this.botFakemon = null;
         this.usrTurn = true;
@@ -57,18 +55,20 @@ public class Batalla extends Torneo implements Observer {
         if(usr){
             this.winner = usrFakemon;
             this.vsUsrWin.add(botFakemon);
+            printResults();
+            this.usrFakemon.resetFakemon();
+            this.nextBattle();
         }else{
             this.winner = botFakemon;
             this.vsUsrLoose.add(botFakemon);
+            printResults();
         }
-        //this.torneo.nextBattle();
-        if(this.battle_n == 5){
+
+        if(this.battle_n == 6){
             showResults();
         }else{
-            selecRandomFakemon();
             RandomTurno();
         }
-        printResults();
     }
 
     public void printResults(){
@@ -99,9 +99,16 @@ public class Batalla extends Torneo implements Observer {
     }
 
     public void selecRandomFakemon(){
+        System.out.println("Eligiendo entre..");
+        for(Fakemon f: fakemons.values()){
+            System.out.println(f.getName());
+        }
+
         Random rd = new Random();                       // elijo un numero random
         int value = rd.nextInt(fakemons.size());        // entre 1 y n
-        int cont = 0;                                   //
+        System.out.println("random " + value);
+        int cont = 0;
+
         for(Fakemon f: fakemons.values()){              // recorro el hash map hasta que value==cont
             if(value==cont){
                 this.setBotFakemon(f.getName());        // obtengo el fakemon bot (rival)
@@ -110,6 +117,7 @@ public class Batalla extends Torneo implements Observer {
             }
             cont++;                                     // si no encontre el rival, sigo buscando
         }
+        System.out.println("Fakemons restantes..." + (fakemons.size()));
     }
 
     public void emptyFakemons(){
@@ -179,7 +187,7 @@ public class Batalla extends Torneo implements Observer {
 
     public void potenciar() {
         System.out.println("\nbot --> maximize attack");
-        new Potenciar().actuar(getBotFakemon(),getUsrFakemon());
+        new Potenciar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot attack: " + getBotFakemon().getAttackDamage());
         setUsrTurn(true);
     }

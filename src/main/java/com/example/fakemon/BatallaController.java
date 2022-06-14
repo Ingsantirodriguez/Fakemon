@@ -29,6 +29,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.nombre;
+import static com.example.fakemon.MainApplication.stage;
 import static java.lang.Thread.sleep;
 import static javafx.scene.paint.Color.rgb;
 
@@ -276,7 +277,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
         deshabilitarBotones();
         System.out.println("\nusr --> maximize attack");
         new Potenciar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());
-        System.out.println("new usr attack: " + battle.getBotFakemon().getAttackDamage());
+        System.out.println("new usr attack: " + battle.getUsrFakemon().getAttackDamage());
         battle.setUsrTurn(false);
         processTurn();
     }
@@ -326,7 +327,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
         if(battle.getBotFakemon().getCurrentLife() == 0 || battle.getUsrFakemon().getCurrentLife() == 0){
             battle.setWinner(battle.getUsrFakemon().getCurrentLife() > 0);
             try {
-                Stage stage = new Stage();
+                // Stage stage = new Stage();
                 Parent root = FXMLLoader.load(getClass().getResource("finalBattleScene.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

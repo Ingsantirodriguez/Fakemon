@@ -48,7 +48,6 @@ public abstract class Fakemon implements Observable {
             stronger = false;
         }
         int ad = attackDamage;
-        attackDamage = originalAttackDamage;
         return ad;
 
     }
@@ -81,9 +80,10 @@ public abstract class Fakemon implements Observable {
         System.out.println("regenerate..");
     }
     public void receiveAttack(int a){
-        this.currentLife -= a;
-
-
+        System.out.println("danio a aplicar " + a);
+        System.out.println("vida antes: " + this.currentLife);
+        this.currentLife = this.currentLife - a;
+        System.out.println("nueva vida: " + this.currentLife);
         if(this.currentLife < 0){
             this.currentLife = 0;
         }
@@ -93,7 +93,7 @@ public abstract class Fakemon implements Observable {
         System.out.println(observers.size());
     }
     public void maximizeAttack(){
-        attackDamage += 10;
+        attackDamage = attackDamage + 10;
         stronger = true;
     }
 
@@ -111,6 +111,12 @@ public abstract class Fakemon implements Observable {
         for (Observer observer : observers) {
             observer.actualizar();
         }
+    }
+
+    public void resetFakemon(){
+        this.currentLife = basicLife;
+        this.attackDamage = originalAttackDamage;
+        System.out.println("Vida: " + this.currentLife + "\nAtaque: " + this.attackDamage);
     }
 
 

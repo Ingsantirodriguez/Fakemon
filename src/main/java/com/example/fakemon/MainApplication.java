@@ -31,8 +31,9 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        this.stage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
-        Scene scene = new Scene(root, Color.WHITE);
+        scene = new Scene(root, Color.WHITE);
         stage.setScene(scene);
         stage.setTitle("Fakemon");
         stage.show(); // Muestra la ventana

@@ -20,7 +20,7 @@ public abstract class Torneo{
         this.battle_n = 1;
     }
 
-    public void nextBattle(){
+    protected void nextBattle(){
         this.battle_n++;
     }
     public void showResults(){
