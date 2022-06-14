@@ -40,6 +40,10 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+        if(battle.getWinner().equals(battle.getUsrFakemon())){
+            System.out.println("reseteando valores..");
+            battle.getUsrFakemon().resetFakemon();
+        }
     }
 
     public void salir(ActionEvent event) {

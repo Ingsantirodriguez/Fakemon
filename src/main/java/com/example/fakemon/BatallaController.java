@@ -1,11 +1,14 @@
 package com.example.fakemon;
 
+import com.example.fakemon.acciones.Atacar;
+import com.example.fakemon.acciones.Debilitar;
+import com.example.fakemon.acciones.Potenciar;
+import com.example.fakemon.acciones.Regenerar;
 import com.example.fakemon.fakemons.Fakemon;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PointLight;
 import javafx.scene.Scene;
@@ -19,7 +22,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,6 +30,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
 import static com.example.fakemon.DatosConfig.nombre;
 import static com.example.fakemon.MainApplication.stage;
 import static java.lang.Thread.sleep;
@@ -78,7 +82,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
 
     private void mostrarBotones() {
         // cada vez que haga la animacion de mostrar botones es equivalente a que el turno lo tenga el usr
-        turno.setText("\nTurno: USR");
+        turno.setText("Turno: USR");
 
         for (Button b : botones) {
             for (int i = 0; i <= fot; i++) {
@@ -309,18 +313,21 @@ public class BatallaController extends Controlador implements Observer, Initiali
     }
 
     private void processTurn(){
-
-        // la vida de usr y bot tienen que ser > 0 para seguir procesando turnos
-            if(!battle.usrTurno()){                                   // si es el turno del bot, elijo su accion
-                turno.setText("\nTurno: BOT");                        // la ejecuto y espero a que el usr haga un ActionEvent
-                System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
-                battle.botTurn();
-                processTurn();
-            }else {
-                mostrarBotones();
+        if(!battle.usrTurno()){                                   // si es el turno del bot, elijo su accion
+            // turno.setText("BOT turn");                        // la ejecuto y espero a que el usr haga un ActionEvent
+            System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
+            turno.setText("Turno: BOT");
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
             }
-    }   // si lo anterior no se cumple y la vida del usr > 0, gano el usuario.
-
+            battle.botTurn();
+            processTurn();
+        }else {
+            mostrarBotones();
+        }
+    }
 
     public void actualizar() {
         Event event = new ActionEvent();

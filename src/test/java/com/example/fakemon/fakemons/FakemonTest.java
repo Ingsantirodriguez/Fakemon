@@ -1,7 +1,7 @@
 package com.example.fakemon.fakemons;
 
-import com.example.fakemon.Atacar;
-import com.example.fakemon.Debilitar;
+import com.example.fakemon.acciones.Atacar;
+import com.example.fakemon.acciones.Debilitar;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

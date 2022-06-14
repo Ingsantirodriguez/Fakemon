@@ -1,4 +1,4 @@
-package com.example.fakemon;
+package com.example.fakemon.controllers;
 import com.example.fakemon.fakemons.Fakemon;
 
 import javax.sound.sampled.*;

@@ -1,6 +1,10 @@
 package com.example.fakemon.batalla;
 
 import com.example.fakemon.*;
+import com.example.fakemon.acciones.Atacar;
+import com.example.fakemon.acciones.Debilitar;
+import com.example.fakemon.acciones.Potenciar;
+import com.example.fakemon.acciones.Regenerar;
 import com.example.fakemon.fakemons.*;
 import java.util.LinkedHashMap;
 import java.util.Random;
@@ -55,15 +59,13 @@ public class Batalla extends Torneo implements Observer {
         if(usr){
             this.winner = usrFakemon;
             this.vsUsrWin.add(botFakemon);
-            printResults();
-            this.usrFakemon.resetFakemon();
             this.nextBattle();
         }else{
             this.winner = botFakemon;
             this.vsUsrLoose.add(botFakemon);
-            printResults();
-        }
 
+        }
+        printResults();
         if(this.battle_n == 6){
             showResults();
         }else{
@@ -99,14 +101,8 @@ public class Batalla extends Torneo implements Observer {
     }
 
     public void selecRandomFakemon(){
-        System.out.println("Eligiendo entre..");
-        for(Fakemon f: fakemons.values()){
-            System.out.println(f.getName());
-        }
-
         Random rd = new Random();                       // elijo un numero random
         int value = rd.nextInt(fakemons.size());        // entre 1 y n
-        System.out.println("random " + value);
         int cont = 0;
 
         for(Fakemon f: fakemons.values()){              // recorro el hash map hasta que value==cont
@@ -117,7 +113,6 @@ public class Batalla extends Torneo implements Observer {
             }
             cont++;                                     // si no encontre el rival, sigo buscando
         }
-        System.out.println("Fakemons restantes..." + (fakemons.size()));
     }
 
     public void emptyFakemons(){
@@ -193,7 +188,5 @@ public class Batalla extends Torneo implements Observer {
     }
 
     @Override
-    public void actualizar() {
-        System.out.println("holis");
-    }
+    public void actualizar() { }
 }

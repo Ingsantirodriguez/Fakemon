@@ -1,4 +1,4 @@
-package com.example.fakemon;
+package com.example.fakemon.acciones;
 
 import com.example.fakemon.fakemons.Fakemon;
 

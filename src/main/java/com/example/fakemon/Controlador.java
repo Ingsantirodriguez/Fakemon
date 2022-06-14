@@ -1,7 +1,7 @@
 package com.example.fakemon;
 
 import com.example.fakemon.batalla.Batalla;
-import com.example.fakemon.batalla.Torneo;
+import com.example.fakemon.controllers.GameSounds;
 
 import java.net.URL;
 import java.util.ResourceBundle;
