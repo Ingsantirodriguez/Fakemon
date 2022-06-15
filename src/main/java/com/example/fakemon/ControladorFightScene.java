@@ -77,7 +77,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void config(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -85,7 +85,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void irAtras(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/characterSelection.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -93,7 +93,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void irABatalla(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Batalla.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

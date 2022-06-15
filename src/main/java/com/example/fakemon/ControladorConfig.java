@@ -35,7 +35,7 @@ public class ControladorConfig extends Controlador implements Initializable {
 
     //accion ir al inicio.fxml
     public void inicio(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/inicio.fxml"));
         Scene scene = new Scene(root, Color.WHITE);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

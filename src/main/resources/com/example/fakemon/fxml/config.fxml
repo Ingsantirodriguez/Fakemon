@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@images/background.png" />
+            <Image url="@../images/background.png" />
          </image>
       </ImageView>
       <Button layoutX="14.0" layoutY="560.0" mnemonicParsing="false" onAction="#inicio" text="Inicio" />
@@ -31,7 +31,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/volumeUp.png" />
+                  <Image url="@../images/volumeUp.png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -39,7 +39,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/volumeDown.png" />
+                  <Image url="@../images/volumeDown.png" />
                </image>
             </ImageView>
          </graphic></Button>
@@ -47,7 +47,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/mute.png" />
+                  <Image url="@../images/mute.png" />
                </image>
             </ImageView>
          </graphic></Button>

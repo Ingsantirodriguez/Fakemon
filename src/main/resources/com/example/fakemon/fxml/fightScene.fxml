@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@images/background.png" />
+            <Image url="@../images/background.png" />
          </image>
          <effect>
             <GaussianBlur />
@@ -22,7 +22,7 @@
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/LeftArrow.png" />
+                  <Image url="@../images/LeftArrow.png" />
                </image>
             </ImageView>
          </graphic>
@@ -31,7 +31,7 @@
       <ImageView fx:id="botFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="515.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="342.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/vs.png" />
+            <Image url="@../images/vs.png" />
          </image>
       </ImageView>
       <Button fx:id="Batalla"  onAction="#irABatalla"  layoutX="323.0" layoutY="416.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="153.0" text="Batalla">

@@ -29,7 +29,7 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
     }
 
     public void config(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -37,7 +37,7 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
     }
 
     public void irAtras(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("inicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/inicio.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

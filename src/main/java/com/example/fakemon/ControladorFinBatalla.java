@@ -31,9 +31,9 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        winnerName.setText(battle.getWinner().getName());
-        life.setText(String.valueOf(battle.getWinner().getCurrentLife()));
-        attack.setText(String.valueOf(battle.getWinner().getAttackDamage()));
+        winnerName.setText("Ganador: " + battle.getWinner().getName());
+        life.setText("Vida: " + battle.getWinner().getCurrentLife());
+        attack.setText("Ataque: " + battle.getWinner().getAttackDamage());
         try {
             Path imgFile = Paths.get(battle.getWinner().getImgPath());
             winner.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
@@ -51,7 +51,7 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
     }
 
     public void continuar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fightScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import com.example.fakemon.Controlador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +32,7 @@ public class ControladorInicio extends Controlador implements Initializable {
     }
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("characterSelection.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/characterSelection.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -45,7 +46,7 @@ public class ControladorInicio extends Controlador implements Initializable {
 
     //Al hacer click en el boton Jugar cargar pantalla config.fxml
     public void config(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("config.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/config.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);

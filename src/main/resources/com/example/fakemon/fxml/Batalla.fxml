@@ -20,7 +20,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="806.0" pickOnBounds="true">
          <image>
-            <Image url="@images/background.png" />
+            <Image url="@../images/background.png" />
          </image>
       </ImageView>
       <Cylinder fx:id="CilindroJugador" height="45.0" layoutX="228.0" layoutY="341.0" radius="85.0" rotate="-150.0">
@@ -33,7 +33,7 @@
             <Point3D x="1.0" />
          </rotationAxis>
          <image>
-            <Image url="@images/pngwing.com.png" />
+            <Image url="@../images/pngwing.com.png" />
          </image>
       </ImageView>
       <ImageView fx:id="ImagenJugador" fitHeight="220.0" fitWidth="220.0" layoutX="133.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
@@ -44,7 +44,7 @@
       </Cylinder>
       <ImageView fx:id="PokebolaBot" fitHeight="176.0" fitWidth="176.0" layoutX="478.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="-121.4">
          <image>
-            <Image url="@images/pngwing.com.png" />
+            <Image url="@../images/pngwing.com.png" />
          </image>
          <rotationAxis>
             <Point3D x="1.0" />

@@ -11,4 +11,6 @@ module com.example.fakemon {
     opens com.example.fakemon.acciones to javafx.fxml;
     exports com.example.fakemon.controllers;
     opens com.example.fakemon.controllers to javafx.fxml;
+    exports com.example.fakemon.fxml;
+    opens com.example.fakemon.fxml to javafx.fxml;
 }

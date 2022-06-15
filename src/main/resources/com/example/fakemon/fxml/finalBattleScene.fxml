@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
-            <Image url="@images/background.png" />
+            <Image url="@../images/background.png" />
          </image>
          <effect>
             <GaussianBlur />

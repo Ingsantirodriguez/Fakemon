@@ -335,7 +335,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
             battle.setWinner(battle.getUsrFakemon().getCurrentLife() > 0);
             try {
                 // Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("finalBattleScene.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("fxml/finalBattleScene.fxml"));
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.setTitle("Fakemon");
