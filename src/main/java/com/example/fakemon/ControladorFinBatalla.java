@@ -41,8 +41,11 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
             throw new RuntimeException(e);
         }
         if(battle.getWinner().equals(battle.getUsrFakemon())){
+            sonido.playMusic("win");
             System.out.println("reseteando valores..");
             battle.getUsrFakemon().resetFakemon();
+        }else{
+            sonido.playMusic("lose");
         }
     }
 
