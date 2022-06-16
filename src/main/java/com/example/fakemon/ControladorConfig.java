@@ -43,7 +43,7 @@ public class ControladorConfig extends Controlador implements Initializable {
 
     }
 
-    //guardar nombre
+
     public void guardarNombre(ActionEvent event) {
 
         nombre = Nombre.getText();
