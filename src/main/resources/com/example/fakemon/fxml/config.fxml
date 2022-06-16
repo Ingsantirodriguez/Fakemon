@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorConfig">
+<AnchorPane maxHeight="900.0" maxWidth="1440.0" minHeight="600.0" minWidth="800.0" prefHeight="601.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorConfig">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
          <image>
@@ -51,5 +51,9 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button layoutX="519.0" layoutY="353.0" mnemonicParsing="false" text="800 x 600" />
+      <Button layoutX="519.0" layoutY="386.0" mnemonicParsing="false" text="1024×768" />
+      <Button layoutX="519.0" layoutY="423.0" mnemonicParsing="false" text="1280×800" />
+      <Button layoutX="519.0" layoutY="458.0" mnemonicParsing="false" text="1440×900" />
    </children>
 </AnchorPane>

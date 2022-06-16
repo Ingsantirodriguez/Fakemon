@@ -26,6 +26,8 @@ public class GameSounds {
            put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
            put("selection", "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav");
            put("battle","src/main/resources/com/example/fakemon/music/battle-fakemon-sound.wav");
+           put("win","src/main/resources/com/example/fakemon/music/win-fakemon-sound.wav");
+           put("lose","src/main/resources/com/example/fakemon/music/lose-fakemon-sound.wav");
         }};
     }
 
