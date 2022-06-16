@@ -81,10 +81,13 @@ public class BatallaController extends Controlador implements Observer, Initiali
         comenzarAnimacion();
     }
 
-    private void mostrarBotones() {
+    private void mostrarBotones(boolean habilitar) {
         // cada vez que haga la animacion de mostrar botones es equivalente a que el turno lo tenga el usr
         turno.setText("Turno: USR");
-
+        //habilitar botones
+            for (Button b : botones) {
+                b.setDisable(habilitar);
+            }
         for (Button b : botones) {
             for (int i = 0; i <= fot; i++) {
                 b.setPrefWidth(BotonesAncho * i / fot);
@@ -98,10 +101,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
                 }
             }
         }
-        //habilitar botones
-        for (Button b : botones) {
-            b.setDisable(false);
-        }
+
     }
 
     private void comenzarAnimacion() {
@@ -155,14 +155,10 @@ public class BatallaController extends Controlador implements Observer, Initiali
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-
-                if (battle.usrTurno()) {
-                    mostrarBotones();
-                } else {
-                    processTurn();
-                }
+                processTurn();
             }
         });
+
 
         animacionesEntrada.start();
     }
@@ -314,19 +310,24 @@ public class BatallaController extends Controlador implements Observer, Initiali
     }
 
     private void processTurn(){
-        if(!battle.usrTurno()){                                   // si es el turno del bot, elijo su accion
+        if(!battle.usrTurno()){
+            // si es el turno del bot, elijo su accion
             // turno.setText("BOT turn");                        // la ejecuto y espero a que el usr haga un ActionEvent
             System.out.println("\nEjecutando turno del bot..");   // en otro hilo (????
-            turno.setText("Turno: BOT");
+
+            this.mostrarBotones(true);
+            battle.botTurn();
             try {
+                System.out.println("delay");
+                turno.setText("");
+                turno.setText("Turno: BOT");
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            battle.botTurn();
             processTurn();
         }else {
-            mostrarBotones();
+            mostrarBotones(false);
         }
     }
 

@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class MainApplication extends Application {
 
     public static Parent root;
