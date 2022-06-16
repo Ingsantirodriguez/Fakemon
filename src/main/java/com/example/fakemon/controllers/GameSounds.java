@@ -25,6 +25,7 @@ public class GameSounds {
         mode = new HashMap<>(){{
            put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
            put("selection", "src/main/resources/com/example/fakemon/music/selection-fakemon-sound.wav");
+           put("battle","src/main/resources/com/example/fakemon/music/battle-fakemon-sound.wav");
         }};
     }
 

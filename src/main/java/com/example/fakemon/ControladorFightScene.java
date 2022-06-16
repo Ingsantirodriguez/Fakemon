@@ -24,10 +24,12 @@ public class ControladorFightScene extends Controlador implements Initializable 
     public ImageView userFakemon;
     public ImageView botFakemon;
     public Button Batalla;
+    private int  n;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //selecRandomFakemon();
+        n=0;
         sonido.stopMusic();
         battle.selecRandomFakemon();
         Thread t = new Thread(new Runnable() {
@@ -45,6 +47,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
                     throw new RuntimeException(e);
                 }
                 sonido.playMusic(battle.getUsrFakemon());
+                n++;
                 try{
                     TimeUnit.SECONDS.sleep(3);
                 }catch (InterruptedException e){
@@ -63,6 +66,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
                     throw new RuntimeException(e);
                 }
                 sonido.playMusic(battle.getBotFakemon());
+                n++;
                 try{
                     TimeUnit.SECONDS.sleep(3);
                 }catch (InterruptedException e){
@@ -93,11 +97,16 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void irABatalla(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        try{
+            TimeUnit.SECONDS.sleep(3);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
     }
 
 

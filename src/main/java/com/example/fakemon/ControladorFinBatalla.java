@@ -30,7 +30,7 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        sonido.stopMusic();
         winnerName.setText("Ganador: " + battle.getWinner().getName());
         life.setText("Vida: " + battle.getWinner().getCurrentLife());
         attack.setText("Ataque: " + battle.getWinner().getAttackDamage());

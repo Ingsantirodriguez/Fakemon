@@ -73,6 +73,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //observar fakemones
+        sonido.playMusic("battle");
         battle.getUsrFakemon().addObserver(this);
         battle.getBotFakemon().addObserver(this);
         rellenarImagenesPokemon();
