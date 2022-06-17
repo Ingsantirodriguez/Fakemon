@@ -34,7 +34,11 @@ public abstract class Torneo{
     }
 
     public String getInstance(){
-        return "BATALLA N° " + this.battle_n;
+        return "BATALLA N° " + getNroBatalla();
+    }
+
+    public int getNroBatalla(){
+        return this.battle_n;
     }
 
 }
