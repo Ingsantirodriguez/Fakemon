@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.PointLight?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Cylinder?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
+            prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.fakemon.BatallaController" styleClass="fakemon-font-style">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="806.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/background.png" />
+         </image>
+      </ImageView>
+      <Cylinder fx:id="CilindroJugador" height="45.0" layoutX="228.0" layoutY="341.0" radius="85.0" rotate="-150.0">
+         <rotationAxis>
+            <Point3D x="1.0" />
+         </rotationAxis>
+      </Cylinder>
+      <ImageView fx:id="PokebolaJugador" fitHeight="176.0" fitWidth="176.0" layoutX="140.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="-121.4">
+         <rotationAxis>
+            <Point3D x="1.0" />
+         </rotationAxis>
+         <image>
+            <Image url="@../images/pngwing.com.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ImagenJugador" fitHeight="220.0" fitWidth="220.0" layoutX="133.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
+      <Cylinder fx:id="CilindroBot" height="45.0" layoutX="566.0" layoutY="341.0" radius="85.0" rotate="-150.0">
+         <rotationAxis>
+            <Point3D x="1.0" />
+         </rotationAxis>
+      </Cylinder>
+      <ImageView fx:id="PokebolaBot" fitHeight="176.0" fitWidth="176.0" layoutX="478.0" layoutY="234.0" pickOnBounds="true" preserveRatio="true" rotate="-121.4">
+         <image>
+            <Image url="@../images/pngwing.com.png" />
+         </image>
+         <rotationAxis>
+            <Point3D x="1.0" />
+         </rotationAxis>
+      </ImageView>
+      <ImageView fx:id="ImagenBot" fitHeight="220.0" fitWidth="220.0" layoutX="471.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" />
+      <PointLight fx:id="Luz" layoutX="27.0" layoutY="533.0" lightOn="true" />
+      <PointLight fx:id="LuzCenital" layoutX="391.0" layoutY="22.0" lightOn="true" />
+      <PointLight layoutX="600.0" layoutY="800.0" lightOn="true" rotate="-135.9" />
+      <Rectangle fx:id="BarraRoja1" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="22.0" layoutX="118.0" layoutY="78.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
+      <Rectangle fx:id="BarraVidaJugador" arcHeight="5.0" arcWidth="5.0" fill="#25ff21" height="22.0" layoutX="118.0" layoutY="78.0" stroke="#25ff21" strokeType="INSIDE" width="220.0" />
+      <Rectangle fx:id="BarraRoja2" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="22.0" layoutX="456.0" layoutY="78.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="220.0" />
+      <Rectangle fx:id="BarraVidaBot" arcHeight="5.0" arcWidth="5.0" fill="#25ff21" height="22.0" layoutX="456.0" layoutY="78.0" stroke="#25ff21" strokeType="INSIDE" width="220.0" />
+      <Rectangle fx:id="Menu" arcHeight="5.0" arcWidth="5.0" height="144.0" layoutX="128.0" layoutY="412.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0">
+         <fill>
+            <LinearGradient endX="0.4810605771613843" endY="1.0" startX="0.4924242559707526" startY="0.1429924242424241">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.2759999930858612" green="0.5650915503501892" blue="0.9200000166893005" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.2759999930858612" green="0.2974666655063629" blue="0.9200000166893005" opacity="0.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Button fx:id="Ataque" ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#ataque" prefHeight="26.0" prefWidth="200.0" text="1_Ataquee" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="Debilitar" ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#debilitar" prefHeight="26.0" prefWidth="200.0" text="2_Debilitar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="Regenerar" ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#regenerar" prefHeight="26.0" prefWidth="200.0" text="3_Regenerar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#potenciar" prefHeight="26.0" prefWidth="200.0" text="4_Potenciar" textAlignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+      <Text fx:id="TextMenu" fill="#e3fc00" fontSmoothingType="LCD" layoutX="128.0" layoutY="437.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="jugador" textAlignment="CENTER" wrappingWidth="200.0">
+         <font>
+            <Font name="Candara Light" size="24.0" />
+         </font>
+      </Text>
+      <Rectangle fx:id="MenuBot" arcHeight="5.0" arcWidth="5.0" height="144.0" layoutX="466.0" layoutY="416.0" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0">
+         <fill>
+            <LinearGradient endX="0.4810605771613843" endY="1.0" startX="0.4924242559707526" startY="0.1429924242424241">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.2759999930858612" green="0.5650915503501892" blue="0.9200000166893005" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.2759999930858612" green="0.2974666655063629" blue="0.9200000166893005" opacity="0.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Text fx:id="TextMenu1" fill="#e3fc00" fontSmoothingType="LCD" layoutX="466.0" layoutY="441.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bot" textAlignment="CENTER" wrappingWidth="200.0">
+         <font>
+            <Font name="Candara Light" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="turno" fill="#e3fc00" fontSmoothingType="LCD" layoutX="303.0" layoutY="575.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0">
+         <font>
+            <Font name="Candara Light" size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="Batalla_n" layoutX="386.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BATALLA N" textAlignment="CENTER">
+         <font>
+            <Font name="Go Regular" size="13.0" />
+         </font>
+      </Text>
+      <MenuBar layoutX="701.0" layoutY="14.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Sonido">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#subirVolumen" text="Subir Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#bajarVolumen" text="Bajar Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#mutear" text="Mutear" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
