@@ -20,13 +20,24 @@
       </ImageView>
       <Button fx:id="exit" layoutX="741.0" layoutY="560.0" mnemonicParsing="false" onAction="#salir" text="Salir" />
       <ImageView fx:id="winner" fitHeight="150.0" fitWidth="200.0" layoutX="300.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
-      <Text fx:id="winnerName" layoutX="354.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganador" wrappingWidth="91.7294921875">
+      <Text fx:id="winnerName" fill="#f2d500" layoutX="297.0" layoutY="101.0" stroke="#0324ff" strokeType="OUTSIDE" strokeWidth="1.5" text="Ganador" wrappingWidth="206.7294921875">
          <font>
-            <Font size="20.0" />
+            <Font name="Pokemon Solid Normal" size="55.0" />
          </font>
       </Text>
-      <Text fx:id="life" layoutX="354.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida Restante: " />
-      <Text fx:id="attack" layoutX="386.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ataque: " />
-      <Button fx:id="Continuar" layoutX="373.0" layoutY="418.0" mnemonicParsing="false" onAction="#continuar" text="CONTINUAR" />
+      <Text fx:id="vidaRest" layoutX="297.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vida Restante: " wrappingWidth="312.5693359375">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Text fx:id="ataqueRest" layoutX="300.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ataque: " wrappingWidth="206.7294921875">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Button fx:id="Continuar" layoutX="341.0" layoutY="503.0" mnemonicParsing="false" onAction="#continuar" text="CONTINUAR" />
+      <Text fx:id="ganador" layoutX="300.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador: " wrappingWidth="357.35400390625">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

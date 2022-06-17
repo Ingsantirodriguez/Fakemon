@@ -23,17 +23,17 @@ import java.util.ResourceBundle;
 public class ControladorFinBatalla extends Controlador implements Initializable {
     public Button exit;
     public ImageView winner;
-    public Text winnerName;
-    public Text life;
-    public Text attack;
     public Button Continuar;
+    public Text ganador;
+    public Text ataqueRest;
+    public Text vidaRest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         sonido.stopMusic();
-        winnerName.setText("Ganador: " + battle.getWinner().getName());
-        life.setText("Vida: " + battle.getWinner().getCurrentLife());
-        attack.setText("Ataque: " + battle.getWinner().getAttackDamage());
+        ganador.setText("Ganador: " + battle.getWinner().getName());
+        vidaRest.setText("Vida: " + battle.getWinner().getCurrentLife());
+        ataqueRest.setText("Ataque: " + battle.getWinner().getAttackDamage());
         try {
             Path imgFile = Paths.get(battle.getWinner().getImgPath());
             winner.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
