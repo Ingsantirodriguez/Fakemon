@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,8 +32,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fx:id="userFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="125.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="botFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="515.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="userFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="94.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="botFakemon" fitHeight="150.0" fitWidth="200.0" layoutX="527.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="72.0" fitWidth="116.0" layoutX="342.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/vs.png" />
@@ -45,6 +49,28 @@
             <Image url="@../images/bienvenido-al-torneo.png" />
          </image>
       </ImageView>
-      <Text fx:id="holis" layoutX="208.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="holis" wrappingWidth="34.7294921875" />
+      <Text fx:id="usrName" fill="#edc300" layoutX="125.0" layoutY="424.0" stroke="#003cff" strokeType="OUTSIDE" text="usrName" textAlignment="CENTER" wrappingWidth="137.7294921875">
+         <font>
+            <Font name="Cousine Bold" size="24.0" />
+         </font></Text>
+      <Text fill="#edc300" layoutX="553.0" layoutY="424.0" stroke="#0337f2" strokeType="OUTSIDE" text="BOT" textAlignment="CENTER" wrappingWidth="148.7294921875">
+         <font>
+            <Font name="Cousine Bold" size="24.0" />
+         </font>
+      </Text>
+      <MenuBar layoutX="701.0" layoutY="14.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Sonido">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#subirVolumen" text="Subir Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#bajarVolumen" text="Bajar Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#mutear" text="Mutear" />
+            </items>
+          </Menu>
+        </menus>
+         <effect>
+            <Glow />
+         </effect>
+      </MenuBar>
    </children>
 </AnchorPane>

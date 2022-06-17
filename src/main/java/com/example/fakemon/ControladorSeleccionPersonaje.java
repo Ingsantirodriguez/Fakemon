@@ -87,8 +87,15 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
         config(event);
     }
 
+    public void subirVolumen(ActionEvent actionEvent) {
+        sonido.volumeUp();
+    }
 
+    public void bajarVolumen(ActionEvent actionEvent) {
+        sonido.volumeDown();
+    }
 
-
-
+    public void mutear(ActionEvent actionEvent) {
+        sonido.muteSound();
+    }
 }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,73 +21,73 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+import static com.example.fakemon.DatosConfig.nombre;
+
 public class ControladorFightScene extends Controlador implements Initializable {
 
     public ImageView userFakemon;
     public ImageView botFakemon;
     public Button Batalla;
+    public Text usrName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //selecRandomFakemon();
+        iniciarVisuales();
+    }
+
+    private void iniciarVisuales(){
         URL pathImg = getClass().getResource("images/batalla.png");
         Image battleImg = new Image(String.valueOf(pathImg),152, 50, false, true);
         Batalla.setGraphic(new ImageView(battleImg));
 
-        sonido.stopMusic();
-        battle.selecRandomFakemon();
-        Thread t = new Thread(new Runnable() {
+        Thread visuales = new Thread(new Runnable() {
             @Override
             public void run() {
-                this.configUsrFakemon();
-                this.configBotFakemon();
+                iniciarUsr();
+                iniciarBot();
             }
-            private void configUsrFakemon() {
-                String usfakemon= battle.getUsrFakemon().getImgPath();
-                Path imageFile = Paths.get(usfakemon);
-                try {
-                    userFakemon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
-                sonido.playMusic(battle.getUsrFakemon());
-                try{
-                    TimeUnit.SECONDS.sleep(3);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                sonido.stopMusic();
-            }
-
-            private void configBotFakemon(){
-                String botfakemon= battle.getBotFakemon().getImgPath();
-                Path imgFile = Paths.get(botfakemon);
-
-                try {
-                    botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
-                } catch (MalformedURLException e) {
-                    throw new RuntimeException(e);
-                }
-                sonido.playMusic(battle.getBotFakemon());
-                try{
-                    TimeUnit.SECONDS.sleep(3);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                sonido.stopMusic();
-            }
-
-
         });
-        t.start();
+
+        visuales.start();
     }
 
-    public void config(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+    private void iniciarUsr(){
+        usrName.setText(nombre);
+        sonido.stopMusic();
+
+        String usfakemon= battle.getUsrFakemon().getImgPath();
+        Path imageFile = Paths.get(usfakemon);
+        try {
+            userFakemon.setImage(new Image(imageFile.toUri().toURL().toExternalForm()));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        delay(3);
+        sonido.stopMusic();
+    }
+
+    private void iniciarBot(){
+        battle.selecRandomFakemon();
+        String botfakemon= battle.getBotFakemon().getImgPath();
+        Path imgFile = Paths.get(botfakemon);
+
+        try {
+            botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        sonido.playMusic(battle.getBotFakemon());
+        delay(3);
+        sonido.stopMusic();
+    }
+
+    private void delay(int delay){
+        try{
+            TimeUnit.SECONDS.sleep(delay);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 
     public void irAtras(ActionEvent event) throws IOException {
@@ -111,4 +112,15 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
 
+    public void subirVolumen(ActionEvent actionEvent) {
+        sonido.volumeUp();
+    }
+
+    public void bajarVolumen(ActionEvent actionEvent) {
+        sonido.volumeDown();
+    }
+
+    public void mutear(ActionEvent actionEvent) {
+        sonido.muteSound();
+    }
 }

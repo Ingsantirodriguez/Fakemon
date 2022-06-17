@@ -5,6 +5,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Menu?>
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorSeleccionPersonaje">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
@@ -62,5 +65,16 @@
             <Image url="@../images/elije-tu-fakemon.png" />
          </image>
       </ImageView>
+      <MenuBar layoutX="701.0" layoutY="14.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Sonido">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#subirVolumen" text="Subir Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#bajarVolumen" text="Bajar Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#mutear" text="Mutear" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

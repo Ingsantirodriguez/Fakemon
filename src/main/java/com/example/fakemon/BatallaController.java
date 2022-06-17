@@ -400,6 +400,18 @@ public class BatallaController extends Controlador implements Observer, Initiali
         });
         animacion.start();
     }
+
+    public void subirVolumen(ActionEvent actionEvent) {
+        sonido.volumeUp();
+    }
+
+    public void bajarVolumen(ActionEvent actionEvent) {
+        sonido.volumeDown();
+    }
+
+    public void mutear(ActionEvent actionEvent) {
+        sonido.muteSound();
+    }
 }
 
 

@@ -14,6 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0"
             prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.fakemon.BatallaController" styleClass="fakemon-font-style">
@@ -134,5 +137,16 @@
             <Font name="Go Regular" size="13.0" />
          </font>
       </Text>
+      <MenuBar layoutX="701.0" layoutY="14.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Sonido">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#subirVolumen" text="Subir Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#bajarVolumen" text="Bajar Volumen" />
+                  <MenuItem mnemonicParsing="false" onAction="#mutear" text="Mutear" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>
