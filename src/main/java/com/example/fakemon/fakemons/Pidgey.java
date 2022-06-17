@@ -14,5 +14,6 @@ public class Pidgey extends Fakemon{
         this.originalAttackDamage = this.attackDamage;
         this.incLife = 5;
         this.weakened = false;
+        this.maximizeDamage=10;
     }
 }

@@ -21,6 +21,7 @@ public abstract class Fakemon implements Observable {
     protected String imgPath;
     protected boolean weakened;
     protected boolean stronger;
+    protected int maximizeDamage;
     //lista de observadores
     ArrayList<Observer> observers = new ArrayList<>();
 
@@ -93,7 +94,7 @@ public abstract class Fakemon implements Observable {
         System.out.println(observers.size());
     }
     public void maximizeAttack(){
-        attackDamage = attackDamage + 10;
+        attackDamage = attackDamage + maximizeDamage;
         stronger = true;
     }
 
