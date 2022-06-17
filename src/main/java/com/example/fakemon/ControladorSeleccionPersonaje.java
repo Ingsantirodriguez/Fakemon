@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,31 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
         battle.fillFakemons();
         sonido.stopMusic();
         sonido.playMusic("selection");
+        mostrarFakemons();
+    }
+
+    private void mostrarFakemons() {
+
+        ImageView[] fakemons = {Bulbasaur, Pikachu, Charmander, Squirtle, Jigglypuff , Pidgey  };
+        for (int i = 0; i < fakemons.length; i++) {
+            fakemons[i].setOpacity(0);
+        }
+
+        Thread thread = new Thread(() -> {
+            for (int i = 0; i < fakemons.length; i++) {
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), fakemons[i]);
+                fadeTransition.setFromValue(0);
+                fadeTransition.setToValue(1);
+                fadeTransition.play();
+            }
+        });
+        thread.start();
+
     }
 
 

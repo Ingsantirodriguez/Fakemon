@@ -33,7 +33,10 @@ public class ControladorInicio extends Controlador implements Initializable {
             //Boton Jugar Texto Amarillo y fondo degrade azul
             sonido.playMusic("home");
         }
+
+
     }
+
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
         if (nombre.equals("")){
