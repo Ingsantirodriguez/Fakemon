@@ -8,16 +8,21 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.fakemon.DatosConfig.nombre;
 
 //Clase ControladorInicio hereda de Controller.
 public class ControladorInicio extends Controlador implements Initializable {
     public Button ConfigBtn;
     public Button Jugarbtn;
     public Button SalirBt;
+    public Label nameWarning;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -27,16 +32,19 @@ public class ControladorInicio extends Controlador implements Initializable {
             }
             //Boton Jugar Texto Amarillo y fondo degrade azul
             sonido.playMusic("home");
-
         }
     }
     //Al hacer click en el boton Jugar cargar pantalla characterSelection.fxml
     public void jugar(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/characterSelection.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        if (nombre.equals("")){
+            nameWarning.setText("Ingresa tu nombre para poder jugar");
+        }else{
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/characterSelection.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     //Al hacer click en el boton Salir cerrar la aplicacion.
