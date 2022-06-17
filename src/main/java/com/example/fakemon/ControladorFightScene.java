@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
             @Override
             public void run() {
                 iniciarUsr();
-                iniciarBot();
+
             }
         });
 
@@ -55,7 +56,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     private void iniciarUsr(){
         usrName.setText(nombre);
         sonido.stopMusic();
-
+        userFakemon.setOpacity(0);
         String usfakemon= battle.getUsrFakemon().getImgPath();
         Path imageFile = Paths.get(usfakemon);
         try {
@@ -63,21 +64,35 @@ public class ControladorFightScene extends Controlador implements Initializable 
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
+        FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), userFakemon);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.setDelay(javafx.util.Duration.millis(500));
+        fadeTransition.play();
+
         delay(3);
         sonido.stopMusic();
+        iniciarBot();
     }
 
     private void iniciarBot(){
         battle.selecRandomFakemon();
         String botfakemon= battle.getBotFakemon().getImgPath();
         Path imgFile = Paths.get(botfakemon);
-
+        botFakemon.setOpacity(0);
         try {
             botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
         sonido.playMusic(battle.getBotFakemon());
+        FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), botFakemon);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
         delay(3);
         sonido.stopMusic();
     }
