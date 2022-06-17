@@ -39,7 +39,7 @@ public class Batalla extends Torneo implements Observer {
     private void RandomTurno() {
         Random rd = new Random();
         int value = rd.nextInt(2);
-        if (value == 0) {
+        if (value == 1) {
             this.usrTurn = false;
         } else {
             this.usrTurn = true;
@@ -160,33 +160,42 @@ public class Batalla extends Torneo implements Observer {
     }
 
     public void ataque() {
+        setUsrTurn(true);
         System.out.println("\nbot --> attack --> usr..");
         new Atacar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr life: " + getUsrFakemon().getCurrentLife());
-        setUsrTurn(true);
+
     }
 
     private void debilitar() {
+        setUsrTurn(true);
         System.out.println("\nbot --> weaken --> usr..");
         new Debilitar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr attack: " + getUsrFakemon().getAttackDamage());
-        setUsrTurn(true);
+
     }
 
     public void regenerar() {
+        setUsrTurn(true);
         System.out.println("\nbot --> regenerate life");
         new Regenerar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot life: " + getBotFakemon().getCurrentLife());
-        setUsrTurn(true);
+
     }
 
     public void potenciar() {
+        setUsrTurn(true);
         System.out.println("\nbot --> maximize attack");
         new Potenciar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot attack: " + getBotFakemon().getAttackDamage());
-        setUsrTurn(true);
+
     }
 
     @Override
-    public void actualizar() { }
+    public void actualizar() {
+
+
+
+
+    }
 }
