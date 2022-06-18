@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,15 +24,17 @@ import java.util.concurrent.TimeUnit;
 import static com.example.fakemon.DatosConfig.nombre;
 
 public class ControladorFightScene extends Controlador implements Initializable {
-
-    public ImageView userFakemon;
-    public ImageView botFakemon;
-    public Button Batalla;
-    public Text usrName;
+    @FXML
+    private ImageView userFakemon;
+    @FXML
+    private ImageView botFakemon;
+    @FXML
+    private Button Batalla;
+    @FXML
+    private Text usrName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //selecRandomFakemon();
         iniciarVisuales();
     }
 
@@ -125,7 +126,6 @@ public class ControladorFightScene extends Controlador implements Initializable 
     public void salir(ActionEvent event) {
         System.exit(0);
     }
-
 
     public void subirVolumen(ActionEvent actionEvent) {
         sonido.volumeUp();

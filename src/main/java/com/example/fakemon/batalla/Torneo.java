@@ -1,9 +1,7 @@
 package com.example.fakemon.batalla;
 
 import com.example.fakemon.fakemons.Fakemon;
-
 import java.util.ArrayList;
-
 import static com.example.fakemon.DatosConfig.nombre;
 
 public abstract class Torneo{
@@ -19,7 +17,10 @@ public abstract class Torneo{
         this.vsUsrLoose = new ArrayList<>();
         this.battle_n = 1;
     }
-
+    public String getInstance(){ return "BATALLA N° " + getNroBatalla(); }
+    public int getNroBatalla(){
+        return this.battle_n;
+    }
     protected void nextBattle(){
         this.battle_n++;
     }
@@ -32,13 +33,4 @@ public abstract class Torneo{
                             + "\nDerrotas: " + this.vsUsrLoose.size() + "(vs {"+vsUsrLoose.stream().toString()+"})"
         );
     }
-
-    public String getInstance(){
-        return "BATALLA N° " + getNroBatalla();
-    }
-
-    public int getNroBatalla(){
-        return this.battle_n;
-    }
-
 }

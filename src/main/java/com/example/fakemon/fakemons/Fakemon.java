@@ -2,13 +2,9 @@ package com.example.fakemon.fakemons;
 
 import com.example.fakemon.Observable;
 import com.example.fakemon.Observer;
-
-
 import java.util.ArrayList;
 
 public abstract class Fakemon implements Observable {
-
-
     protected int currentLife;
     protected int incLife;
     protected int basicLife;
@@ -22,11 +18,10 @@ public abstract class Fakemon implements Observable {
     protected boolean weakened;
     protected boolean stronger;
     protected int maximizeDamage;
-    //lista de observadores
-    ArrayList<Observer> observers = new ArrayList<>();
+    ArrayList<Observer> observers;    //lista de observadores
 
     public Fakemon (){
-
+        observers = new ArrayList<>();
     }
 
     public int getCurrentLife(){
@@ -35,8 +30,7 @@ public abstract class Fakemon implements Observable {
     public int getBasicLife(){
         return basicLife;
     }
-    public int getLastLife(){return lastLife;}
-    public void setLastLife(int lastLife){this.lastLife = lastLife;}
+    public int getLastLife() { return lastLife; }
     public String getSound(){
         return sound;
     }
@@ -50,7 +44,6 @@ public abstract class Fakemon implements Observable {
         }
         int ad = attackDamage;
         return ad;
-
     }
     public String getName(){
         return name;
@@ -70,6 +63,7 @@ public abstract class Fakemon implements Observable {
         }
         weakened = true;
     }
+    public void setLastLife(int lastLife) { this.lastLife = lastLife; }
     public void regenerate(){
         if(this.basicLife < this.currentLife+this.incLife){
             this.currentLife = this.basicLife;
@@ -98,7 +92,6 @@ public abstract class Fakemon implements Observable {
         stronger = true;
     }
 
-
     public void addObserver(Observer observer){
         observers.add(observer);
         System.out.println("observer " + observer.getClass().toString());
@@ -119,6 +112,5 @@ public abstract class Fakemon implements Observable {
         this.attackDamage = originalAttackDamage;
         System.out.println("Vida: " + this.currentLife + "\nAtaque: " + this.attackDamage);
     }
-
 
 }

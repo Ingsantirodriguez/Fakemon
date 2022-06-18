@@ -4,14 +4,13 @@ import com.example.fakemon.acciones.Atacar;
 import com.example.fakemon.acciones.Debilitar;
 import com.example.fakemon.acciones.Potenciar;
 import com.example.fakemon.acciones.Regenerar;
-import com.example.fakemon.fakemons.Fakemon;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,16 +20,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -38,41 +31,57 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-
 import static com.example.fakemon.DatosConfig.nombre;
 import static com.example.fakemon.MainApplication.*;
 import static java.lang.Thread.*;
-import static javafx.scene.paint.Color.rgb;
 
 public class BatallaController extends Controlador implements Observer, Initializable {
-
-    public Cylinder CilindroJugador;
-    public Cylinder CilindroBot;
-    public PointLight Luz;
-    public PointLight LuzCenital;
-    public Rectangle BarraVidaJugador;
-    public Rectangle BarraVidaBot;
-    public ImageView ImagenBot;
-    public ImageView ImagenJugador;
-    public Rectangle Menu;
-    public Button Ataque;
-    public Button Debilitar;
-    public Button Regenerar;
-    public Button Potenciar;
-    public Text TextMenu;
-    public Text turno;
-    public ImageView PokebolaBot;
-    public ImageView PokebolaJugador;
-    public Rectangle BarraRoja1;
-    public Rectangle BarraRoja2;
-    public Rectangle MenuBot;
-    public Text TextMenu1;
-
-    public Text Batalla_n;
-    ArrayList<Button> botones = new ArrayList<>();
-    ArrayList<Node> nodos = new ArrayList<>();
-
+    @FXML
+    private Cylinder CilindroJugador;
+    @FXML
+    private Cylinder CilindroBot;
+    @FXML
+    private PointLight Luz;
+    @FXML
+    private PointLight LuzCenital;
+    @FXML
+    private Rectangle BarraVidaJugador;
+    @FXML
+    private Rectangle BarraVidaBot;
+    @FXML
+    private ImageView ImagenBot;
+    @FXML
+    private ImageView ImagenJugador;
+    @FXML
+    private Rectangle Menu;
+    @FXML
+    private Button Ataque;
+    @FXML
+    private Button Debilitar;
+    @FXML
+    private Button Regenerar;
+    @FXML
+    private Button Potenciar;
+    @FXML
+    private Text TextMenu;
+    @FXML
+    private Text turno;
+    @FXML
+    private ImageView PokebolaBot;
+    @FXML
+    private ImageView PokebolaJugador;
+    @FXML
+    private Rectangle BarraRoja1;
+    @FXML
+    private Rectangle BarraRoja2;
+    @FXML
+    private Rectangle MenuBot;
+    @FXML
+    private Text TextMenu1;
+    @FXML
+    private Text Batalla_n;
+    private ArrayList<Button> botones = new ArrayList<>();
+    private ArrayList<Node> nodos = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,15 +91,11 @@ public class BatallaController extends Controlador implements Observer, Initiali
         if(battle.usrTurno()) {
             MostrarBotones();
         }
-        ;
-
-
-
     }
 
     private void TurnoBot() {
 
-        turno.setText("Turno del Bot");
+        turno.setText("Turno: BOT");
 
         try {
             sleep(3000);
@@ -107,9 +112,8 @@ public class BatallaController extends Controlador implements Observer, Initiali
             throw new RuntimeException(e);
         }
 
-        turno.setText("Turno del Jugador");
+        turno.setText("Turno: " + nombre);
         MostrarBotones();
-
     }
 
     private void MostrarBotones() {
@@ -165,46 +169,34 @@ public class BatallaController extends Controlador implements Observer, Initiali
             n.setOpacity(0);
         }
 
+        // Parametros del usuario
         String nombreDelFakemon = battle.getUsrFakemon().getName();
-
         TextMenu.setText(nombre+"_"+nombreDelFakemon);
-        Path imgFile = Paths.get(nombreDelFakemon);
-
+        Path imgFile = Paths.get(battle.getUsrFakemon().getImgPath());
         try {
             ImagenJugador.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
 
-
-
-
+        // Parametros del BOT
         nombreDelFakemon = battle.getBotFakemon().getName();
-
-
         TextMenu1.setText("Bot_"+nombreDelFakemon);
-        imgFile = Paths.get(nombreDelFakemon);
-
+        imgFile = Paths.get(battle.getBotFakemon().getImgPath());
         try {
             ImagenBot.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
 
-        Batalla_n.setText("Batalla numero: "+battle.getNroBatalla());
+        Batalla_n.setText("BATALLA: " + battle.getNroBatalla());
 
         if(battle.usrTurno()) {
-            turno.setText("Turno de: "+ nombre);
+            turno.setText("Turno: "+ nombre);
         } else {
-            turno.setText("Turno de: Bot");
+            turno.setText("Turno: BOT");
         }
-
-
-
-
     }
-
-
 
     private void AnimacionEntrada() {
 
@@ -217,7 +209,6 @@ public class BatallaController extends Controlador implements Observer, Initiali
             ft.setToValue(1);
             ft.setAutoReverse(true);
             pt.getChildren().add(ft);
-
         }
 
         Thread thread = new Thread(() -> {
@@ -231,45 +222,32 @@ public class BatallaController extends Controlador implements Observer, Initiali
             if(!battle.usrTurno()) {
                 TurnoBot();
             }
-
         });
         thread.start();
-
     }
-
-
-
-
-
     @Override
     public void actualizar() {
-
         ParallelTransition parallelTransition = new ParallelTransition();
-
         ScaleTransition st = new ScaleTransition(Duration.seconds(1), BarraVidaJugador);
         double vidaAnterior = (double)(battle.getUsrFakemon().getLastLife())/battle.getUsrFakemon().getBasicLife();
         st.setFromX(vidaAnterior);
         double vidaActual = (double)(battle.getUsrFakemon().getCurrentLife())/battle.getUsrFakemon().getBasicLife();
         st.setToX(vidaActual);
-
         st.setDelay(Duration.millis(500));
         st.setAutoReverse(true);
         //final suavizado
         st.setInterpolator(Interpolator.EASE_BOTH);
         parallelTransition.getChildren().add(st);
-
         ScaleTransition st2 = new ScaleTransition(Duration.seconds(1), BarraVidaBot);
         vidaAnterior = (double)(battle.getBotFakemon().getLastLife())/battle.getBotFakemon().getBasicLife();
         st2.setFromX(vidaAnterior);
         vidaActual = (double)(battle.getBotFakemon().getCurrentLife())/battle.getBotFakemon().getBasicLife();
         st2.setToX(vidaActual);
-
         st2.setDelay(Duration.millis(500));
         st2.setAutoReverse(true);
         //final suavizado
         st2.setInterpolator(Interpolator.EASE_BOTH);
         parallelTransition.getChildren().add(st2);
-
         parallelTransition.play();
 
         battle.getUsrFakemon().setLastLife(battle.getUsrFakemon().getCurrentLife());
@@ -284,13 +262,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         }
-
-
-
-
-
     }
 
     private void SiguientePantalla() throws IOException {
@@ -323,10 +295,6 @@ public class BatallaController extends Controlador implements Observer, Initiali
                 ft.play();
             }
         });
-
-
-
-
     }
 
     public void ataque(ActionEvent actionEvent) {
@@ -413,13 +381,9 @@ public class BatallaController extends Controlador implements Observer, Initiali
                 }
                 parallelTransition.play();
             }
-
-
         });
         thread.start();
     }
-
-
     public void subirVolumen(ActionEvent actionEvent) {
         sonido.volumeUp();
     }

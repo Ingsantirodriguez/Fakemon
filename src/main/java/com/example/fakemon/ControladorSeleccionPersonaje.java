@@ -9,23 +9,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorSeleccionPersonaje extends Controlador implements Initializable {
-    public ImageView Bulbasaur;
-    public ImageView Pikachu;
-    public ImageView Charmander;
-    public ImageView Pidgey;
-    public ImageView Squirtle;
-    public ImageView Jigglypuff;
+    @FXML
+    private ImageView Bulbasaur;
+    @FXML
+    private ImageView Pikachu;
+    @FXML
+    private ImageView Charmander;
+    @FXML
+    private ImageView Pidgey;
+    @FXML
+    private ImageView Squirtle;
+    @FXML
+    private ImageView Jigglypuff;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,9 +59,7 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
             }
         });
         thread.start();
-
     }
-
 
     public void config(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));

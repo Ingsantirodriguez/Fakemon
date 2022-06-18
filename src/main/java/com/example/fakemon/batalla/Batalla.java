@@ -13,11 +13,8 @@ public class Batalla extends Torneo implements Observer {
     private LinkedHashMap<String, Fakemon> fakemons;
     private float currentUsrLife;
     private float currentBotLife;
-
     private Boolean usrTurn;
     private Fakemon winner;
-
-
     public Batalla(){
         this.fakemons = new LinkedHashMap<>();
         this.usrFakemon = null;
@@ -35,7 +32,15 @@ public class Batalla extends Torneo implements Observer {
             return null;
         }
     }
-
+    public Fakemon getUsrFakemon(){
+        return usrFakemon;
+    }
+    public Fakemon getBotFakemon(){
+        return botFakemon;
+    }
+    public Float getCurrentUsrLife(){ return this.currentUsrLife; }
+    public Float getCurrentBotLife(){ return this.currentBotLife; }
+    public Boolean usrTurno(){ return usrTurn; }
     private void RandomTurno() {
         Random rd = new Random();
         int value = rd.nextInt(2);
@@ -83,21 +88,6 @@ public class Batalla extends Torneo implements Observer {
         this.botFakemon = fakemons.get(fakemon);
         this.currentBotLife = usrFakemon.getCurrentLife();
         botFakemon.addObserver(this);
-    }
-
-    public Fakemon getUsrFakemon(){
-            return usrFakemon;
-    }
-
-    public Fakemon getBotFakemon(){
-            return botFakemon;
-    }
-
-    public Float getCurrentUsrLife(){ return this.currentUsrLife; }
-    public Float getCurrentBotLife(){ return this.currentBotLife; }
-
-    public Boolean usrTurno(){
-        return usrTurn;
     }
 
     public void selecRandomFakemon(){
@@ -193,9 +183,6 @@ public class Batalla extends Torneo implements Observer {
 
     @Override
     public void actualizar() {
-
-
-
 
     }
 }

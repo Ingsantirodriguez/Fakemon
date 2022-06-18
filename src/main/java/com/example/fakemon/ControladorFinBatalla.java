@@ -1,7 +1,7 @@
 package com.example.fakemon;
 
-import com.example.fakemon.Controlador;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -21,12 +21,18 @@ import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class ControladorFinBatalla extends Controlador implements Initializable {
-    public Button exit;
-    public ImageView winner;
-    public Button Continuar;
-    public Text ganador;
-    public Text ataqueRest;
-    public Text vidaRest;
+    @FXML
+    private Button exit;
+    @FXML
+    private ImageView winner;
+    @FXML
+    private Button Continuar;
+    @FXML
+    private Text ganador;
+    @FXML
+    private Text ataqueRest;
+    @FXML
+    private Text vidaRest;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

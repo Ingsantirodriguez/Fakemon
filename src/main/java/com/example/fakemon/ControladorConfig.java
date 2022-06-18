@@ -24,18 +24,18 @@ import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.*;
 
 public class ControladorConfig extends Controlador implements Initializable {
-
-
-    public CheckBox config1;
-    public TextField Nombre;
-    public CheckBox config2;
-    public CheckBox config3;
-    public Slider VolumenSeleccion;
-    public ToggleButton GeneroToogle;
-    public Button NombreBtn;
-    public Button volUpButton;
-    public Button muteButton;
-    public Button volDownButton;
+    @FXML
+    private TextField Nombre;
+    @FXML
+    private Slider VolumenSeleccion;
+    @FXML
+    private ToggleButton GeneroToogle;
+    @FXML
+    private Button volUpButton;
+    @FXML
+    private Button muteButton;
+    @FXML
+    private Button volDownButton;
 
     public void initialize(URL location, ResourceBundle resources) {
         iniciarBotones();
@@ -59,7 +59,6 @@ public class ControladorConfig extends Controlador implements Initializable {
         fadeTransition.setToValue(1);
         fadeTransition.setAutoReverse(true);
         fadeTransition.play();
-
     }
 
     private void iniciarBotones(){
@@ -76,17 +75,15 @@ public class ControladorConfig extends Controlador implements Initializable {
         volUpButton.setGraphic(new ImageView(img3));
     }
     public void guardarNombre(ActionEvent event) {
-
         nombre = Nombre.getText();
         System.out.println(nombre);
     }
 
-    //cambiar volumen
     public void cambiarVolumen(ActionEvent event) {
         volumen = (int) VolumenSeleccion.getValue();
         System.out.println(volumen);
     }
-    //cambiar genero
+
     public void cambiarGenero(ActionEvent event) {
         if (GeneroToogle.isSelected()) {
             Masculino();
