@@ -126,6 +126,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
     }
 
     private void MostrarBotones() {
+
         ParallelTransition parallelTransition = new ParallelTransition();
         for (int i = 0; i < botones.size(); i++) {
 
@@ -139,6 +140,19 @@ public class BatallaController extends Controlador implements Observer, Initiali
 
         Thread thread = new Thread(parallelTransition::play);
         thread.start();
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                String[] info = {"1. Ataque: " + battle.getUsrFakemon().getAttackDamage(),
+                        "2. Debilitar: " + battle.getUsrFakemon().weaken(),
+                        "3. Regenera: +" + battle.getUsrFakemon().getIncLife(),
+                        "4. Potenciar: +" + battle.getUsrFakemon().getIncDamage()};
+                for(int i = 0; i < botones.size(); i++){
+                    botones.get(i).setText(info[i]);
+                }
+            }
+        });
     }
 
     private void InicializarVariables() {
