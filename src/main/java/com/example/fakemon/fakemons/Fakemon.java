@@ -15,6 +15,8 @@ public abstract class Fakemon implements Observable {
     protected String sound;
     protected String name;
     protected String imgPath;
+    protected String imgCampeon;
+    protected String imgPelea;
     protected boolean weakened;
     protected boolean stronger;
     protected int maximizeDamage;
@@ -35,6 +37,8 @@ public abstract class Fakemon implements Observable {
         return sound;
     }
     public String getImgPath(){ return imgPath; }
+    public String getImgCampeon(){ return imgCampeon; }
+    public String getImgPelea(){ return imgPelea; }
     public int getAttackDamage(){
         if (weakened){
             weakened = false;

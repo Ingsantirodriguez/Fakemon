@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -36,6 +37,8 @@ import static com.example.fakemon.MainApplication.*;
 import static java.lang.Thread.*;
 
 public class BatallaController extends Controlador implements Observer, Initializable {
+    @FXML
+    private Text accionBot;
     @FXML
     private Cylinder CilindroJugador;
     @FXML
@@ -95,25 +98,31 @@ public class BatallaController extends Controlador implements Observer, Initiali
 
     private void TurnoBot() {
 
-        turno.setText("Turno: BOT");
+        if(battle.getBotFakemon().getCurrentLife() > 0){
+            turno.setText("Turno: BOT");
 
-        try {
-            sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();}
-        Thread thread = new Thread(() -> {
-            battle.botTurn();
-        });
-        thread.start();
-        //al terminar el turno del bot, se muestran los botones
-        try {
-            sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            try {
+                sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();}
+            Thread thread = new Thread(() -> {
+                battle.botTurn();
+                accionBot.setText(battle.getBotAction());
+            });
+            thread.start();
+            //al terminar el turno del bot, se muestran los botones
+            try {
+                sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            accionBot.setText("...");
+            turno.setText("Turno: " + nombre);
+            MostrarBotones();
+        }else{
+            System.out.println("EL bot murio. No realiza mas acciones");
         }
 
-        turno.setText("Turno: " + nombre);
-        MostrarBotones();
     }
 
     private void MostrarBotones() {
@@ -132,12 +141,12 @@ public class BatallaController extends Controlador implements Observer, Initiali
         thread.start();
     }
 
-
-
     private void InicializarVariables() {
 
         battle.getBotFakemon().addObserver(this);
         battle.getUsrFakemon().addObserver(this);
+
+        accionBot.setText("...");
 
         botones.add(Ataque);
         botones.add(Debilitar);
@@ -170,21 +179,23 @@ public class BatallaController extends Controlador implements Observer, Initiali
         }
 
         // Parametros del usuario
-        String nombreDelFakemon = battle.getUsrFakemon().getName();
-        TextMenu.setText(nombre+"_"+nombreDelFakemon);
-        Path imgFile = Paths.get(battle.getUsrFakemon().getImgPath());
+        TextMenu.setText(nombre);
+        TextMenu.setTextAlignment(TextAlignment.CENTER);
+        Path pathImg = Paths.get(battle.getUsrFakemon().getImgPelea());
         try {
-            ImagenJugador.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
+            Image img = new Image(pathImg.toUri().toURL().toExternalForm());
+            System.out.println("alto " + img.getHeight() + " ancho " + img.getWidth());
+            ImagenJugador.setImage(img);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
 
         // Parametros del BOT
-        nombreDelFakemon = battle.getBotFakemon().getName();
-        TextMenu1.setText("Bot_"+nombreDelFakemon);
-        imgFile = Paths.get(battle.getBotFakemon().getImgPath());
+        TextMenu1.setText("BOT");
+        TextMenu1.setTextAlignment(TextAlignment.CENTER);
+        pathImg = Paths.get(battle.getBotFakemon().getImgPelea());
         try {
-            ImagenBot.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
+            ImagenBot.setImage(new Image(pathImg.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

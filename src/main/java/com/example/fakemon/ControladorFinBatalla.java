@@ -41,7 +41,7 @@ public class ControladorFinBatalla extends Controlador implements Initializable 
         vidaRest.setText("Vida: " + battle.getWinner().getCurrentLife());
         ataqueRest.setText("Ataque: " + battle.getWinner().getAttackDamage());
         try {
-            Path imgFile = Paths.get(battle.getWinner().getImgPath());
+            Path imgFile = Paths.get(battle.getWinner().getImgCampeon());
             winner.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

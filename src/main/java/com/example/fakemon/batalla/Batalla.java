@@ -15,6 +15,8 @@ public class Batalla extends Torneo implements Observer {
     private float currentBotLife;
     private Boolean usrTurn;
     private Fakemon winner;
+    private String botAction;
+
     public Batalla(){
         this.fakemons = new LinkedHashMap<>();
         this.usrFakemon = null;
@@ -154,7 +156,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> attack --> usr..");
         new Atacar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr life: " + getUsrFakemon().getCurrentLife());
-
+        botAction = "ataco!";
     }
 
     private void debilitar() {
@@ -162,7 +164,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> weaken --> usr..");
         new Debilitar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr attack: " + getUsrFakemon().getAttackDamage());
-
+        botAction = "debilito!";
     }
 
     public void regenerar() {
@@ -170,7 +172,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> regenerate life");
         new Regenerar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot life: " + getBotFakemon().getCurrentLife());
-
+        botAction = "regenero vida!";
     }
 
     public void potenciar() {
@@ -178,11 +180,15 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> maximize attack");
         new Potenciar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot attack: " + getBotFakemon().getAttackDamage());
-
+        botAction = "potencio ataque!";
     }
 
     @Override
     public void actualizar() {
 
+    }
+
+    public String getBotAction() {
+        return botAction;
     }
 }

@@ -5,6 +5,8 @@ public class Squirtle extends Fakemon{
         super();
         this.sound = "src/main/resources/com/example/fakemon/music/squirtle-sound.wav";
         this.imgPath = "src/main/resources/com/example/fakemon/images/Squirtle.png";
+        this.imgCampeon = "src/main/resources/com/example/fakemon/gif/squirtle-campeon.gif";
+        this.imgPelea = "src/main/resources/com/example/fakemon/gif/squirtle-ataque.gif";
         this.name = "Squirtle";
         this.basicLife = 100;
         this.currentLife = this.basicLife;
