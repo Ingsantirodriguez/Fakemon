@@ -71,11 +71,14 @@ public abstract class Fakemon implements Observable {
     public void regenerate(){
         if(this.basicLife < this.currentLife+this.incLife){
             this.currentLife = this.basicLife;
-            for(Observer o : observers){
-                o.actualizar();
-            }
         }
-        else currentLife += incLife;
+        else {
+            currentLife += incLife;
+        }
+        for(Observer o : observers){
+            o.actualizar();
+        }
+
         System.out.println("regenerate..");
     }
     public void receiveAttack(int a){
