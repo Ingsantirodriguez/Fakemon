@@ -77,22 +77,22 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Button fx:id="Ataque" ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#ataque" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="1_Ataquee" textAlignment="CENTER">
+      <Button fx:id="Ataque" ellipsisString="" layoutX="128.0" layoutY="448.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#ataque" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="1_Ataquee">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Debilitar" ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#debilitar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="2_Debilitar" textAlignment="CENTER">
+      <Button fx:id="Debilitar" ellipsisString="" layoutX="128.0" layoutY="474.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#debilitar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="2_Debilitar">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Regenerar" ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#regenerar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="3_Regenerar" textAlignment="CENTER">
+      <Button fx:id="Regenerar" ellipsisString="" layoutX="128.0" layoutY="501.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#regenerar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="3_Regenerar">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <Button fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#potenciar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="4_Potenciar" textAlignment="CENTER">
+      <Button fx:id="Potenciar" ellipsisString="" layoutX="128.0" layoutY="527.0" lineSpacing="1.0" mnemonicParsing="false" onAction="#potenciar" prefHeight="26.0" prefWidth="200.0" style="-fx-background-radius: 30;" text="4_Potenciar">
          <font>
             <Font size="13.0" />
          </font>
@@ -146,7 +146,17 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Text fx:id="accionBot" fill="#ff3b3b" layoutX="478.0" layoutY="481.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.5" text="accion que hizo" textAlignment="CENTER" wrappingWidth="176.0">
+      <Text fx:id="accionBot" fill="#ff3b3b" layoutX="478.0" layoutY="481.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.35" text="..." textAlignment="CENTER" wrappingWidth="176.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="vidaUsr" fill="WHITE" layoutX="203.0" layoutY="96.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.5" text="100" textAlignment="CENTER" wrappingWidth="49.81298828125">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="vidaBot" fill="WHITE" layoutX="545.0" layoutY="96.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.5" text="100" textAlignment="CENTER" wrappingWidth="42.81298828125">
          <font>
             <Font size="20.0" />
          </font>

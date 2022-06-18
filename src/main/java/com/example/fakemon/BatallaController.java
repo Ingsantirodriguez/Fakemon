@@ -38,6 +38,10 @@ import static java.lang.Thread.*;
 
 public class BatallaController extends Controlador implements Observer, Initializable {
     @FXML
+    private Text vidaBot;
+    @FXML
+    private Text vidaUsr;
+    @FXML
     private Text accionBot;
     @FXML
     private Cylinder CilindroJugador;
@@ -167,9 +171,14 @@ public class BatallaController extends Controlador implements Observer, Initiali
         botones.add(Regenerar);
         botones.add(Potenciar);
 
-        for (Button b : botones)  {
-            b.setOpacity(0);
-            b.setDisable(true);
+        String[] acciones = {"ataque", "debil", "regenerar", "potenciar"};
+
+        for (int i=0; i<botones.size(); i++)  {
+            botones.get(i).setOpacity(0);
+            botones.get(i).setDisable(true);
+            URL path = getClass().getResource("images/"+ acciones[i] +".png");
+            Image img = new Image(String.valueOf(path), 20,20,false, true);
+            botones.get(i).setGraphic(new ImageView(img));
         }
 
         nodos.add(BarraVidaJugador);
@@ -288,6 +297,9 @@ public class BatallaController extends Controlador implements Observer, Initiali
                 throw new RuntimeException(e);
             }
         }
+
+        this.vidaUsr.setText(String.valueOf(battle.getUsrFakemon().getCurrentLife()));
+        this.vidaBot.setText(String.valueOf(battle.getBotFakemon().getCurrentLife()));
     }
 
     private void SiguientePantalla() throws IOException {
