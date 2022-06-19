@@ -1,6 +1,7 @@
 package com.example.fakemon;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -22,11 +23,14 @@ import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.nombre;
 
 public class ControladorFinTorneo extends Controlador implements Initializable {
-
-    public Button exit;
-    public ImageView winner;
-    public Button Continuar;
-    public Text ganadorTorneo;
+    @FXML
+    private Button exit;
+    @FXML
+    private ImageView winner;
+    @FXML
+    private Button Continuar;
+    @FXML
+    private Text ganadorTorneo;
 
     public ControladorFinTorneo(){
 
