@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fakemon.ControladorSeleccionPersonaje">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Bulbasaur" fitHeight="200.0" fitWidth="200.0" layoutX="300.0" layoutY="125.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Bulbasaur.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Pikachu" fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="125.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Pikachu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Charmander" fitHeight="200.0" fitWidth="200.0" layoutX="545.0" layoutY="125.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Charmander.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Pidgey" fitHeight="200.0" fitWidth="200.0" layoutX="61.0" layoutY="357.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Pidgey.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Squirtle" fitHeight="200.0" fitWidth="200.0" layoutX="300.0" layoutY="357.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Squirtle.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Jigglypuff" fitHeight="200.0" fitWidth="200.0" layoutX="545.0" layoutY="357.0" pickOnBounds="true">
+         <image>
+            <Image url="@images/Jigglypuff.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="110.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Elige tu Fakemon">
+         <font>
+            <Font name="Hurmit Bold Nerd Font Complete" size="54.0" />
+         </font>
+      </Text>
+      <Button ellipsisString="" layoutX="61.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Pikachu" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="300.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Bulbasaur" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="545.0" layoutY="125.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Charmander" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="300.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Squirtle" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="545.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Jigglypuff" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="61.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Pidgey" opacity="0.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="14.0" layoutY="557.0" maxHeight="10.0" maxWidth="10.0" mnemonicParsing="false" onAction="#irAtras">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/LeftArrow.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

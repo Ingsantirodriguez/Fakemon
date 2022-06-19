@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,23 +9,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ControladorSeleccionPersonaje extends Controlador implements Initializable {
-    public ImageView Bulbasaur;
-    public ImageView Pikachu;
-    public ImageView Charmander;
-    public ImageView Pidgey;
-    public ImageView Squirtle;
-    public ImageView Jigglypuff;
+    @FXML
+    private ImageView Bulbasaur;
+    @FXML
+    private ImageView Pikachu;
+    @FXML
+    private ImageView Charmander;
+    @FXML
+    private ImageView Pidgey;
+    @FXML
+    private ImageView Squirtle;
+    @FXML
+    private ImageView Jigglypuff;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,8 +35,31 @@ public class ControladorSeleccionPersonaje extends Controlador implements Initia
         battle.fillFakemons();
         sonido.stopMusic();
         sonido.playMusic("selection");
+        mostrarFakemons();
     }
 
+    private void mostrarFakemons() {
+
+        ImageView[] fakemons = {Bulbasaur, Pikachu, Charmander, Squirtle, Jigglypuff , Pidgey  };
+        for (int i = 0; i < fakemons.length; i++) {
+            fakemons[i].setOpacity(0);
+        }
+
+        Thread thread = new Thread(() -> {
+            for (int i = 0; i < fakemons.length; i++) {
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), fakemons[i]);
+                fadeTransition.setFromValue(0);
+                fadeTransition.setToValue(1);
+                fadeTransition.play();
+            }
+        });
+        thread.start();
+    }
 
     public void config(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/fightScene.fxml"));

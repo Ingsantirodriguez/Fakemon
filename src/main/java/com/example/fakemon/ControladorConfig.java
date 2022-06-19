@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.layout.Background;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,18 +24,18 @@ import java.util.ResourceBundle;
 import static com.example.fakemon.DatosConfig.*;
 
 public class ControladorConfig extends Controlador implements Initializable {
-
-
-    public CheckBox config1;
-    public TextField Nombre;
-    public CheckBox config2;
-    public CheckBox config3;
-    public Slider VolumenSeleccion;
-    public ToggleButton GeneroToogle;
-    public Button NombreBtn;
-    public Button volUpButton;
-    public Button muteButton;
-    public Button volDownButton;
+    @FXML
+    private TextField Nombre;
+    @FXML
+    private Slider VolumenSeleccion;
+    @FXML
+    private ToggleButton GeneroToogle;
+    @FXML
+    private Button volUpButton;
+    @FXML
+    private Button muteButton;
+    @FXML
+    private Button volDownButton;
 
     public void initialize(URL location, ResourceBundle resources) {
         iniciarBotones();
@@ -52,7 +54,11 @@ public class ControladorConfig extends Controlador implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
-
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1), root);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
     }
 
     private void iniciarBotones(){
@@ -69,17 +75,15 @@ public class ControladorConfig extends Controlador implements Initializable {
         volUpButton.setGraphic(new ImageView(img3));
     }
     public void guardarNombre(ActionEvent event) {
-
         nombre = Nombre.getText();
         System.out.println(nombre);
     }
 
-    //cambiar volumen
     public void cambiarVolumen(ActionEvent event) {
         volumen = (int) VolumenSeleccion.getValue();
         System.out.println(volumen);
     }
-    //cambiar genero
+
     public void cambiarGenero(ActionEvent event) {
         if (GeneroToogle.isSelected()) {
             Masculino();

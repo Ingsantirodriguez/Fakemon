@@ -1,13 +1,10 @@
 package com.example.fakemon.controllers;
-import com.example.fakemon.fakemons.Fakemon;
 
+import com.example.fakemon.fakemons.Fakemon;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-
-
-
 
 public class GameSounds {
     private Clip clip;
@@ -15,12 +12,11 @@ public class GameSounds {
     private Boolean musicOn = false;
     private String currentMusic = "none";
     private static  GameSounds gameSounds=null;
-    FloatControl fc;
+    private FloatControl fc;
     private boolean mute=false;
     private float previousVolume=0;
     private float currentVolume=0;
     private HashMap<String, String> mode;
-
     private GameSounds(){
         mode = new HashMap<>(){{
            put("home", "src/main/resources/com/example/fakemon/music/home-fakemon-sound.wav");
@@ -30,15 +26,12 @@ public class GameSounds {
            put("lose","src/main/resources/com/example/fakemon/music/lose-fakemon-sound.wav");
         }};
     }
-
     public static GameSounds getInstance(){
         if(gameSounds==null){
             gameSounds = new GameSounds();
         }
         return gameSounds;
     }
-
-
     public void playMusic(String mode)  {
         String url = "";
         currentMusic = mode;

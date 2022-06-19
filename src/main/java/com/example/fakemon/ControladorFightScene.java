@@ -1,5 +1,6 @@
 package com.example.fakemon;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,15 +24,19 @@ import java.util.concurrent.TimeUnit;
 import static com.example.fakemon.DatosConfig.nombre;
 
 public class ControladorFightScene extends Controlador implements Initializable {
-
-    public ImageView userFakemon;
-    public ImageView botFakemon;
-    public Button Batalla;
-    public Text usrName;
+    @FXML
+    private ImageView userFakemon;
+    @FXML
+    private ImageView botFakemon;
+    @FXML
+    private Button Batalla;
+    @FXML
+    private Text usrName;
+    private boolean visuales;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //selecRandomFakemon();
+        visuales =  false;
         iniciarVisuales();
     }
 
@@ -55,7 +59,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     private void iniciarUsr(){
         usrName.setText(nombre);
         sonido.stopMusic();
-
+        userFakemon.setOpacity(0);
         String usfakemon= battle.getUsrFakemon().getImgPath();
         Path imageFile = Paths.get(usfakemon);
         try {
@@ -63,6 +67,14 @@ public class ControladorFightScene extends Controlador implements Initializable 
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
+
+        FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), userFakemon);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.setDelay(javafx.util.Duration.millis(500));
+        fadeTransition.play();
+
         delay(3);
         sonido.stopMusic();
     }
@@ -71,15 +83,21 @@ public class ControladorFightScene extends Controlador implements Initializable 
         battle.selecRandomFakemon();
         String botfakemon= battle.getBotFakemon().getImgPath();
         Path imgFile = Paths.get(botfakemon);
-
+        botFakemon.setOpacity(0);
         try {
             botFakemon.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
         sonido.playMusic(battle.getBotFakemon());
+        FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), botFakemon);
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
         delay(3);
         sonido.stopMusic();
+        this.visuales = true;
     }
 
     private void delay(int delay){
@@ -99,18 +117,19 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void irABatalla(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        if(visuales){
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
 
     public void salir(ActionEvent event) {
         System.exit(0);
     }
-
 
     public void subirVolumen(ActionEvent actionEvent) {
         sonido.volumeUp();

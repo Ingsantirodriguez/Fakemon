@@ -1,6 +1,5 @@
 package com.example.fakemon.acciones;
 
-import com.example.fakemon.acciones.Accion;
 import com.example.fakemon.fakemons.Fakemon;
 
 public class Regenerar implements Accion {
