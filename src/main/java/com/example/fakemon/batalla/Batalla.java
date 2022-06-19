@@ -156,7 +156,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> attack --> usr..");
         new Atacar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr life: " + getUsrFakemon().getCurrentLife());
-        botAction = "ataco!";
+        botAction = "ATACO!";
     }
 
     private void debilitar() {
@@ -164,7 +164,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> weaken --> usr..");
         new Debilitar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new usr attack: " + getUsrFakemon().getAttackDamage());
-        botAction = "debilito!";
+        botAction = "DEBILITO!";
     }
 
     public void regenerar() {
@@ -172,7 +172,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> regenerate life");
         new Regenerar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot life: " + getBotFakemon().getCurrentLife());
-        botAction = "regenero vida!";
+        botAction = "REGENERO VIDA!";
     }
 
     public void potenciar() {
@@ -180,7 +180,7 @@ public class Batalla extends Torneo implements Observer {
         System.out.println("\nbot --> maximize attack");
         new Potenciar().actuar(getBotFakemon(), getUsrFakemon());
         System.out.println("new bot attack: " + getBotFakemon().getAttackDamage());
-        botAction = "potencio ataque!";
+        botAction = "POTENCIO ATAQUE!";
     }
 
     @Override
