@@ -339,6 +339,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
+                Atacar a = new Atacar();
                 battle.setUsrTurn(false);
                 System.out.println("\nusr --> attack --> bot..");
                 new Atacar().actuar(battle.getUsrFakemon(), battle.getBotFakemon());

@@ -32,9 +32,11 @@ public class ControladorFightScene extends Controlador implements Initializable 
     private Button Batalla;
     @FXML
     private Text usrName;
+    private boolean visuales;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        visuales =  false;
         iniciarVisuales();
     }
 
@@ -47,7 +49,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
             @Override
             public void run() {
                 iniciarUsr();
-
+                iniciarBot();
             }
         });
 
@@ -75,7 +77,6 @@ public class ControladorFightScene extends Controlador implements Initializable 
 
         delay(3);
         sonido.stopMusic();
-        iniciarBot();
     }
 
     private void iniciarBot(){
@@ -96,6 +97,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
         fadeTransition.play();
         delay(3);
         sonido.stopMusic();
+        this.visuales = true;
     }
 
     private void delay(int delay){
@@ -115,11 +117,13 @@ public class ControladorFightScene extends Controlador implements Initializable 
     }
 
     public void irABatalla(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.show();
+        if(visuales){
+            Parent root = FXMLLoader.load(getClass().getResource("fxml/Batalla.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
 
