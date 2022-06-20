@@ -11,7 +11,7 @@ public class Jigglypuff extends Fakemon{
         this.basicLife = 100;
         this.currentLife = this.basicLife;
         this.lastLife = this.basicLife;
-        this.attackDamage = 10;
+        this.attackDamage = 70;
         this.weakenDamage = 20;
         this.originalAttackDamage = this.attackDamage;
         this.incLife = 5;

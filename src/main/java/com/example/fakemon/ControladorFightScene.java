@@ -36,6 +36,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        sonido.stopMusic();
         visuales =  false;
         iniciarVisuales();
     }
@@ -59,6 +60,7 @@ public class ControladorFightScene extends Controlador implements Initializable 
     private void iniciarUsr(){
         usrName.setText(nombre);
         sonido.stopMusic();
+        sonido.playMusic(battle.getUsrFakemon());
         userFakemon.setOpacity(0);
         String usfakemon= battle.getUsrFakemon().getImgPath();
         Path imageFile = Paths.get(usfakemon);
@@ -74,13 +76,13 @@ public class ControladorFightScene extends Controlador implements Initializable 
         fadeTransition.setAutoReverse(true);
         fadeTransition.setDelay(javafx.util.Duration.millis(500));
         fadeTransition.play();
-
         delay(3);
         sonido.stopMusic();
     }
 
     private void iniciarBot(){
         battle.selecRandomFakemon();
+        sonido.playMusic(battle.getBotFakemon());
         String botfakemon= battle.getBotFakemon().getImgPath();
         Path imgFile = Paths.get(botfakemon);
         botFakemon.setOpacity(0);
@@ -89,7 +91,6 @@ public class ControladorFightScene extends Controlador implements Initializable 
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        sonido.playMusic(battle.getBotFakemon());
         FadeTransition fadeTransition = new FadeTransition(javafx.util.Duration.millis(500), botFakemon);
         fadeTransition.setFromValue(0);
         fadeTransition.setToValue(1);

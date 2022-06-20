@@ -92,6 +92,7 @@ public class BatallaController extends Controlador implements Observer, Initiali
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        sonido.stopMusic();
         sonido.playMusic("battle");
         InicializarVariables();
         AnimacionEntrada();

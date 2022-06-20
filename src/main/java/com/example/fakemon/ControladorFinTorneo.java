@@ -38,8 +38,9 @@ public class ControladorFinTorneo extends Controlador implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        sonido.stopMusic();
+        sonido.playMusic("torneo");
         ganadorTorneo.setText(nombre + " GANASTE EL TORNEO!");
-
         try {
             Path imgFile = Paths.get(battle.getWinner().getImgPath());
             winner.setImage(new Image(imgFile.toUri().toURL().toExternalForm()));

@@ -24,6 +24,7 @@ public class GameSounds {
            put("battle","src/main/resources/com/example/fakemon/music/battle-fakemon-sound.wav");
            put("win","src/main/resources/com/example/fakemon/music/win-fakemon-sound.wav");
            put("lose","src/main/resources/com/example/fakemon/music/lose-fakemon-sound.wav");
+           put("torneo", "src/main/resources/com/example/fakemon/music/campeon-torneo.wav");
         }};
     }
     public static GameSounds getInstance(){
@@ -76,10 +77,12 @@ public class GameSounds {
         return currentMusic;
     }
     public void stopMusic(){
-        clip.stop();
-        clip.flush();
-        clip.close();
-        musicOn = false;
+        if(musicOn){
+            clip.stop();
+            clip.flush();
+            clip.close();
+            musicOn = false;
+        }
     }
 
     public Boolean musicOn(){
